@@ -14,25 +14,8 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.specs
+package uk.gov.hmrc.test.ui.specs.tags
 
-import org.scalatest.featurespec.AnyFeatureSpec
-import org.scalatest.matchers.should.Matchers
-import org.scalatest.{BeforeAndAfterEach, GivenWhenThen}
-import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
+import org.scalatest.Tag
 
-trait BaseSpec
-    extends AnyFeatureSpec
-    with GivenWhenThen
-    with Matchers
-    with BeforeAndAfterEach
-    with Browser
-    with ScreenshotOnFailure {
-
-  override def beforeEach(): Unit =
-    startBrowser()
-
-  override def afterEach(): Unit =
-    quitBrowser()
-
-}
+object RegistrationTests extends Tag("RegistrationTests")
