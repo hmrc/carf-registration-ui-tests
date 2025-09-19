@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.test.ui.pages
 
-import uk.gov.hmrc.selenium.component.PageObject
-
-trait BasePage extends PageObject {}
+object AgentKickOutPage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "/carf-for-register" // TO-DO /problem/agent-sign-in-problem //need to change this end-point later for the Agent Kick-out page
+}
