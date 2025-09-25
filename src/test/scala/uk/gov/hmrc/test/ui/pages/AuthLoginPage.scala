@@ -83,19 +83,19 @@ object AuthLoginPage extends BasePage {
     addSaPreset()
     submitAuthPage()
 
-  def loginAsIndividualUserNoBusinessWithNino(): RegistrationTypePage.type = {
+  def loginAsIndividualUserNoBusinessWithNino(): IndRegistrationTypePage.type = {
     submitAuthIndividualWithNino("Individual", "User")
-    RegistrationTypePage // Need to include the step for the proper page display for the Individual not linked to business
+    IndRegistrationTypePage // Need to include the step for the proper page display for the Individual not linked to business
   }
 
-  def loginAsIndividualSoleTraderWithSaUtr(): RegistrationTypePage.type = {
+  def loginAsIndividualSoleTraderWithSaUtr(): IndRegistrationTypePage.type = {
     submitAuthIndividualWithNino("Individual", "User")
-    RegistrationTypePage // Need to include the step for the proper page display for the Individual - Sole Trader
+    IndRegistrationTypePage // Need to include the step for the proper page display for the Individual - Sole Trader
   }
 
-  def loginAsIndividualWithoutNino(): RegistrationTypePage.type = {
+  def loginAsIndividualWithoutNino(): IndRegistrationTypePage.type = {
     submitAuthIndividualSoleTraderWithSaUtr("Individual", "User")
-    RegistrationTypePage // Need to include the step for the proper page display for the Individual
+    IndRegistrationTypePage // Need to include the step for the proper page display for the Individual
 
   }
 
@@ -120,14 +120,14 @@ object AuthLoginPage extends BasePage {
     submitAuthPage()
   }
 
-  def loginAsOrgAdminWithoutCtUtr(): RegistrationTypePage.type = {
+  def loginAsOrgAdminWithoutCtUtr(): OrgRegistrationTypePage.type = { 
     submitAuthWithoutEnrolment("Organisation", "User")
-    RegistrationTypePage // Need to include the step for the proper page display for the Organization
+    OrgRegistrationTypePage 
   }
 
-  def loginAsOrgAdminWithCtUtr(): RegistrationTypePage.type = {
+  def loginAsOrgAdminWithCtUtr(): OrgRegistrationTypePage.type = {
     submitAuthWithCtEnrolment("Organisation", "User")
-    RegistrationTypePage // Need to include the step for the proper page display
+    OrgRegistrationTypePage // Need to include the step for the proper page display
   }
 
   def loginAsOrgAssistant(): OrgAssistantPage.type = {

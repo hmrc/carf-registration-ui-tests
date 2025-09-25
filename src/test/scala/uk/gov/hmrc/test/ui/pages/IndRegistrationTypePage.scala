@@ -16,8 +16,12 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object RegistrationTypePage extends BasePage {
-  override val pageUrl: String =
-    baseUrl + "/carf-for-register" // TO-DO Need to change this end-point later
+import org.openqa.selenium.By
 
-}
+object IndRegistrationTypePage extends BasePage {
+  override val pageUrl: String = baseUrl + "TODO Add later"
+
+    
+
+  }
+

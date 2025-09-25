@@ -29,8 +29,10 @@ class OrgRegistrationSpec extends BaseSpec {
       ZapTests
     ) {
 
-      Given("the user logs in as an Organisation having user role without CT-UTR ")
+      Given("the user logs in with an Organisation affinity and user credential role without CT-UTR")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
+      When("The user enters information to achieve a match on their organisation's data")
+      OrgRegistrationTypePage.registerAs("Limited Company")
     }
   }
 
@@ -45,7 +47,7 @@ class OrgRegistrationSpec extends BaseSpec {
   }
 
   Scenario(
-    "Organisation affinity and Assistant credential role without enrolment",
+    "Organisation affinity and Assistant credential role",
     RegistrationTests,
     ZapTests
   ) {
