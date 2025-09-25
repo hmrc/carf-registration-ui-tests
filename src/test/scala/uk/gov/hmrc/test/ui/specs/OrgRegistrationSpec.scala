@@ -33,6 +33,8 @@ class OrgRegistrationSpec extends BaseSpec {
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
       When("The user enters information to achieve a match on their organisation's data")
       OrgRegistrationTypePage.registerAs("Limited Company")
+      Then("They should land on the Registered Address in UK Page")
+      RegisteredAddressInUKPage.onPage()
     }
   }
 
