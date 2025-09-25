@@ -41,6 +41,12 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     .withTimeout(Duration.ofSeconds(2))
     .pollingEvery(Duration.ofMillis(200))
 
+  def selectRadioAndContinue(id: By): Unit = {
+    onPage()
+    click(id)
+    click(continueButtonId)
+  }
+
   def onPage(url: String = this.pageUrl): Unit = fluentWait.until(ExpectedConditions.urlToBe(url))
 
   def selectDropdownById(id: By): Select = new Select(driver.findElement(id: By))

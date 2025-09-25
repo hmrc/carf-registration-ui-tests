@@ -27,16 +27,18 @@ object OrgRegistrationTypePage extends BasePage {
     private val unincorporatedRadioId = By.id("value_3")
     private val soleTraderRadioId = By.id("value_4")
 
-  def registerAs(registrationType: String): Unit = {
-    onPage()
-    click(registrationType match {
+  def getId(registrationType: String): By = {
+    registrationType match {
       case "Limited Company"                           => limitedCompanyRadioId
       case "Partnership"                               => partnershipRadioId
       case "LLP"                                       => llpRadioId
       case "Unincorporated"                            => unincorporatedRadioId
       case "Sole Trader"                               => soleTraderRadioId
-    })
-    click(continueButtonId)
+    }
+  }
+
+  def registerAs(registrationType: String): Unit = {
+    selectRadioAndContinue(getId(registrationType))
   }
 
   }
