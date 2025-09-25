@@ -33,12 +33,19 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     "carf-registration-frontend"
   ) // need to add the specific URL + ""/register""
   val submitButtonId: By = By.id("submit")
+  val continueButtonId: By = By.id("continue")
 
   def navigateTo(url: String): Unit = driver.navigate().to(url)
 
   private def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
     .withTimeout(Duration.ofSeconds(2))
     .pollingEvery(Duration.ofMillis(200))
+
+  def selectRadioAndContinue(id: By): Unit = {
+    onPage()
+    click(id)
+    click(continueButtonId)
+  }
 
   def onPage(url: String = this.pageUrl): Unit = fluentWait.until(ExpectedConditions.urlToBe(url))
 

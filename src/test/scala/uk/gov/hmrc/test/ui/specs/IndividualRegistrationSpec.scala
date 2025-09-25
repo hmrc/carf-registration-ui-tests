@@ -34,7 +34,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       Given(
         "the user logs in as an Individual not linked to any business having user role with NINO"
       )
-      AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
+      AuthLoginPage.loginAsIndividualUserNoBusinessWithNino()
     }
 
     Scenario(
