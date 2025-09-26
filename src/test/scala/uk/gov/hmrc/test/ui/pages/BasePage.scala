@@ -29,10 +29,10 @@ import java.time.Duration
 trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject {
 
   val pageUrl: String
-  val baseUrl: String    = TestConfiguration.url(
+  val baseUrl: String      = TestConfiguration.url(
     "carf-registration-frontend"
   ) // need to add the specific URL + ""/register""
-  val submitButtonId: By = By.id("submit")
+  val submitButtonId: By   = By.id("submit")
   val continueButtonId: By = By.id("continue")
 
   def navigateTo(url: String): Unit = driver.navigate().to(url)

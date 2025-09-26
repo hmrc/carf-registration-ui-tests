@@ -16,10 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
+object HaveUtrPage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Fhave-utr+%28Do+you+have+a+UTR+page+-+CARF-123%29"
 
-object RegisteredAddressInUKPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/placeholder?message=Must+redirect+to+%2Fregistered-address-in-uk+%28CARF-121%29" //TO-DO: Change this later to the correct URL
-
-  }
-
+}
