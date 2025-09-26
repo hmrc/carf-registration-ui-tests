@@ -22,7 +22,6 @@ import uk.gov.hmrc.test.ui.specs.tags.*
 class OrgRegistrationSpec extends BaseSpec {
 
   Feature("Organisation Registration") {
-    // All the scenarios and steps will be updated later
     Scenario(
       "Organisation affinity and User credential role without CT-UTR enrolment",
       RegistrationTests,
@@ -33,28 +32,28 @@ class OrgRegistrationSpec extends BaseSpec {
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
       When("The user enters information to achieve a match on their organisation's data")
       OrgRegistrationTypePage.registerAs("Limited Company")
-      Then("They should land on the Registered Address in UK Page")
-      RegisteredAddressInUKPage.onPage()
+      RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
+      UtrPage.onPage()
     }
-  }
 
-  Scenario(
-    "Organisation affinity and User credential role with CT-UTR enrolment",
-    RegistrationTests,
-    ZapTests
-  ) {
+    Scenario(
+      "Organisation affinity and User credential role with CT-UTR enrolment",
+      RegistrationTests,
+      ZapTests
+    ) {
 
-    Given("the user logs in as an auto-matched Organisation having user role with CT-UTR ")
-    AuthLoginPage.loginAsOrgAdminWithCtUtr()
-  }
+      Given("the user logs in as an auto-matched Organisation having user role with CT-UTR ")
+      AuthLoginPage.loginAsOrgAdminWithCtUtr()
+    }
 
-  Scenario(
-    "Organisation affinity and Assistant credential role",
-    RegistrationTests,
-    ZapTests
-  ) {
+    Scenario(
+      "Organisation affinity and Assistant credential role",
+      RegistrationTests,
+      ZapTests
+    ) {
 
-    Given("the user logs in as an Organisation having assistant role ")
-    AuthLoginPage.loginAsOrgAdminWithCtUtr()
+      Given("the user logs in as an Organisation having assistant role ")
+      AuthLoginPage.loginAsOrgAdminWithCtUtr()
+    }
   }
 }

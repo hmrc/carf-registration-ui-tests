@@ -16,7 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object IndRegistrationTypePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register-for-carf"
+object UtrPage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Futr+%28What+is+your+UTR+page+-+CARF-122%29"
 
 }
