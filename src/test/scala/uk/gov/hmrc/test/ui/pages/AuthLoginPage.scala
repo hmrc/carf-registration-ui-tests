@@ -120,9 +120,9 @@ object AuthLoginPage extends BasePage {
     submitAuthPage()
   }
 
-  def loginAsOrgAdminWithoutCtUtr(): OrgRegistrationTypePage.type = { 
+  def loginAsOrgAdminWithoutCtUtr(): OrgRegistrationTypePage.type = {
     submitAuthWithoutEnrolment("Organisation", "User")
-    OrgRegistrationTypePage 
+    OrgRegistrationTypePage
   }
 
   def loginAsOrgAdminWithCtUtr(): OrgRegistrationTypePage.type = {
