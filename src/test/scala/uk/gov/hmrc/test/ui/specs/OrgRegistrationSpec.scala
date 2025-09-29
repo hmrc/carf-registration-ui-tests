@@ -23,7 +23,7 @@ class OrgRegistrationSpec extends BaseSpec {
 
   Feature("Organisation Registration") {
     Scenario(
-      "Organisation affinity and User credential role without CT-UTR enrolment",
+      "Organisation affinity and User credential role without CT-UTR enrolment having a registered address in the UK",
       RegistrationTests,
       ZapTests
     ) {
@@ -34,6 +34,20 @@ class OrgRegistrationSpec extends BaseSpec {
       OrgRegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
       UtrPage.onPage()
+    }
+
+    Scenario(
+      "Organisation affinity and User credential role without CT-UTR enrolment having no registered address in the UK",
+      RegistrationTests,
+      ZapTests
+    ) {
+
+      Given("the user logs in with an Organisation affinity and user credential role without CT-UTR")
+      AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
+      When("The user enters information to achieve a match on their organisation's data")
+      OrgRegistrationTypePage.registerAs("Limited Company")
+      RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")
+      HaveUtrPage.onPage()
     }
 
     Scenario(
