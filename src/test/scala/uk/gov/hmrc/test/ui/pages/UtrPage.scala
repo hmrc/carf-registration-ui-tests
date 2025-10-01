@@ -16,8 +16,17 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import org.openqa.selenium.By
+
 object UtrPage extends BasePage {
-  override val pageUrl: String =
-    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Futr+%28What+is+your+UTR+page+-+CARF-122%29"
+  override val pageUrl: String = baseUrl + "/register/utr"
+
+  private val utrId = By.id("value")
+
+  def enterUtr(utrPrefix: String): Unit = {
+    onPage()
+    sendKeys(utrId, generateUtr(utrPrefix))
+    click(submitButtonId)
+  }
 
 }

@@ -14,27 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.specs
+package uk.gov.hmrc.test.ui.pages
 
-import org.scalatest.featurespec.AnyFeatureSpec
-import org.scalatest.matchers.should.Matchers
-import org.scalatest.{BeforeAndAfterEach, GivenWhenThen}
-import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
-import uk.gov.hmrc.test.ui.utils.IdGenerators
+import org.openqa.selenium.By
 
-trait BaseSpec
-    extends AnyFeatureSpec
-    with GivenWhenThen
-    with Matchers
-    with BeforeAndAfterEach
-    with Browser
-    with ScreenshotOnFailure
-    with IdGenerators {
-
-  override def beforeEach(): Unit =
-    startBrowser()
-
-  override def afterEach(): Unit =
-    quitBrowser()
+object YourNamePage extends BasePage {
+  override val pageUrl: String = baseUrl + "/placeholder?message=Must+redirect+to+%2Fyour-name"
 
 }

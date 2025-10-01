@@ -33,7 +33,8 @@ class OrgRegistrationSpec extends BaseSpec {
       When("The user enters information to achieve a match on their organisation's data")
       OrgRegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
-      UtrPage.onPage()
+      UtrPage.enterUtr(matchingCtUtr)
+      BusinessNamePage.onPage()
     }
 
     Scenario(
@@ -68,6 +69,21 @@ class OrgRegistrationSpec extends BaseSpec {
 
       Given("the user logs in as an Organisation having assistant role ")
       AuthLoginPage.loginAsOrgAdminWithCtUtr()
+    }
+
+    Scenario(
+      "Organisation affinity and User credential role without CT-UTR enrolment registers as a Sole trader",
+      RegistrationTests,
+      ZapTests
+    ) {
+
+      Given("the user logs in with an Organisation affinity and user credential role without CT-UTR")
+      AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
+      When("The user enters information to achieve a match on their sole trader business' data")
+      OrgRegistrationTypePage.registerAs("Sole Trader")
+      RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
+      UtrPage.enterUtr(validSaUtr)
+      YourNamePage.onPage()
     }
   }
 }
