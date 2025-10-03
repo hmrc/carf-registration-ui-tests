@@ -72,10 +72,7 @@ object AuthLoginPage extends BasePage {
     enterNinoValue()
     submitAuthPage()
 
-  private def submitAuthIndividualSoleTraderWithSaUtr(
-    affinityGroup: String,
-    credentialRole: String
-  ): Unit =
+  private def submitAuthIndividualSoleTraderWithSaUtr(affinityGroup: String, credentialRole: String): Unit =
     loadPage
     sendKeys(redirectionUrlById, redirectUrl)
     selectAffinityGroup(affinityGroup)
@@ -88,7 +85,7 @@ object AuthLoginPage extends BasePage {
     IndRegistrationTypePage // Need to include the step for the proper page display for the Individual not linked to business
   }
 
-  def loginAsIndividualSoleTraderWithSaUtr(): IndRegistrationTypePage.type = {
+  def loginAsIndividualSoleTraderWithoutNino(): IndRegistrationTypePage.type = {
     submitAuthIndividualWithNino("Individual", "User")
     IndRegistrationTypePage // Need to include the step for the proper page display for the Individual - Sole Trader
   }

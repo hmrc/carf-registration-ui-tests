@@ -21,50 +21,80 @@ import uk.gov.hmrc.test.ui.specs.tags.*
 
 class IndividualRegistrationSpec extends BaseSpec {
 
-  Feature("Individual Registration") {
+  Feature("Individual CARF Registration") {
 
     // All the scenarios and steps will be updated later
 
     Scenario(
-      "Individual affinity and User credential role with NINO - Individual not linked to any business",
+      "Individual user with NINO - Individual not connected to any business",
+      RegistrationTests,
+      ZapTests
+    ) {
+
+      Given("the Individual user logs in as the one not connected to any business with NINO")
+      AuthLoginPage.loginAsIndividualUserNoBusinessWithNino()
+
+    }
+
+    Scenario(
+      "Individual user with NINO - Sole trader",
+      RegistrationTests,
+      ZapTests
+    ) {
+
+      Given("the Individual user logs in as sole trader with NINO")
+      AuthLoginPage.loginAsIndividualUserNoBusinessWithNino()
+
+    }
+
+    Scenario(
+      "Individual user without NINO - Individual not connected to any business",
+      RegistrationTests,
+      ZapTests
+    ) {
+
+      Given("the Individual user logs in as the one not connected to a business without NINO")
+      AuthLoginPage.loginAsIndividualWithoutNino()
+      When("the Individual user enters information to achieve a match on their personal data")
+      IndRegistrationTypePage.registerIndividualAs("An individual not connected to a business")
+      Then("the page 'Do you have a National Insurance Number' should be displayed")
+      HaveNiNumberPage.onPage()
+    }
+
+    Scenario(
+      "Individual user registering as a Sole trader without NINO having a registered address in the UK",
       RegistrationTests,
       ZapTests
     ) {
 
       Given(
-        "the user logs in as an Individual not linked to any business having user role with NINO"
+        "the Individual user logs in as a sole trader without NINO having a registered address in the UK"
       )
-      AuthLoginPage.loginAsIndividualUserNoBusinessWithNino()
+      AuthLoginPage.loginAsIndividualSoleTraderWithoutNino()
+      When("the Individual user enters information to achieve a match on their personal data by selecting Sole Trader")
+      IndRegistrationTypePage.registerIndividualAs("Sole Trader")
+      And("the Individual user selects Yes for the registered address in the UK")
+      RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
+      And("the Individual user enters the UTR in the UTR page")
+      UtrPage.enterUtr(validSaUtr)
+      Then("the Business Name page should be displayed- this is still under development")
+      BusinessNamePage.onPage()
     }
 
     Scenario(
-      "Individual affinity and User credential role with NINO - Sole trader",
+      "Individual user registering as a Sole trader without NINO having no registered address in the UK",
       RegistrationTests,
       ZapTests
     ) {
 
-      Given("the user logs in as an Individual sole trader having user role with NINO")
-      AuthLoginPage.loginAsIndividualUserNoBusinessWithNino()
-    }
-
-    Scenario(
-      "Individual affinity and User credential role without NINO - Individual not linked to any business",
-      RegistrationTests,
-      ZapTests
-    ) {
-
-      Given("the user logs in as an Individual sole trader having user role without NINO")
-      AuthLoginPage.loginAsIndividualWithoutNino()
-    }
-
-    Scenario(
-      "Individual affinity and User credential role without NINO - Sole trader",
-      RegistrationTests,
-      ZapTests
-    ) {
-
-      Given("the user logs in as Individual sole trader having user role without NINO")
-      AuthLoginPage.loginAsIndividualSoleTraderWithSaUtr()
+      Given("the Individual user logs in as a sole trader without NINO having no registered address in the UK")
+      AuthLoginPage.loginAsIndividualSoleTraderWithoutNino()
+      When("the Individual user enters information to achieve a match on their personal data by selecting Sole Trader")
+      IndRegistrationTypePage.registerIndividualAs("Sole Trader")
+      And("the Individual user selects No for the registered address in the UK")
+      RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")
+      Then("the page 'Do you have a UTR?' should be displayed - this is still under development--CARF123")
+      HaveUtrPage.onPage()
     }
   }
 }

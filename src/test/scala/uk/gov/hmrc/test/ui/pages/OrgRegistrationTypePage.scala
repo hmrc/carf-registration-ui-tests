@@ -36,6 +36,6 @@ object OrgRegistrationTypePage extends BasePage {
       case "Sole Trader"     => soleTraderRadioId
     }
 
-  def registerAs(registrationType: String): Unit =
+  def registerOrganizationAs(registrationType: String): Unit =
     selectRadioAndContinue(getId(registrationType))
 }

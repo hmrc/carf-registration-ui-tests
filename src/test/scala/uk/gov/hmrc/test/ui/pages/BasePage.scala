@@ -24,6 +24,7 @@ import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
 import uk.gov.hmrc.test.ui.utils.IdGenerators
+
 import java.time.Duration
 
 trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject {
@@ -51,8 +52,9 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
 
   def selectDropdownById(id: By): Select = new Select(driver.findElement(id: By))
 
-  def onPageSubmitById(): Unit = {
+  def onPageSubmitById(id: By): Unit = {
     onPage()
+    click(id)
     click(submitButtonId)
   }
 
