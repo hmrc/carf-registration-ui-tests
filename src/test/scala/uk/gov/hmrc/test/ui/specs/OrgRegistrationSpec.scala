@@ -28,13 +28,13 @@ class OrgRegistrationSpec extends BaseSpec {
       ZapTests
     ) {
 
-      Given("the Organization user logs in without CT-UTR having a registered address in the UK")
+      Given("the Organisation user logs in without CT-UTR having a registered address in the UK")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
-      When("the Organization user enters information to achieve a match on their organisation's data")
-      OrgRegistrationTypePage.registerOrganizationAs("Limited Company")
-      And("the Organization user selects Yes for the registered address in the UK")
+      When("the Organisation user enters information to achieve a match on their organisation's data")
+      OrgRegistrationTypePage.registerOrganisationAs("Limited Company")
+      And("the Organisation user selects Yes for the registered address in the UK")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
-      And("the Organization user enters the UTR in the UTR page")
+      And("the Organisation user enters the UTR in the UTR page")
       UtrPage.enterUtr(matchingCtUtr)
       Then("the page Business Name should be displayed- this is still under development")
       BusinessNamePage.onPage()
@@ -46,11 +46,11 @@ class OrgRegistrationSpec extends BaseSpec {
       ZapTests
     ) {
 
-      Given("the Organization user logs in without CT-UTR having no registered address in the UK")
+      Given("the Organisation user logs in without CT-UTR having no registered address in the UK")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
-      When("the Organization user enters information to achieve a match on their organisation's data")
-      OrgRegistrationTypePage.registerOrganizationAs("Limited Company")
-      And("the Organization user selects No for the registered address in the UK")
+      When("the Organisation user enters information to achieve a match on their organisation's data")
+      OrgRegistrationTypePage.registerOrganisationAs("Limited Company")
+      And("the Organisation user selects No for the registered address in the UK")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")
       Then("the page 'Do you have a UTR?' should be displayed - this is still under development--CARF123")
       HaveUtrPage.onPage()
@@ -84,11 +84,11 @@ class OrgRegistrationSpec extends BaseSpec {
 
       Given("the Organisation user logs in without CT-UTR registers as a Sole trader")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
-      When("the user enters information to achieve a match on their sole trader business' data")
-      OrgRegistrationTypePage.registerOrganizationAs("Sole Trader")
-      And("the Organization user selects No for the registered address in the UK")
+      When("the Organisation user enters information to achieve a match on their sole trader business' data")
+      OrgRegistrationTypePage.registerOrganisationAs("Sole Trader")
+      And("the Organisation user selects No for the registered address in the UK")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
-      And("the Organization user enters the UTR in the UTR page")
+      And("the Organisation user enters the UTR in the UTR page")
       UtrPage.enterUtr(validSaUtr)
       Then("the page 'Your Name' page should be displayed")
       YourNamePage.onPage()

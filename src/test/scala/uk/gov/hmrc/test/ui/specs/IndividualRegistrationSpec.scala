@@ -31,8 +31,8 @@ class IndividualRegistrationSpec extends BaseSpec {
       ZapTests
     ) {
 
-      Given("the Individual user logs in as the one not connected to any business with NINO")
-      AuthLoginPage.loginAsIndividualUserNoBusinessWithNino()
+      Given("the Individual user logs in as an individual not connected to a business with NINO")
+      AuthLoginPage.loginAsIndividualWithNino()
 
     }
 
@@ -43,7 +43,7 @@ class IndividualRegistrationSpec extends BaseSpec {
     ) {
 
       Given("the Individual user logs in as sole trader with NINO")
-      AuthLoginPage.loginAsIndividualUserNoBusinessWithNino()
+      AuthLoginPage.loginAsIndividualWithNino()
 
     }
 
@@ -53,7 +53,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       ZapTests
     ) {
 
-      Given("the Individual user logs in as the one not connected to a business without NINO")
+      Given("the Individual user logs in as an individual not connected to a business without NINO")
       AuthLoginPage.loginAsIndividualWithoutNino()
       When("the Individual user enters information to achieve a match on their personal data")
       IndRegistrationTypePage.registerIndividualAs("An individual not connected to a business")
@@ -70,7 +70,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       Given(
         "the Individual user logs in as a sole trader without NINO having a registered address in the UK"
       )
-      AuthLoginPage.loginAsIndividualSoleTraderWithoutNino()
+      AuthLoginPage.loginAsIndividualWithoutNino()
       When("the Individual user enters information to achieve a match on their personal data by selecting Sole Trader")
       IndRegistrationTypePage.registerIndividualAs("Sole Trader")
       And("the Individual user selects Yes for the registered address in the UK")
@@ -88,7 +88,7 @@ class IndividualRegistrationSpec extends BaseSpec {
     ) {
 
       Given("the Individual user logs in as a sole trader without NINO having no registered address in the UK")
-      AuthLoginPage.loginAsIndividualSoleTraderWithoutNino()
+      AuthLoginPage.loginAsIndividualWithoutNino()
       When("the Individual user enters information to achieve a match on their personal data by selecting Sole Trader")
       IndRegistrationTypePage.registerIndividualAs("Sole Trader")
       And("the Individual user selects No for the registered address in the UK")
