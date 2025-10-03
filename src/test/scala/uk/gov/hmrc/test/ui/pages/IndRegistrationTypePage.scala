@@ -16,7 +16,20 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object IndRegistrationTypePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register-for-carf"
+import org.openqa.selenium.By
 
+object IndRegistrationTypePage extends BasePage {
+  override val pageUrl: String = baseUrl + "/register/individual-registration-type"
+
+  private val soleTraderRadioId = By.id("value_0")
+  private val individualRadioId = By.id("value_1")
+
+  def getIndRegId(registrationType: String): By =
+    registrationType match {
+      case "Sole Trader"                               => soleTraderRadioId
+      case "An individual not connected to a business" => individualRadioId
+    }
+
+  def registerIndividualAs(registrationType: String): Unit =
+    selectRadioAndContinue(getIndRegId(registrationType))
 }
