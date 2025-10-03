@@ -55,7 +55,7 @@ class IndividualRegistrationSpec extends BaseSpec {
 
       Given("the Individual user logs in as an individual not connected to a business without NINO")
       AuthLoginPage.loginAsIndividualWithoutNino()
-      When("the Individual user enters information to achieve a match on their personal data")
+      When("the Individual user selects which type of Individual they are")
       IndRegistrationTypePage.registerIndividualAs("An individual not connected to a business")
       Then("the page 'Do you have a National Insurance Number' should be displayed")
       HaveNiNumberPage.onPage()
@@ -71,7 +71,7 @@ class IndividualRegistrationSpec extends BaseSpec {
         "the Individual user logs in as a sole trader without NINO having a registered address in the UK"
       )
       AuthLoginPage.loginAsIndividualWithoutNino()
-      When("the Individual user enters information to achieve a match on their personal data by selecting Sole Trader")
+      When("the Individual user selects which type of Individual they are")
       IndRegistrationTypePage.registerIndividualAs("Sole Trader")
       And("the Individual user selects Yes for the registered address in the UK")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
@@ -89,7 +89,7 @@ class IndividualRegistrationSpec extends BaseSpec {
 
       Given("the Individual user logs in as a sole trader without NINO having no registered address in the UK")
       AuthLoginPage.loginAsIndividualWithoutNino()
-      When("the Individual user enters information to achieve a match on their personal data by selecting Sole Trader")
+      When("the Individual user selects which type of Individual they are")
       IndRegistrationTypePage.registerIndividualAs("Sole Trader")
       And("the Individual user selects No for the registered address in the UK")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")

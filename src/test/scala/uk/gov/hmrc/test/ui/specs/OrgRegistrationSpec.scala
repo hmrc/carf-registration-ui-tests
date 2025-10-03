@@ -30,7 +30,7 @@ class OrgRegistrationSpec extends BaseSpec {
 
       Given("the Organisation user logs in without CT-UTR having a registered address in the UK")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
-      When("the Organisation user enters information to achieve a match on their organisation's data")
+      When("the Organisation user selects which type of Organisation they are")
       OrgRegistrationTypePage.registerOrganisationAs("Limited Company")
       And("the Organisation user selects Yes for the registered address in the UK")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
@@ -48,7 +48,7 @@ class OrgRegistrationSpec extends BaseSpec {
 
       Given("the Organisation user logs in without CT-UTR having no registered address in the UK")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
-      When("the Organisation user enters information to achieve a match on their organisation's data")
+      When("the Organisation user selects which type of Organisation they are")
       OrgRegistrationTypePage.registerOrganisationAs("Limited Company")
       And("the Organisation user selects No for the registered address in the UK")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")
@@ -84,7 +84,7 @@ class OrgRegistrationSpec extends BaseSpec {
 
       Given("the Organisation user logs in without CT-UTR registers as a Sole trader")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
-      When("the Organisation user enters information to achieve a match on their sole trader business' data")
+      When("the Organisation user selects which type of Organisation they are")
       OrgRegistrationTypePage.registerOrganisationAs("Sole Trader")
       And("the Organisation user selects No for the registered address in the UK")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
