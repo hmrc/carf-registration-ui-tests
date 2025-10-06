@@ -81,12 +81,12 @@ object AuthLoginPage extends BasePage {
 
   def loginAsIndividualWithNino(): IndRegistrationTypePage.type = {
     submitAuthIndividualWithNino("Individual", "User")
-    IndRegistrationTypePage // Need to include the step for the proper page display for the Individual not linked to business
+    IndRegistrationTypePage
   }
-  
+
   def loginAsIndividualWithoutNino(): IndRegistrationTypePage.type = {
     submitAuthIndividualWithoutNino("Individual", "User")
-    IndRegistrationTypePage // Need to include the step for the proper page display for the Individual
+    IndRegistrationTypePage
 
   }
 
