@@ -17,6 +17,7 @@
 package uk.gov.hmrc.test.ui.specs
 
 import uk.gov.hmrc.test.ui.pages.*
+import uk.gov.hmrc.test.ui.pages.AgentKickOutPage.partialLinkText
 import uk.gov.hmrc.test.ui.specs.tags.*
 
 class AgentRegistrationSpec extends BaseSpec {
@@ -33,6 +34,10 @@ class AgentRegistrationSpec extends BaseSpec {
 
       Given("the Agent user logs in")
       AuthLoginPage.loginAsAgentAsUser()
+      And("the Agent clicks on the link 'sign in with an organisation or individual Government Gateway user ID'")
+      AgentKickOutPage.clickOnByPartialLinkText(partialLinkText)
+      Then("the Agent user is navigated to the sign-out page")
+      SignOutPage.onPage()
     }
   }
 }

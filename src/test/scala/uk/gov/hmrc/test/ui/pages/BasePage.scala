@@ -58,4 +58,9 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     click(submitButtonId)
   }
 
+  def clickOnByPartialLinkText(partialLinkText: By): Unit = {
+    onPage()
+    click(partialLinkText)
+  }
+
 }
