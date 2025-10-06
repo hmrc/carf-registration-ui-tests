@@ -83,7 +83,7 @@ object AuthLoginPage extends BasePage {
     submitAuthIndividualWithNino("Individual", "User")
     IndRegistrationTypePage // Need to include the step for the proper page display for the Individual not linked to business
   }
-  
+
   def loginAsIndividualWithoutNino(): IndRegistrationTypePage.type = {
     submitAuthIndividualWithoutNino("Individual", "User")
     IndRegistrationTypePage // Need to include the step for the proper page display for the Individual
@@ -92,7 +92,7 @@ object AuthLoginPage extends BasePage {
 
   def loginAsAgentAsUser(): AgentKickOutPage.type = {
     submitAuthWithoutEnrolment("Agent", "User")
-    AgentKickOutPage // Need to include the step for the proper page display for the Agent
+    AgentKickOutPage
   }
 
   private def submitAuthWithoutEnrolment(affinityGroup: String, credentialRole: String): Unit =

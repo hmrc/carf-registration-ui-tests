@@ -16,11 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-
-object AgentKickOutPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register/problem/agent-sign-in-problem"
-
-  val partialLinkText: By = By.partialLinkText("sign in with an organisation or individual")
+object AgentSignOutPage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "http://localhost:9553/bas-gateway/sign-out-without-state\""
 
 }
