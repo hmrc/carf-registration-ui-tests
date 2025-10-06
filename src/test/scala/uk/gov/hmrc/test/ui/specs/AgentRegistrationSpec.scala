@@ -37,7 +37,7 @@ class AgentRegistrationSpec extends BaseSpec {
       And("the Agent clicks on the link 'sign in with an organisation or individual Government Gateway user ID'")
       AgentKickOutPage.clickOnByPartialLinkText(partialLinkText)
       Then("the Agent user is navigated to the sign-out page")
-      AgentSignOutPage.onPage()
+      SignOutPage.onPage()
     }
   }
 }

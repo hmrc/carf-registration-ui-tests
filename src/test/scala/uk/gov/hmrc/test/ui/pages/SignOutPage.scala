@@ -16,6 +16,6 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object AgentSignOutPage extends BasePage {
+object SignOutPage extends BasePage {
   override val pageUrl: String = "http://localhost:9553/bas-gateway/sign-out-without-state?continue=" + baseUrl
 }
