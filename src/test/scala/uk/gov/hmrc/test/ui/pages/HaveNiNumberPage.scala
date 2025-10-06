@@ -14,25 +14,10 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.specs
+package uk.gov.hmrc.test.ui.pages
 
-import uk.gov.hmrc.test.ui.pages.*
-import uk.gov.hmrc.test.ui.specs.tags.*
+object HaveNiNumberPage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Fhave-ni-number+%28Do+you+have+a+National+Insurance+number%3F+page+-+CARF-163%29"
 
-class AgentRegistrationSpec extends BaseSpec {
-
-  Feature("Agent CARF Registration") {
-
-    // All the scenarios and steps will be updated later
-
-    Scenario(
-      "Agent affinity and User credential role",
-      RegistrationTests,
-      ZapTests
-    ) {
-
-      Given("the Agent user logs in")
-      AuthLoginPage.loginAsAgentAsUser()
-    }
-  }
 }
