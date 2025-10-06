@@ -18,6 +18,6 @@ package uk.gov.hmrc.test.ui.pages
 
 object HaveNiNumberPage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Fhave-ni-number+%28Do+you+have+a+National+Insurance+number%3F+page+-+CARF-163%29"
+    baseUrl + "http://localhost:17000/register-for-carf/register/have-ni-number"
 
 }
