@@ -31,11 +31,9 @@ object AuthLoginPage extends BasePage {
   private val presetDropDownById: By           = By.id("presets-dropdown")
   private val presetAddById: By                = By.id("add-preset")
   private val identifierValueCtField: By       = By.id("input-4-0-value")
-  private val identifierValueSaField: By       = By.id("input-4-0-value")
   private val authSubmitById: By               = By.id("submit-top")
   private val identifierValueNinoField: String = generateNino(individualNino)
   private val identifierCtValue: String        = generateUtr(autoMatchedCtUtr)
-  private val identifierSaValue: String        = generateUtr(validSaUtr)
 
   private def loadPage: this.type = {
     navigateTo(pageUrl)
@@ -56,11 +54,6 @@ object AuthLoginPage extends BasePage {
     selectDropdownById(presetDropDownById).selectByVisibleText("CT")
     click(presetAddById)
     sendKeys(identifierValueCtField, identifierCtValue)
-
-  private def addSaPreset(): Unit =
-    selectDropdownById(presetDropDownById).selectByVisibleText("SA")
-    click(presetAddById)
-    sendKeys(identifierValueSaField, identifierSaValue)
 
   private def submitAuthPage(): Unit = click(authSubmitById)
 
