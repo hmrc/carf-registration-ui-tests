@@ -18,20 +18,7 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-object HaveNiNumberPage extends BasePage {
-  override val pageUrl: String =
-    baseUrl + "/register/have-ni-number"
-
-  private val yesRadioId = By.id("value")
-  private val noRadioId  = By.id("value-no")
-
-  def getRadioId(haveNino: String): By =
-    haveNino match {
-      case "Yes" => yesRadioId
-      case "No"  => noRadioId
-    }
-
-  def haveNinoYesOrNo(haveNinoOption: String): Unit =
-    selectRadioAndContinue(getRadioId(haveNinoOption))
+object IndWithoutIdNamePage extends BasePage {
+  override val pageUrl: String = baseUrl + "/placeholder?message=Must+redirect+to+%2Fwithout-id%2Fname+%28CARF-169%29"
 
 }
