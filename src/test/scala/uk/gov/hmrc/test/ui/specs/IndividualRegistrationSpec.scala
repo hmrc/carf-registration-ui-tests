@@ -48,7 +48,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       IndRegistrationTypePage.registerIndividualAs("An individual not connected to a business")
       And("the Individual user selects 'Yes' in the 'Do you have a National Insurance number?' page")
       HaveNiNumberPage.haveNinoYesOrNo("Yes")
-      Then("the Individual user is asked to enter their NINO in the 'Your National Insurance number' page")
+      Then("the Individual user is asked to enter their NINO in the 'What is your National Insurance number' page")
       NiNumberPage
         .onPage() // TODO: This page is currently a placeholder. Script to enter NINO to be added once the page is ready
 
@@ -64,7 +64,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       AuthLoginPage.loginAsIndividualWithNino()
       When("the Individual user selects 'Sole trader' in the Individual registration type page")
       IndRegistrationTypePage.registerIndividualAs("Sole Trader")
-      And("the Individual user selects 'No' for the registered address in the UK")
+      And("the Individual user selects 'No' in the 'Is your registered address in the UK?' page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")
       Then(
         "the page 'Do you have a UTR?' should be displayed - this is still under development -- CARF123"
@@ -98,7 +98,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       IndRegistrationTypePage.registerIndividualAs("An individual not connected to a business")
       And("the Individual user selects 'No' in the 'Do you have a National Insurance number?' page")
       HaveNiNumberPage.haveNinoYesOrNo("No")
-      Then("the Individual user is asked to enter their name in the 'What's your name' page")
+      Then("the Individual user is asked to enter their name in the 'What is your name' page")
       IndWithoutIdNamePage
         .onPage() // TODO: This page is currently a placeholder. Script to enter name to be added once the page is ready
     }
@@ -113,11 +113,11 @@ class IndividualRegistrationSpec extends BaseSpec {
       AuthLoginPage.loginAsIndividualWithoutNino()
       When("the Individual user selects 'Sole trader' in the Individual registration type page")
       IndRegistrationTypePage.registerIndividualAs("Sole Trader")
-      And("the Individual user selects 'Yes' for the registered address in the UK")
+      And("the Individual user selects 'Yes' in the 'Is your registered address in the UK?' page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
       And("the Individual user enters the Self Assessment UTR in the UTR page")
       UtrPage.enterUtr(validSaUtr)
-      Then("the page 'What's your name' should be displayed- this is still under development")
+      Then("the page 'What is your name' should be displayed- this is still under development")
       YourNamePage.onPage()
     }
 
@@ -131,7 +131,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       AuthLoginPage.loginAsIndividualWithoutNino()
       When("the Individual user selects 'Sole trader' in the Individual registration type page")
       IndRegistrationTypePage.registerIndividualAs("Sole Trader")
-      And("the Individual user selects 'No' for the registered address in the UK")
+      And("the Individual user selects 'No' in the 'Is your registered address in the UK?'page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")
       Then("the page 'Do you have a UTR?' should be displayed - this is still under development--CARF123")
       HaveUtrPage.onPage() // TODO: Remove this code and continue with the journey once CARF123 is developed
