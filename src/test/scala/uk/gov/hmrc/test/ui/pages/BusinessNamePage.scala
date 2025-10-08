@@ -17,6 +17,6 @@
 package uk.gov.hmrc.test.ui.pages
 
 object BusinessNamePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/placeholder?message=Must+redirect+to+%2Fbusiness-name"
+  override val pageUrl: String = baseUrl + "/placeholder?message=Must+redirect+to+%2Fbusiness-name+%28CARF-211%29"
 
 }
