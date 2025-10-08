@@ -32,7 +32,7 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
   val pageUrl: String
   val baseUrl: String      = TestConfiguration.url(
     "carf-registration-frontend"
-  ) // need to add the specific URL + ""/register""
+  )
   val submitButtonId: By   = By.id("submit")
   val continueButtonId: By = By.id("continue")
 
