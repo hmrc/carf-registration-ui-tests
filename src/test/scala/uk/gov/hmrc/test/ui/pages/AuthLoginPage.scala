@@ -18,7 +18,6 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.pages.AuthLoginPage.autoMatchedCtUtr
 
 object AuthLoginPage extends BasePage {
   override val pageUrl: String    = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
@@ -33,7 +32,7 @@ object AuthLoginPage extends BasePage {
   private val identifierValueCtField: By       = By.id("input-4-0-value")
   private val authSubmitById: By               = By.id("submit-top")
   private val identifierValueNinoField: String = generateNino(individualNino)
-  private val identifierCtValue: String        = generateUtr(autoMatchedCtUtr)
+  private val identifierCtValue: String        = generateUtr(matchingCtUtr)
 
   private def loadPage: this.type = {
     navigateTo(pageUrl)

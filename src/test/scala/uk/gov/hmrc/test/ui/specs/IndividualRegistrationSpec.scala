@@ -30,19 +30,25 @@ class IndividualRegistrationSpec extends BaseSpec {
     // 4.       "Individual user without NINO - Sole trader - having a registered address in the UK",
     // 5.       "Individual user without NINO - Sole trader - having no registered address in the UK",
 
+    // *******************************************
+    //          Individual user with NINO
+    // *******************************************
+
     Scenario(
       "Individual user with NINO - Individual not connected to any business",
       RegistrationTests,
       ZapTests
     ) {
 
-      Given("The Individual user logs in as an individual not connected to a business with NINO")
+      Given("the Individual user logs in as an individual not connected to a business with NINO")
       AuthLoginPage.loginAsIndividualWithNino()
-      When("the user selects 'An Individual not connected to a business' in the '/individual-registration-type' page")
+      When(
+        "the Individual user selects 'An Individual not connected to a business' in the Individual registration type page"
+      )
       IndRegistrationTypePage.registerIndividualAs("An individual not connected to a business")
-      And("the user selects 'Yes' in the '/have-ni-number' page")
+      And("the Individual user selects 'Yes' in the 'Do you have a National Insurance number?' page")
       HaveNiNumberPage.haveNinoYesOrNo("Yes")
-      Then("the user is asked to enter their NINO in the '/ni-number' page")
+      Then("the Individual user is asked to enter their NINO in the 'What is your National Insurance number' page")
       NiNumberPage
         .onPage() // TODO: This page is currently a placeholder. Script to enter NINO to be added once the page is ready
 
@@ -54,14 +60,14 @@ class IndividualRegistrationSpec extends BaseSpec {
       ZapTests
     ) {
 
-      Given("The Individual user logs in as sole trader with NINO")
+      Given("the Individual user logs in as sole trader with NINO")
       AuthLoginPage.loginAsIndividualWithNino()
-      When("the user selects 'Sole trader' in the '/individual-registration-type' page")
+      When("the Individual user selects 'Sole trader' in the Individual registration type page")
       IndRegistrationTypePage.registerIndividualAs("Sole Trader")
-      And("the user selects 'No' in the '/registered-address-in-uk' page")
+      And("the Individual user selects 'No' in the 'Is your registered address in the UK?' page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")
       Then(
-        "the '/have-utr' page should be displayed - this is still under development -- CARF123"
+        "the page 'Do you have a UTR?' should be displayed - this is still under development -- CARF123"
       ) // TODO: Remove this code and continue with the journey once CARF123 is developed
       HaveUtrPage.onPage() // TODO: Remove this code and continue with the journey once CARF123 is developed
       /*
@@ -74,6 +80,10 @@ class IndividualRegistrationSpec extends BaseSpec {
        */
     }
 
+    // *******************************************
+    //          Individual user without NINO
+    // *******************************************
+
     Scenario(
       "Individual user without NINO - Individual not connected to any business",
       RegistrationTests,
@@ -82,11 +92,13 @@ class IndividualRegistrationSpec extends BaseSpec {
 
       Given("the Individual user logs in as an individual not connected to a business without NINO")
       AuthLoginPage.loginAsIndividualWithoutNino()
-      When("the user selects 'An Individual not connected to a business' in the '/individual-registration-type' page")
+      When(
+        "the Individual user selects 'An Individual not connected to a business' in the Individual registration type page"
+      )
       IndRegistrationTypePage.registerIndividualAs("An individual not connected to a business")
-      And("the user selects 'No' in the '/have-ni-number' page")
+      And("the Individual user selects 'No' in the 'Do you have a National Insurance number?' page")
       HaveNiNumberPage.haveNinoYesOrNo("No")
-      Then("the user is asked to enter their name in the '/without-id/name' page")
+      Then("the Individual user is asked to enter their name in the 'What is your name' page")
       IndWithoutIdNamePage
         .onPage() // TODO: This page is currently a placeholder. Script to enter name to be added once the page is ready
     }
@@ -99,13 +111,13 @@ class IndividualRegistrationSpec extends BaseSpec {
 
       Given("the Individual user logs in as a sole trader without NINO having a registered address in the UK")
       AuthLoginPage.loginAsIndividualWithoutNino()
-      When("the user selects 'Sole trader' in the '/individual-registration-type' page")
+      When("the Individual user selects 'Sole trader' in the Individual registration type page")
       IndRegistrationTypePage.registerIndividualAs("Sole Trader")
-      And("the Individual user selects Yes in the '/registered-address-in-uk' page")
+      And("the Individual user selects 'Yes' in the 'Is your registered address in the UK?' page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
-      And("the Individual user enters the UTR in the '/utr' page")
+      And("the Individual user enters the Self Assessment UTR in the UTR page")
       UtrPage.enterUtr(validSaUtr)
-      Then("the '/your-name' page should be displayed- this is still under development")
+      Then("the page 'What is your name' should be displayed- this is still under development")
       YourNamePage.onPage()
     }
 
@@ -117,14 +129,11 @@ class IndividualRegistrationSpec extends BaseSpec {
 
       Given("the Individual user logs in as a sole trader without NINO having no registered address in the UK")
       AuthLoginPage.loginAsIndividualWithoutNino()
-      When("the user selects 'Sole trader' in the '/individual-registration-type' page")
+      When("the Individual user selects 'Sole trader' in the Individual registration type page")
       IndRegistrationTypePage.registerIndividualAs("Sole Trader")
-      And("the user selects 'No' in the '/registered-address-in-uk' page")
+      And("the Individual user selects 'No' in the 'Is your registered address in the UK?'page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")
       Then("the page 'Do you have a UTR?' should be displayed - this is still under development--CARF123")
-      Then(
-        "the '/have-utr' page should be displayed - this is still under development -- CARF123"
-      ) // TODO: Remove this code and continue with the journey once CARF123 is developed
       HaveUtrPage.onPage() // TODO: Remove this code and continue with the journey once CARF123 is developed
       /*
       And("the user selects 'No' in the '/have-utr' page")

@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,20 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object NiNumberPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/placeholder?message=Must+redirect+to+%2Fni-number+%28CARF-164%29"
+import org.openqa.selenium.By
 
+object YourBusinessPage extends BasePage {
+  override val pageUrl: String = baseUrl + "/register/is-this-your-business"
+
+  private val yesRadioId = By.id("value")
+  private val noRadioId  = By.id("value-no")
+
+  def getRadioId(yourBusiness: String): By =
+    yourBusiness match {
+      case "Yes" => yesRadioId
+      case "No"  => noRadioId
+    }
+
+  def yourBusinessYesOrNo(yourBusinessOption: String): Unit =
+    selectRadioAndContinue(getRadioId(yourBusinessOption))
 }

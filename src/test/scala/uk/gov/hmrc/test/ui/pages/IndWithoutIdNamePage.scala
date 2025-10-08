@@ -16,8 +16,6 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-
 object IndWithoutIdNamePage extends BasePage {
   override val pageUrl: String = baseUrl + "/placeholder?message=Must+redirect+to+%2Fwithout-id%2Fname+%28CARF-169%29"
 

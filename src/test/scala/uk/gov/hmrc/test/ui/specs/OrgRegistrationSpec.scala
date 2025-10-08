@@ -22,17 +22,24 @@ import uk.gov.hmrc.test.ui.specs.tags.*
 class OrgRegistrationSpec extends BaseSpec {
 
   Feature("Organisation CARF Registration") {
+
+    // **************************************************
+    //    Organisation user without CT-UTR enrolment
+    // **************************************************
+
     Scenario(
       "Organisation user without CT-UTR enrolment having a registered address in the UK",
       RegistrationTests,
       ZapTests
     ) {
 
-      Given("the Organisation user logs in without CT-UTR having a registered address in the UK")
+      Given(
+        "the Organisation user logs in as Limited Company without CT-UTR enrolment having a registered address in the UK"
+      )
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
-      When("the Organisation user selects which type of Organisation they are")
+      When("the Organisation user selects 'Limited Company' in the Organisation registration type page")
       OrgRegistrationTypePage.registerOrganisationAs("Limited Company")
-      And("the Organisation user selects Yes for the registered address in the UK")
+      And("the Organisation user selects 'Yes' in the 'Is your registered address in the UK?' page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
       And("the Organisation user enters the UTR in the UTR page")
       UtrPage.enterUtr(matchingCtUtr)
@@ -46,25 +53,73 @@ class OrgRegistrationSpec extends BaseSpec {
       ZapTests
     ) {
 
-      Given("the Organisation user logs in without CT-UTR having no registered address in the UK")
+      Given(
+        "the Organisation user logs in as Limited Company without CT-UTR enrolment having no a registered address in the UK"
+      )
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
-      When("the Organisation user selects which type of Organisation they are")
+      When("the Organisation user selects 'Limited Company' in the Organisation registration type page")
       OrgRegistrationTypePage.registerOrganisationAs("Limited Company")
-      And("the Organisation user selects No for the registered address in the UK")
+      And("the Organisation user selects 'No' in the 'Is your registered address in the UK?' page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")
       Then("the page 'Do you have a UTR?' should be displayed - this is still under development--CARF123")
       HaveUtrPage.onPage()
     }
 
     Scenario(
-      "Organisation user with CT-UTR enrolment",
+      "Organisation user without CT-UTR enrolment registers as a Sole trader",
       RegistrationTests,
       ZapTests
     ) {
 
-      Given("the user logs in as an auto-matched Organisation having user role with CT-UTR ")
-      AuthLoginPage.loginAsOrgAdminWithCtUtr()
+      Given("the Organisation user logs in as Sole Trader without CT-UTR enrolment")
+      AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
+      When("the Organisation user selects 'Sole Trader' in the Organisation registration type page")
+      OrgRegistrationTypePage.registerOrganisationAs("Sole Trader")
+      And("the Organisation user selects 'Yes' in the 'Is your registered address in the UK?' page")
+      RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
+      And("the Organisation user enters the UTR in the UTR page")
+      UtrPage.enterUtr(validSaUtr)
+      Then("the page 'What's your name' should be displayed- this is still under development")
+      YourNamePage.onPage()
     }
+
+    // ***************************************************
+    //      Organisation user with CT-UTR enrolment
+    // ***************************************************
+
+    Scenario(
+      "Organisation user having CT-UTR enrolment with matched business details",
+      RegistrationTests,
+      ZapTests
+    ) {
+
+      Given("the Organisation user logs in with CT-UTR enrolment")
+      AuthLoginPage.loginAsOrgAdminWithCtUtr()
+      When("the Organisation user selects 'Yes' on the Your Business Page for the matched business details")
+      YourBusinessPage.yourBusinessYesOrNo("Yes")
+      Then("the Organisation user is navigated to Your Contact Details Page")
+      YourContactDetailsPage.onPage()
+    }
+
+    // this is a problem page scenario that can be kept in another spec for all organisation error pages if this is not covered in unit tests
+    Scenario(
+      "Organisation user having CT-UTR enrolment with unmatched business details",
+      RegistrationTests,
+      ZapTests
+    ) {
+
+      Given("the Organisation user logs in with CT-UTR enrolment")
+      AuthLoginPage.loginAsOrgAdminWithCtUtr()
+      When("the Organisation user selects 'No' on the Your Business Page for the unmatched business details")
+      YourBusinessPage.yourBusinessYesOrNo("No")
+      Then("the Organisation user is navigated to Different Business Problem Page")
+      ProblemDifferentBusinessPage.onPage()
+
+    }
+
+    // ************************************************
+    //     Organisation assistant kick-out page
+    // ************************************************
 
     Scenario(
       "Organisation assistant kick-out page",
@@ -74,24 +129,6 @@ class OrgRegistrationSpec extends BaseSpec {
 
       Given("the user logs in as an Organisation having assistant role ")
       AuthLoginPage.loginAsOrgAdminWithCtUtr()
-    }
-
-    Scenario(
-      "Organisation user without CT-UTR enrolment registers as a Sole trader",
-      RegistrationTests,
-      ZapTests
-    ) {
-
-      Given("the Organisation user logs in without CT-UTR registers as a Sole trader")
-      AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
-      When("the Organisation user selects which type of Organisation they are")
-      OrgRegistrationTypePage.registerOrganisationAs("Sole Trader")
-      And("the Organisation user selects No for the registered address in the UK")
-      RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
-      And("the Organisation user enters the UTR in the UTR page")
-      UtrPage.enterUtr(validSaUtr)
-      Then("the page 'Your Name' page should be displayed")
-      YourNamePage.onPage()
     }
   }
 }
