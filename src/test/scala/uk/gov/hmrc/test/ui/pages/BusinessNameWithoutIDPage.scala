@@ -16,21 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-
-object HaveUtrPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register/have-utr"
-
-  private val yesRadioId = By.id("value")
-  private val noRadioId  = By.id("value-no")
-
-  def getRadioId(haveUtr: String): By =
-    haveUtr match {
-      case "Yes" => yesRadioId
-      case "No"  => noRadioId
-    }
-
-  def haveUtrYesOrNo(haveUtrOption: String): Unit =
-    selectRadioAndContinue(getRadioId(haveUtrOption))
+object BusinessNameWithoutIDPage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "/placeholder?message=redirect+to+-+What+is+the+name+of+your+business%3F+page+%2Fregister%2Fwithout-id%2Fbusiness-name+%28CARF-148%29"
 
 }
