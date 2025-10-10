@@ -23,6 +23,14 @@ class OrgRegistrationSpec extends BaseSpec {
 
   Feature("Organisation CARF Registration") {
 
+    // Scenarios covered
+    // 1.       "Organisation user without CT-UTR enrolment having a registered address in the UK" //placeholder CARF-211
+    // 2.       "Organisation user without CT-UTR enrolment having no registered address in the UK" //placeholder CARF-148
+    // 3.       "Organisation user without CT-UTR enrolment registers as a Sole trader" //placeholder for CARF-125
+    // 4.       "Organisation user having CT-UTR enrolment with matched business details" //placeholder for CARF 177
+    // 5.       "Organisation user having CT-UTR enrolment with unmatched business details" //placeholder for 127
+    // 6.       "Organisation assistant kick-out page"
+
     // **************************************************
     //    Organisation user without CT-UTR enrolment
     // **************************************************
@@ -61,8 +69,10 @@ class OrgRegistrationSpec extends BaseSpec {
       OrgRegistrationTypePage.registerOrganisationAs("Limited Company")
       And("the Organisation user selects 'No' in the 'Is your registered address in the UK?' page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")
-      Then("the page 'Do you have a UTR?' should be displayed - this is still under development--CARF123")
-      HaveUtrPage.onPage()
+      And("the Organisation user selects 'No' in the 'Do you have a UTR' page")
+      HaveUtrPage.haveUtrYesOrNo("No")
+      Then("the page 'What is the name of your business?' is displayed - this is still under development CARF-148")
+      BusinessNameWithoutIDPage.onPage()
     }
 
     Scenario(
@@ -95,9 +105,9 @@ class OrgRegistrationSpec extends BaseSpec {
 
       Given("the Organisation user logs in with CT-UTR enrolment")
       AuthLoginPage.loginAsOrgAdminWithCtUtr()
-      When("the Organisation user selects 'Yes' on the Your Business Page for the matched business details")
+      When("the Organisation user selects 'Yes' on the 'Is this your business' page for the matched business details")
       YourBusinessPage.yourBusinessYesOrNo("Yes")
-      Then("the Organisation user is navigated to Your Contact Details Page")
+      Then("the Organisation user is navigated to 'Setting up contact details for cryptoasset reporting' page")
       YourContactDetailsPage.onPage()
     }
 
@@ -110,9 +120,11 @@ class OrgRegistrationSpec extends BaseSpec {
 
       Given("the Organisation user logs in with CT-UTR enrolment")
       AuthLoginPage.loginAsOrgAdminWithCtUtr()
-      When("the Organisation user selects 'No' on the Your Business Page for the unmatched business details")
+      When("the Organisation user selects 'No' on the 'Is this your business?' page for the unmatched business details")
       YourBusinessPage.yourBusinessYesOrNo("No")
-      Then("the Organisation user is navigated to Different Business Problem Page")
+      Then(
+        "the Organisation user is navigated to 'You're unable to use this service with this Government Gateway user ID' page"
+      )
       ProblemDifferentBusinessPage.onPage()
 
     }
