@@ -32,7 +32,7 @@ object AuthLoginPage extends BasePage {
   private val identifierValueCtField: By       = By.id("input-4-0-value")
   private val authSubmitById: By               = By.id("submit-top")
   private val identifierValueNinoField: String = generateNino(individualNino)
-  private val identifierCtValue: String        = generateUtr(matchingCtUtr)
+  private val identifierCtValue: String        = generateUtr(autoMatchedCtUtrForUK)
 
   private def loadPage: this.type = {
     navigateTo(pageUrl)

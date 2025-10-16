@@ -24,35 +24,40 @@ class OrgRegistrationSpec extends BaseSpec {
   Feature("Organisation CARF Registration") {
 
     // Scenarios covered
-    // 1.       "Organisation user without CT-UTR enrolment having a registered address in the UK" //placeholder CARF-211
+    // 1.       "Organisation user without CT-UTR enrolment having a registered address in the UK with matched business details" //placeholder CARF-211
     // 2.       "Organisation user without CT-UTR enrolment having no registered address in the UK" //placeholder CARF-148
     // 3.       "Organisation user without CT-UTR enrolment registers as a Sole trader" //placeholder for CARF-125
-    // 4.       "Organisation user having CT-UTR enrolment with matched business details" //placeholder for CARF 177
-    // 5.       "Organisation user having CT-UTR enrolment with unmatched business details" //placeholder for 127
-    // 6.       "Organisation assistant kick-out page"
+    // 4.       "Organisation user without CT-UTR enrolment having a registered address in the UK with unmatched business details" //placeholder CARF-211
+    // 5.       "Organisation user having CT-UTR enrolment with matched business details" //placeholder for CARF 177
+    // 6.       "Organisation user having CT-UTR enrolment with unmatched business details" //placeholder for 127
+    // 7.       "Organisation assistant kick-out page"
 
     // **************************************************
     //    Organisation user without CT-UTR enrolment
     // **************************************************
 
     Scenario(
-      "Organisation user without CT-UTR enrolment having a registered address in the UK",
+      "Organisation user without CT-UTR enrolment having a registered address in the UK with matched business details",
       RegistrationTests,
       ZapTests
     ) {
 
       Given(
-        "the Organisation user logs in as Limited Company without CT-UTR enrolment having a registered address in the UK"
+        "the Organisation user logs in as Limited Company without CT-UTR enrolment having a registered address in the UK with matched business details"
       )
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
-      When("the Organisation user selects 'Limited Company' in the Organisation registration type page")
+      When("the Organisation user selects 'Limited Company' in the 'What are you registering as?' page")
       OrgRegistrationTypePage.registerOrganisationAs("Limited Company")
       And("the Organisation user selects 'Yes' in the 'Is your registered address in the UK?' page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
       And("the Organisation user enters the UTR in the UTR page")
-      UtrPage.enterUtr(matchingCtUtr)
-      Then("the page Business Name should be displayed- this is still under development")
-      BusinessNamePage.onPage()
+      UtrPage.enterUtr(autoMatchedCtUtrForUK)
+      And("the user enters the matched business name in the 'What is the registered name of your business?' page")
+      BusinessNamePage.enterBusinessName("matched")
+      And("the Organisation user selects 'Yes' on the 'Is this your business?' page for the unmatched business details")
+      IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
+      Then("the Organisation user is navigated to 'Setting up contact details for cryptoasset reporting' page")
+      YourContactDetailsPage.onPage()
     }
 
     Scenario(
@@ -65,7 +70,7 @@ class OrgRegistrationSpec extends BaseSpec {
         "the Organisation user logs in as Limited Company without CT-UTR enrolment having no a registered address in the UK"
       )
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
-      When("the Organisation user selects 'Limited Company' in the Organisation registration type page")
+      When("the Organisation user selects 'Limited Company' in the 'What are you registering as?' page")
       OrgRegistrationTypePage.registerOrganisationAs("Limited Company")
       And("the Organisation user selects 'No' in the 'Is your registered address in the UK?' page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")
@@ -83,14 +88,39 @@ class OrgRegistrationSpec extends BaseSpec {
 
       Given("the Organisation user logs in as Sole Trader without CT-UTR enrolment")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
-      When("the Organisation user selects 'Sole Trader' in the Organisation registration type page")
+      When("the Organisation user selects 'Sole Trader' in the 'What are you registering as?' page")
       OrgRegistrationTypePage.registerOrganisationAs("Sole Trader")
       And("the Organisation user selects 'Yes' in the 'Is your registered address in the UK?' page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
       And("the Organisation user enters the UTR in the UTR page")
       UtrPage.enterUtr(validSaUtr)
-      Then("the page 'What's your name' should be displayed- this is still under development")
+      Then("the page 'What is your name' should be displayed- this is still under development")
       YourNamePage.onPage()
+    }
+
+    Scenario(
+      "Organisation user without CT-UTR enrolment having a registered address in the UK with unmatched business details",
+      RegistrationTests,
+      ZapTests
+    ) {
+      Given(
+        "the Organisation user logs in as Limited Company without CT-UTR enrolment having a registered address in the UK with unmatched business details"
+      )
+      AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
+      When("the Organisation user selects 'Limited Company' in the 'What are you registering as?' page")
+      OrgRegistrationTypePage.registerOrganisationAs("Limited Company")
+      And("the Organisation user selects 'Yes' in the 'Is your registered address in the UK?' page")
+      RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
+      And("the Organisation user enters the UTR in the UTR page")
+      UtrPage.enterUtr(autoMatchedCtUtrForUK)
+      And("the user enters the unmatched business name in the 'What is the registered name of your business?' page")
+      BusinessNamePage.enterBusinessName("unmatched")
+      And("the Organisation user selects 'No' on the 'Is this your business?' page for the unmatched business details")
+      IsThisYourBusinessPage.yourBusinessYesOrNo("No")
+      Then(
+        "the Organisation user is navigated to 'The details you entered did not match our records' page"
+      )
+      ProblemBusinessNotIdentifiedPage.onPage()
     }
 
     // ***************************************************
@@ -105,8 +135,8 @@ class OrgRegistrationSpec extends BaseSpec {
 
       Given("the Organisation user logs in with CT-UTR enrolment")
       AuthLoginPage.loginAsOrgAdminWithCtUtr()
-      When("the Organisation user selects 'Yes' on the 'Is this your business' page for the matched business details")
-      YourBusinessPage.yourBusinessYesOrNo("Yes")
+      When("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
+      IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
       Then("the Organisation user is navigated to 'Setting up contact details for cryptoasset reporting' page")
       YourContactDetailsPage.onPage()
     }
@@ -121,7 +151,7 @@ class OrgRegistrationSpec extends BaseSpec {
       Given("the Organisation user logs in with CT-UTR enrolment")
       AuthLoginPage.loginAsOrgAdminWithCtUtr()
       When("the Organisation user selects 'No' on the 'Is this your business?' page for the unmatched business details")
-      YourBusinessPage.yourBusinessYesOrNo("No")
+      IsThisYourBusinessPage.yourBusinessYesOrNo("No")
       Then(
         "the Organisation user is navigated to 'You're unable to use this service with this Government Gateway user ID' page"
       )

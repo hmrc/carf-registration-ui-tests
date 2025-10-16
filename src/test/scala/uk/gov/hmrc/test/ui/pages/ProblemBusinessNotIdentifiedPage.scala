@@ -16,20 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-
-object YourBusinessPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register/is-this-your-business"
-
-  private val yesRadioId = By.id("value")
-  private val noRadioId  = By.id("value-no")
-
-  def getRadioId(yourBusiness: String): By =
-    yourBusiness match {
-      case "Yes" => yesRadioId
-      case "No"  => noRadioId
-    }
-
-  def yourBusinessYesOrNo(yourBusinessOption: String): Unit =
-    selectRadioAndContinue(getRadioId(yourBusinessOption))
+object ProblemBusinessNotIdentifiedPage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fproblem%2Fbusiness-not-identified+%28CARF-147%29"
+  // Must redirect to /problem/business-not-identified (CARF-147)
 }

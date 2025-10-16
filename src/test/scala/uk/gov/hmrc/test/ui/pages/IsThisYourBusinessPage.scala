@@ -18,21 +18,18 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-object BusinessNamePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register/business-name"
+object IsThisYourBusinessPage extends BasePage {
+  override val pageUrl: String = baseUrl + "/register/is-this-your-business"
 
-  private val businessNameId                = By.id("value")
-  private val matchedBusinessName: String   = "ABC Matched Business Limited"
-  private val unMatchedBusinessName: String = "ABC Unmatched Business Ltd"
+  private val yesRadioId = By.id("value")
+  private val noRadioId  = By.id("value-no")
 
-  def enterBusinessName(matchType: String): Unit = {
-    val businessName = matchType match {
-      case "matched"   => matchedBusinessName
-      case "unmatched" => unMatchedBusinessName
+  def getRadioId(yourBusiness: String): By =
+    yourBusiness match {
+      case "Yes" => yesRadioId
+      case "No"  => noRadioId
     }
 
-    fillFieldsAndContinue(
-      (businessNameId, businessName)
-    )
-  }
+  def yourBusinessYesOrNo(yourBusinessOption: String): Unit =
+    selectRadioAndContinue(getRadioId(yourBusinessOption))
 }
