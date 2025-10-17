@@ -25,7 +25,7 @@ class OrgRegistrationSpec extends BaseSpec {
 
     // Scenarios covered
     // 1.       "Organisation user without CT-UTR enrolment having a registered address in the UK" //placeholder CARF-211
-    // 2.       "Organisation user without CT-UTR enrolment having no registered address in the UK" //placeholder CARF-148
+    // 2.       "Organisation user without CT-UTR enrolment having no registered address in the UK" //placeholder CARF-160
     // 3.       "Organisation user without CT-UTR enrolment registers as a Sole trader" //placeholder for CARF-125
     // 4.       "Organisation user having CT-UTR enrolment with matched business details" //placeholder for CARF 177
     // 5.       "Organisation user having CT-UTR enrolment with unmatched business details" //placeholder for 127
@@ -71,8 +71,12 @@ class OrgRegistrationSpec extends BaseSpec {
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")
       And("the Organisation user selects 'No' in the 'Do you have a UTR' page")
       HaveUtrPage.haveUtrYesOrNo("No")
-      Then("the page 'What is the name of your business?' is displayed - this is still under development CARF-148")
-      BusinessNameWithoutIDPage.onPage()
+      And("the user enters 'Test Business Name' in 'What is the name of your business?'")
+      BusinessNameWithoutIDPage.enterBusinessName("Test Business Name")
+      Then(
+        "the page 'Does your business trader under a different name?' should be displayed"
+      ) // TODO: Continue journey after page is built. This is currently a placeholder page for CARF-160
+      HaveTradingNamePage.onPage()
     }
 
     Scenario(
