@@ -24,10 +24,10 @@ class OrgRegistrationSpec extends BaseSpec {
   Feature("Organisation CARF Registration") {
 
     // Scenarios covered
-    // 1.       "Organisation user without CT-UTR enrolment having a registered address in the UK with matched business details" //placeholder CARF-211
+    // 1.       "Organisation user without CT-UTR enrolment having a registered address in the UK with matched business details"
     // 2.       "Organisation user without CT-UTR enrolment having no registered address in the UK" //placeholder CARF-148
     // 3.       "Organisation user without CT-UTR enrolment registers as a Sole trader" //placeholder for CARF-125
-    // 4.       "Organisation user without CT-UTR enrolment having a registered address in the UK with unmatched business details" //placeholder CARF-211
+    // 4.       "Organisation user without CT-UTR enrolment having a registered address in the UK with unmatched business details"
     // 5.       "Organisation user having CT-UTR enrolment with matched business details" //placeholder for CARF 177
     // 6.       "Organisation user having CT-UTR enrolment with unmatched business details" //placeholder for 127
     // 7.       "Organisation assistant kick-out page"
@@ -54,7 +54,7 @@ class OrgRegistrationSpec extends BaseSpec {
       UtrPage.enterUtr(autoMatchedCtUtrForUK)
       And("the user enters the matched business name in the 'What is the registered name of your business?' page")
       BusinessNamePage.enterBusinessName("matched")
-      And("the Organisation user selects 'Yes' on the 'Is this your business?' page for the unmatched business details")
+      And("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
       Then("the Organisation user is navigated to 'Setting up contact details for cryptoasset reporting' page")
       YourContactDetailsPage.onPage()
