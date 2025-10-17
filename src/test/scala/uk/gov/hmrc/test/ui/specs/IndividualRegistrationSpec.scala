@@ -48,10 +48,11 @@ class IndividualRegistrationSpec extends BaseSpec {
       IndRegistrationTypePage.registerIndividualAs("An individual not connected to a business")
       And("the Individual user selects 'Yes' in the 'Do you have a National Insurance number?' page")
       HaveNiNumberPage.haveNinoYesOrNo("Yes")
-      Then("the Individual user is asked to enter their NINO in the 'What is your National Insurance number' page")
-      NiNumberPage
-        .onPage() // TODO: This page is currently a placeholder. Script to enter NINO to be added once the page is ready
-
+      And("the Individual user enters their NINO in the 'What is your National Insurance number' page")
+      NiNumberPage.enterNino("AB123456C")
+      Then("the Individual user is taken to 'What is your name?' page")
+      IndNamePage
+        .onPage() // TODO: This is a placeholder page for CARF-165. This should be changed once 165 is implemented
     }
 
     Scenario(
