@@ -56,8 +56,12 @@ class OrgRegistrationSpec extends BaseSpec {
       BusinessNamePage.enterBusinessName("matched")
       And("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
-      Then("the Organisation user is navigated to 'Setting up contact details for cryptoasset reporting' page")
-      YourContactDetailsPage.onPage()
+      And(
+        "the Organisation user clicks on Continue button on the 'Setting up contact details for cryptoasset reporting' page"
+      )
+      YourContactDetailsPage.onPageContinueById()
+      Then("the Organisation user is navigated to 'What is the name of the person or team we should contact?' page")
+      ContactNamePage.onPage()
     }
 
     Scenario(
@@ -135,8 +139,12 @@ class OrgRegistrationSpec extends BaseSpec {
       AuthLoginPage.loginAsOrgAdminWithCtUtr()
       When("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
-      Then("the Organisation user is navigated to 'Setting up contact details for cryptoasset reporting' page")
-      YourContactDetailsPage.onPage()
+      And(
+        "the Organisation user clicks on Continue button on the 'Setting up contact details for cryptoasset reporting' page"
+      )
+      YourContactDetailsPage.onPageContinueById()
+      Then("the Organisation user is navigated to 'What is the name of the person or team we should contact?' page")
+      ContactNamePage.onPage()
     }
 
     // this is a problem page scenario that can be kept in another spec for all organisation error pages if this is not covered in unit tests
