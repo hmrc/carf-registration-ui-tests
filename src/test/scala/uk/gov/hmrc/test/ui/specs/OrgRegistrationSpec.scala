@@ -112,11 +112,9 @@ class OrgRegistrationSpec extends BaseSpec {
       And("the Organisation user selects 'Yes' in the 'Is your registered address in the UK?' page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
       And("the Organisation user enters the UTR in the UTR page")
-      UtrPage.enterUtr(autoMatchedCtUtrForUK)
+      UtrPage.enterUtr(unMatchedCtUtrForBusinessName)
       And("the user enters the unmatched business name in the 'What is the registered name of your business?' page")
       BusinessNamePage.enterBusinessName("unmatched")
-      And("the Organisation user selects 'No' on the 'Is this your business?' page for the unmatched business details")
-      IsThisYourBusinessPage.yourBusinessYesOrNo("No")
       Then(
         "the Organisation user is navigated to 'The details you entered did not match our records' page"
       )
