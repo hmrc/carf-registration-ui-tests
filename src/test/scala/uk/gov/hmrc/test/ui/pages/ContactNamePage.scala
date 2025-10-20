@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object YourContactDetailsPage extends BasePage {
+object ContactNamePage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/register/your-contact-details"
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Fcontact-name+%28CARF-178%29"
+
 }

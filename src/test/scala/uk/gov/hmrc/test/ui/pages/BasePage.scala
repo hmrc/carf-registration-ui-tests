@@ -52,10 +52,9 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
 
   def selectDropdownById(id: By): Select = new Select(driver.findElement(id: By))
 
-  def onPageSubmitById(id: By): Unit = {
+  def onPageContinueById(): Unit = {
     onPage()
-    click(id)
-    click(submitButtonId)
+    click(continueButtonId)
   }
 
   def clickOnByPartialLinkText(partialLinkText: By): Unit = {
