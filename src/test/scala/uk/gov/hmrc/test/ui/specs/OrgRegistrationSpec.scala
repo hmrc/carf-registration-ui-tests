@@ -32,9 +32,9 @@ class OrgRegistrationSpec extends BaseSpec {
     // 6.       "Organisation user having CT-UTR enrolment with unmatched business details" //placeholder for 127
     // 7.       "Organisation assistant kick-out page"
 
-    // **************************************************
+    // *************************************************
     //    Organisation user without CT-UTR enrolment
-    // **************************************************
+    // *************************************************
 
     Scenario(
       "Organisation user without CT-UTR enrolment having a registered address in the UK with matched business details",
