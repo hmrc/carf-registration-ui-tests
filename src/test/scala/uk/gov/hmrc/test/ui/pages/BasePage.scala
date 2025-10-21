@@ -48,17 +48,6 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     click(continueButtonId)
   }
 
-  /** Method to loop through each tuple in the list, enter value in one or more text fields and click the continue
-    * button
-    * @param fieldData
-    *   \- variable number of tuples (locator, text)
-    */
-  def fillFieldsAndContinue(fieldData: (By, String)*): Unit = {
-    onPage()
-    fieldData.foreach { case (locator, value) => sendKeys(locator, value) }
-    click(continueButtonId)
-  }
-
   def onPage(url: String = this.pageUrl): Unit = fluentWait.until(ExpectedConditions.urlToBe(url))
 
   def selectDropdownById(id: By): Select = new Select(driver.findElement(id: By))
