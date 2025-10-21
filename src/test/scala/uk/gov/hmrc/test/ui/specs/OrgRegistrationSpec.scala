@@ -165,9 +165,9 @@ class OrgRegistrationSpec extends BaseSpec {
 
     }
 
-    // ************************************************
+    // *************************************************
     //     Organisation assistant kick-out page
-    // ************************************************
+    // *************************************************
 
     Scenario(
       "Organisation assistant kick-out page",
