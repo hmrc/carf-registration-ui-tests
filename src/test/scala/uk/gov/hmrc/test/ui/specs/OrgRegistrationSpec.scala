@@ -129,9 +129,9 @@ class OrgRegistrationSpec extends BaseSpec {
       ProblemBusinessNotIdentifiedPage.onPage()
     }
 
-    // ***************************************************
+    // **************************************************
     //      Organisation user with CT-UTR enrolment
-    // ***************************************************
+    // **************************************************
 
     Scenario(
       "Organisation user having CT-UTR enrolment with matched business details",
