@@ -62,9 +62,7 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     click(partialLinkText)
   }
 
-  /** Method to loop through each tuple in the list, enter value in one or more text fields and click the continue
-    * button
-    *
+  /** Method to loop through each tuple in the list, enter value in one or more text fields and click continue
     * @param fieldData
     *   \- variable number of tuples (locator, text)
     */
