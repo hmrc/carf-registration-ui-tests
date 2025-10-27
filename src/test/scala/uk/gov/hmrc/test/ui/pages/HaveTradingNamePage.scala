@@ -18,6 +18,9 @@ package uk.gov.hmrc.test.ui.pages
 
 object HaveTradingNamePage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Fbusiness-without-id%2Fhave-trading-name+%28CARF-160%29"
+    baseUrl + "/register/business-without-id/have-trading-name"
+
+  def businessTradeDiffNameYesOrNo(businessTradeDiffNameOption: String): Unit =
+    selectRadioAndContinue(getRadioId(businessTradeDiffNameOption))
 
 }

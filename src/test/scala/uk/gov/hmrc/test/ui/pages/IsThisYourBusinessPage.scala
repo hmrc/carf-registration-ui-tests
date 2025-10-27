@@ -16,19 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-
 object IsThisYourBusinessPage extends BasePage {
   override val pageUrl: String = baseUrl + "/register/is-this-your-business"
-
-  private val yesRadioId = By.id("value")
-  private val noRadioId  = By.id("value-no")
-
-  def getRadioId(yourBusiness: String): By =
-    yourBusiness match {
-      case "Yes" => yesRadioId
-      case "No"  => noRadioId
-    }
 
   def yourBusinessYesOrNo(yourBusinessOption: String): Unit =
     selectRadioAndContinue(getRadioId(yourBusinessOption))

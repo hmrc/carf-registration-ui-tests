@@ -22,15 +22,6 @@ import uk.gov.hmrc.test.ui.pages.IndRegistrationTypePage.selectRadioAndContinue
 object RegisteredAddressInUkPage extends BasePage {
   override val pageUrl: String = baseUrl + "/register/registered-address-in-uk"
 
-  private val yesRadioId = By.id("value")
-  private val noRadioId  = By.id("value-no")
-
-  def getRadioId(registeredAddressInUkOption: String): By =
-    registeredAddressInUkOption match {
-      case "Yes" => yesRadioId
-      case "No"  => noRadioId
-    }
-
   def registeredAddressInUkYesOrNo(registeredAddressInUkOption: String): Unit =
     selectRadioAndContinue(getRadioId(registeredAddressInUkOption))
 }
