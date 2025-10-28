@@ -16,8 +16,11 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import org.openqa.selenium.By
+
 object ProblemDifferentBusinessPage extends BasePage {
-  override val pageUrl: String =
-    baseUrl + "/placeholder?message=Must+redirect+to+%2Fproblem%2Fdifferent-business+%28CARF-127%29"
-  // Must redirect to /problem/different-business (CARF-127)
+  override val pageUrl: String = baseUrl + "/register/problem/different-business"
+
+  val signInLnk: By = By.partialLinkText("sign in with the Government Gateway user ID")
+
 }
