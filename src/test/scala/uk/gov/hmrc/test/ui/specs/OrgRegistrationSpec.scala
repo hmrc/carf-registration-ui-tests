@@ -17,6 +17,7 @@
 package uk.gov.hmrc.test.ui.specs
 
 import uk.gov.hmrc.test.ui.pages.*
+import uk.gov.hmrc.test.ui.pages.ProblemDifferentBusinessPage.signInLnk
 import uk.gov.hmrc.test.ui.specs.tags.*
 
 class OrgRegistrationSpec extends BaseSpec {
@@ -84,7 +85,7 @@ class OrgRegistrationSpec extends BaseSpec {
       BusinessNameWithoutIDPage.enterBusinessName("Test Business Name")
       And("the Organisation user selects 'Yes' in the 'Does your business trader under a different name?' page")
       HaveTradingNamePage.businessTradeDiffNameYesOrNo("Yes")
-      Then("the page 'Does your business trader under a different name?' should be displayed")
+      Then("the page 'Does your business trade under a different name?' should be displayed")
       TradingNameOfYourBusinessPage.onPage()
     }
 
@@ -162,11 +163,12 @@ class OrgRegistrationSpec extends BaseSpec {
       AuthLoginPage.loginAsOrgAdminWithCtUtr()
       When("the Organisation user selects 'No' on the 'Is this your business?' page for the unmatched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("No")
-      Then(
-        "the Organisation user is navigated to 'You're unable to use this service with this Government Gateway user ID' page"
+      And(
+        "the Organisation user clicks on 'sign in with the Government Gateway user ID for the organisation you wish to register' link"
       )
-      ProblemDifferentBusinessPage.onPage()
-
+      ProblemDifferentBusinessPage.clickOnByPartialLinkText(signInLnk)
+      Then("the Organisation user should be taken to the GG sign in page")
+      AuthLoginPage.onPage()
     }
 
     // ************************************************
