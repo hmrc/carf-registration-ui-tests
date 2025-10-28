@@ -17,6 +17,7 @@
 package uk.gov.hmrc.test.ui.specs
 
 import uk.gov.hmrc.test.ui.pages.*
+import uk.gov.hmrc.test.ui.pages.ProblemDifferentBusinessPage.signInLnk
 import uk.gov.hmrc.test.ui.specs.tags.*
 
 class OrgRegistrationSpec extends BaseSpec {
@@ -165,7 +166,7 @@ class OrgRegistrationSpec extends BaseSpec {
       And(
         "the Organisation user clicks on 'sign in with the Government Gateway user ID for the organisation you wish to register' link"
       )
-      ProblemDifferentBusinessPage.clickOnByPartialLinkText(ProblemDifferentBusinessPage.signInLnk)
+      ProblemDifferentBusinessPage.clickOnByPartialLinkText(signInLnk)
       Then("the Organisation user should be taken to the GG sign in page")
       AuthLoginPage.onPage()
     }
