@@ -47,7 +47,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       )
       IndRegistrationTypePage.registerIndividualAs("An individual not connected to a business")
       And("the Individual user selects 'Yes' in the 'Do you have a National Insurance number?' page")
-      HaveNiNumberPage.haveNinoYesOrNo("Yes")
+      HaveNiNumberPage.selectNinoYesOrNo("Yes")
       And("the Individual user enters their NINO in the 'What is your National Insurance number' page")
       NiNumberPage.enterNino("AB123456C")
       Then("the Individual user is taken to 'What is your name?' page")
@@ -68,9 +68,9 @@ class IndividualRegistrationSpec extends BaseSpec {
       And("the Individual user selects 'No' in the 'Is your registered address in the UK?' page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")
       And("the Individual user selects 'No' in the 'Do you have a UTR' page")
-      HaveUtrPage.haveUtrYesOrNo("No")
+      HaveUtrPage.selectUtrYesOrNo("No")
       And("the Individual user selects 'Yes' in the 'Do you have a National Insurance number' page")
-      HaveNiNumberPage.haveNinoYesOrNo("Yes")
+      HaveNiNumberPage.selectNinoYesOrNo("Yes")
       Then("the user is asked to enter their NINO in the 'What is your National Insurance number' page")
       NiNumberPage.onPage() // Do not continue this journey further. It converges with the previous journey here.
     }
@@ -92,7 +92,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       )
       IndRegistrationTypePage.registerIndividualAs("An individual not connected to a business")
       And("the Individual user selects 'No' in the 'Do you have a National Insurance number?' page")
-      HaveNiNumberPage.haveNinoYesOrNo("No")
+      HaveNiNumberPage.selectNinoYesOrNo("No")
       Then("the Individual user is asked to enter their name in the 'What is your name' page")
       IndWithoutIdNamePage
         .onPage() // TODO: This page is currently a placeholder for CARF-169. Script to enter name to be added once the page is ready
@@ -129,9 +129,9 @@ class IndividualRegistrationSpec extends BaseSpec {
       And("the Individual user selects 'No' in the 'Is your registered address in the UK?'page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")
       And("the Individual user selects 'No' in 'Do you have a UTR' page")
-      HaveUtrPage.haveUtrYesOrNo("No")
+      HaveUtrPage.selectUtrYesOrNo("No")
       And("the user selects 'No' in the '/have-ni-number' page")
-      HaveNiNumberPage.haveNinoYesOrNo("No")
+      HaveNiNumberPage.selectNinoYesOrNo("No")
       Then("the user is asked to enter their name in the 'What is your name' page")
       IndWithoutIdNamePage.onPage() // Do not continue this journey further. It converges with journey 3 here.
     }

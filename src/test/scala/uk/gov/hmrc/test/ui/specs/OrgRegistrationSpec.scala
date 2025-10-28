@@ -79,13 +79,13 @@ class OrgRegistrationSpec extends BaseSpec {
       And("the Organisation user selects 'No' in the 'Is your registered address in the UK?' page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")
       And("the Organisation user selects 'No' in the 'Do you have a UTR' page")
-      HaveUtrPage.haveUtrYesOrNo("No")
+      HaveUtrPage.selectUtrYesOrNo("No")
       And("the user enters 'Test Business Name' in 'What is the name of your business?'")
       BusinessNameWithoutIDPage.enterBusinessName("Test Business Name")
-      Then(
-        "the page 'Does your business trader under a different name?' should be displayed"
-      ) // TODO: Continue journey after page is built. This is currently a placeholder page for CARF-160
-      HaveTradingNamePage.onPage()
+      And("the Organisation user selects 'Yes' in the 'Does your business trader under a different name?' page")
+      HaveTradingNamePage.businessTradeDiffNameYesOrNo("Yes")
+      Then("the page 'Does your business trader under a different name?' should be displayed")
+      TradingNameOfYourBusinessPage.onPage()
     }
 
     Scenario(

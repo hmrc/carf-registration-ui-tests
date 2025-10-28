@@ -21,16 +21,7 @@ import org.openqa.selenium.By
 object HaveUtrPage extends BasePage {
   override val pageUrl: String = baseUrl + "/register/have-utr"
 
-  private val yesRadioId = By.id("value")
-  private val noRadioId  = By.id("value-no")
-
-  def getRadioId(haveUtr: String): By =
-    haveUtr match {
-      case "Yes" => yesRadioId
-      case "No"  => noRadioId
-    }
-
-  def haveUtrYesOrNo(haveUtrOption: String): Unit =
+  def selectUtrYesOrNo(haveUtrOption: String): Unit =
     selectRadioAndContinue(getRadioId(haveUtrOption))
 
 }

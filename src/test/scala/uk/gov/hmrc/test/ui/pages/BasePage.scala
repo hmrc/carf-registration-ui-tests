@@ -36,11 +36,20 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
   val submitButtonId: By   = By.id("submit")
   val continueButtonId: By = By.id("continue")
 
+  private val yesRadioId = By.id("value")
+  private val noRadioId  = By.id("value-no")
+
   def navigateTo(url: String): Unit = driver.navigate().to(url)
 
   private def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
     .withTimeout(Duration.ofSeconds(2))
     .pollingEvery(Duration.ofMillis(200))
+
+  def getRadioId(radioOption: String): By =
+    radioOption match {
+      case "Yes" => yesRadioId
+      case "No"  => noRadioId
+    }
 
   def selectRadioAndContinue(id: By): Unit = {
     onPage()
