@@ -16,8 +16,6 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-
 object EmailAddressCryptoAssetProviderPage extends BasePage {
   override val pageUrl: String =
     baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Findividual-email+%28CARF-183%29"

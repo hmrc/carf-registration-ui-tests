@@ -15,7 +15,8 @@
  */
 
 package uk.gov.hmrc.test.ui.pages
-git import uk.gov.hmrc.test.ui.pages.IndRegistrationTypePage.selectRadioAndContinue
+
+import uk.gov.hmrc.test.ui.pages.IndRegistrationTypePage.selectRadioAndContinue
 
 object RegisteredAddressInUkPage extends BasePage {
   override val pageUrl: String = baseUrl + "/register/registered-address-in-uk"

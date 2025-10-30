@@ -21,7 +21,7 @@ import uk.gov.hmrc.test.ui.specs.tags.*
 
 class OrgOrIndRegistrationProblemSpec extends BaseSpec {
 
-  Feature("Organisation Registration Problem Page Validation") {
+  Feature("Organisation or Individual Registration Problem Page Validation") {
 
     // **********************************************
     //           Individual Problem Pages
@@ -40,7 +40,7 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
       And("the Individual user selects 'Yes' in the 'Is your registered address in the UK?' page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
       And("the Individual user enters the Self Assessment UTR in the UTR page")
-      UtrPage.enterUtr(matchedSaUtr)
+      UtrPage.enterUtr(unmatchedSaUtr)
       And(
         "the Individual user enters the first name and last name and click Continue button in the 'What is your name' page"
       )

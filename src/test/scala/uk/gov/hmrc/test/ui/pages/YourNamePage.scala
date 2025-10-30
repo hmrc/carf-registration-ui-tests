@@ -21,14 +21,14 @@ import org.openqa.selenium.By
 object YourNamePage extends BasePage {
   override val pageUrl: String = baseUrl + "/register/your-name"
 
-  private val firstNameId = By.id("first-name")
-  private val lastNameId  = By.id("last-name")
+  private val firstNameId = By.id("firstName")
+  private val lastNameId  = By.id("lastName")
 
   def enterNamesAndClickContinue(): Unit = {
     onPage()
-    sendKeys(firstNameId)
-    sendKeys(lastNameId)
-    click(submitButtonId)
+    sendKeys(firstNameId, "Carf")
+    sendKeys(lastNameId, "Tester")
+    click(continueButtonId)
   }
 
 }
