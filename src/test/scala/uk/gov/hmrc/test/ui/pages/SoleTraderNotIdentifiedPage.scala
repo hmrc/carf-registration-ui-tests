@@ -16,19 +16,9 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-
-object YourNamePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register/your-name"
-
-  private val firstNameId = By.id("first-name")
-  private val lastNameId  = By.id("last-name")
-
-  def enterNamesAndClickContinue(): Unit = {
-    onPage()
-    sendKeys(firstNameId)
-    sendKeys(lastNameId)
-    click(submitButtonId)
-  }
+object SoleTraderNotIdentifiedPage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fproblem%2Fsole-trader-not-identified+%28CARF-129%29"
+  // Must redirect to /problem/sole-trader-not-identified (CARF-129)
 
 }

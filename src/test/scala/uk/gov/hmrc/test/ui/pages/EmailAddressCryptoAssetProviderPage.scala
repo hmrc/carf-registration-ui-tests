@@ -18,17 +18,8 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-object YourNamePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register/your-name"
-
-  private val firstNameId = By.id("first-name")
-  private val lastNameId  = By.id("last-name")
-
-  def enterNamesAndClickContinue(): Unit = {
-    onPage()
-    sendKeys(firstNameId)
-    sendKeys(lastNameId)
-    click(submitButtonId)
-  }
-
+object EmailAddressCryptoAssetProviderPage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Findividual-email+%28CARF-183%29"
+  // Must redirect to /register/individual-email (CARF-183)
 }

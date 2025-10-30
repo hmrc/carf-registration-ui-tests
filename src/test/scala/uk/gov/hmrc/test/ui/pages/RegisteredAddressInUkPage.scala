@@ -15,9 +15,7 @@
  */
 
 package uk.gov.hmrc.test.ui.pages
-
-import org.openqa.selenium.By
-import uk.gov.hmrc.test.ui.pages.IndRegistrationTypePage.selectRadioAndContinue
+git import uk.gov.hmrc.test.ui.pages.IndRegistrationTypePage.selectRadioAndContinue
 
 object RegisteredAddressInUkPage extends BasePage {
   override val pageUrl: String = baseUrl + "/register/registered-address-in-uk"
