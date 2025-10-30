@@ -76,7 +76,6 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
       ProblemBusinessNotIdentifiedPage.onPage()
     }
 
-    // this is a problem page scenario that can be kept in another spec for all organisation error pages if this is not covered in unit tests
     Scenario(
       "Organisation user having CT-UTR enrolment with unmatched business details",
       RegistrationTests,
