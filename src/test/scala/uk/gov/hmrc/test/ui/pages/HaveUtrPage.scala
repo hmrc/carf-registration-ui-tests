@@ -16,8 +16,6 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-
 object HaveUtrPage extends BasePage {
   override val pageUrl: String = baseUrl + "/register/have-utr"
 

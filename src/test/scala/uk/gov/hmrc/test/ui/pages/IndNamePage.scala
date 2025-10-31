@@ -16,8 +16,6 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-
 object IndNamePage extends BasePage {
   override val pageUrl: String = baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Fname+%28CARF-165%29"
 
