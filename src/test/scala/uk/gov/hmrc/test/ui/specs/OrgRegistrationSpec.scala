@@ -101,7 +101,7 @@ class OrgRegistrationSpec extends BaseSpec {
       And("the Organisation user enters the UTR in the UTR page")
       UtrPage.enterUtr(matchedSaUtr)
       And(
-        "the Individual user enters the first name and last name and click Continue button in the 'What is your name' page"
+        "the Organisation user enters the first name and last name and click Continue button in the 'What is your name' page"
       )
       YourNamePage.enterNamesAndClickContinue("Carf", "Tester")
       And("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
