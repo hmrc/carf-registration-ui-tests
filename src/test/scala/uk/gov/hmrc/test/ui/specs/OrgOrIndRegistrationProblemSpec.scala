@@ -37,14 +37,16 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
       AuthLoginPage.loginAsIndividualWithoutNino()
       When("the Individual user selects 'Sole trader' in the 'What are you registering as?' page")
       IndRegistrationTypePage.registerIndividualAs("Sole Trader")
-      And("the Individual user selects 'Yes' in the 'Is your registered address in the UK?' page")
-      RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
+      And("the Individual user selects 'No' in the 'Is your registered address in the UK?' page")
+      RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("No")
+      And("the Organisation user selects 'Yes' in the 'Do you have a UTR' page")
+      HaveUtrPage.selectUtrYesOrNo("Yes")
       And("the Individual user enters the Self Assessment UTR in the UTR page")
       UtrPage.enterUtr(unmatchedSaUtr)
       And(
         "the Individual user enters the first name and last name and click Continue button in the 'What is your name' page"
       )
-      YourNamePage.enterNamesAndClickContinue()
+      YourNamePage.enterNamesAndClickContinue("Carf", "Tester")
       Then("The page 'The details you entered did not match our records' should be displayed")
       SoleTraderNotIdentifiedPage.onPage()
     }
@@ -90,6 +92,19 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
         "the Organisation user is navigated to 'You're unable to use this service with this Government Gateway user ID' page"
       )
       ProblemDifferentBusinessPage.onPage()
+    }
+    // ************************************************
+    //     Organisation assistant kick-out page
+    // ************************************************
+
+    Scenario(
+      "Organisation assistant kick-out page",
+      RegistrationTests,
+      ZapTests
+    ) {
+
+      Given("the user logs in as an Organisation having assistant role ")
+      AuthLoginPage.loginAsOrgAdminWithCtUtr()
     }
   }
 }

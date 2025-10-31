@@ -24,11 +24,9 @@ object YourNamePage extends BasePage {
   private val firstNameId = By.id("firstName")
   private val lastNameId  = By.id("lastName")
 
-  def enterNamesAndClickContinue(): Unit = {
-    onPage()
-    sendKeys(firstNameId, "Carf")
-    sendKeys(lastNameId, "Tester")
-    click(continueButtonId)
-  }
-
+  def enterNamesAndClickContinue(firstName: String, lastName: String): Unit =
+    fillFieldsAndContinue(
+      (firstNameId, firstName),
+      (lastNameId, lastName)
+    )
 }

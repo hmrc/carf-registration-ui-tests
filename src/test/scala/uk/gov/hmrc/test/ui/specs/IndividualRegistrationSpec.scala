@@ -115,7 +115,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       And(
         "the Individual user enters the first name and last name and click Continue button in the 'What is your name' page"
       )
-      YourNamePage.enterNamesAndClickContinue()
+      YourNamePage.enterNamesAndClickContinue("Carf", "Tester")
       And("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
       Then("the page 'What is the email address for the cryptoasset service provider?' should be displayed")

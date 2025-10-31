@@ -103,7 +103,7 @@ class OrgRegistrationSpec extends BaseSpec {
       And(
         "the Individual user enters the first name and last name and click Continue button in the 'What is your name' page"
       )
-      YourNamePage.enterNamesAndClickContinue()
+      YourNamePage.enterNamesAndClickContinue("Carf", "Tester")
       And("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
       Then("the page 'What is the email address for the cryptoasset service provider?' should be displayed")
@@ -130,20 +130,6 @@ class OrgRegistrationSpec extends BaseSpec {
       YourContactDetailsPage.onPageContinueById()
       Then("the Organisation user is navigated to 'What is the name of the person or team we should contact?' page")
       ContactNamePage.onPage()
-    }
-
-    // ************************************************
-    //     Organisation assistant kick-out page
-    // ************************************************
-
-    Scenario(
-      "Organisation assistant kick-out page",
-      RegistrationTests,
-      ZapTests
-    ) {
-
-      Given("the user logs in as an Organisation having assistant role ")
-      AuthLoginPage.loginAsOrgAdminWithCtUtr()
     }
   }
 }
