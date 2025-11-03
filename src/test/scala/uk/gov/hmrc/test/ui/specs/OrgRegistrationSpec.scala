@@ -17,6 +17,7 @@
 package uk.gov.hmrc.test.ui.specs
 
 import uk.gov.hmrc.test.ui.pages.*
+import uk.gov.hmrc.test.ui.pages.ProblemDifferentBusinessPage.signInLnk
 import uk.gov.hmrc.test.ui.specs.tags.*
 
 class OrgRegistrationSpec extends BaseSpec {
@@ -82,7 +83,7 @@ class OrgRegistrationSpec extends BaseSpec {
       BusinessNameWithoutIDPage.enterBusinessName("Test Business Name")
       And("the Organisation user selects 'Yes' in the 'Does your business trader under a different name?' page")
       HaveTradingNamePage.businessTradeDiffNameYesOrNo("Yes")
-      Then("the page 'Does your business trader under a different name?' should be displayed")
+      Then("the page 'Does your business trade under a different name?' should be displayed")
       TradingNameOfYourBusinessPage.onPage()
     }
 
@@ -130,6 +131,39 @@ class OrgRegistrationSpec extends BaseSpec {
       YourContactDetailsPage.onPageContinueById()
       Then("the Organisation user is navigated to 'What is the name of the person or team we should contact?' page")
       ContactNamePage.onPage()
+    }
+
+    // this is a problem page scenario that can be kept in another spec for all organisation error pages if this is not covered in unit tests
+    Scenario(
+      "Organisation user having CT-UTR enrolment with unmatched business details",
+      RegistrationTests,
+      ZapTests
+    ) {
+
+      Given("the Organisation user logs in with CT-UTR enrolment")
+      AuthLoginPage.loginAsOrgAdminWithCtUtr()
+      When("the Organisation user selects 'No' on the 'Is this your business?' page for the unmatched business details")
+      IsThisYourBusinessPage.yourBusinessYesOrNo("No")
+      And(
+        "the Organisation user clicks on 'sign in with the Government Gateway user ID for the organisation you wish to register' link"
+      )
+      ProblemDifferentBusinessPage.clickOnByPartialLinkText(signInLnk)
+      Then("the Organisation user should be taken to the GG sign in page")
+      SignOutPage.onPage()
+    }
+
+    // ************************************************
+    //     Organisation assistant kick-out page
+    // ************************************************
+
+    Scenario(
+      "Organisation assistant kick-out page",
+      RegistrationTests,
+      ZapTests
+    ) {
+
+      Given("the user logs in as an Organisation having assistant role ")
+      AuthLoginPage.loginAsOrgAdminWithCtUtr()
     }
   }
 }
