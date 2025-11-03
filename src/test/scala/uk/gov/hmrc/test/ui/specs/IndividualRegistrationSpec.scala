@@ -111,9 +111,16 @@ class IndividualRegistrationSpec extends BaseSpec {
       And("the Individual user selects 'Yes' in the 'Is your registered address in the UK?' page")
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
       And("the Individual user enters the Self Assessment UTR in the UTR page")
-      UtrPage.enterUtr(autoMatchedCtUtrForUK)
-      Then("the page 'What is your name' should be displayed- this is still under development")
-      YourNamePage.onPage()
+      UtrPage.enterUtr(matchedSaUtr)
+      And(
+        "the Individual user enters the first name and last name and click Continue button in the 'What is your name' page"
+      )
+      YourNamePage.enterNamesAndClickContinue("Carf", "Tester")
+      And("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
+      IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
+      Then("the page 'What is the email address for the cryptoasset service provider?' should be displayed")
+      EmailAddressCryptoAssetProviderPage.onPage()
+
     }
 
     Scenario(
@@ -135,5 +142,6 @@ class IndividualRegistrationSpec extends BaseSpec {
       Then("the user is asked to enter their name in the 'What is your name' page")
       IndWithoutIdNamePage.onPage() // Do not continue this journey further. It converges with journey 3 here.
     }
+
   }
 }

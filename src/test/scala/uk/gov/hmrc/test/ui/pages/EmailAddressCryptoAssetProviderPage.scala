@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object TradingNameOfYourBusinessPage extends BasePage {
+object EmailAddressCryptoAssetProviderPage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Fbusiness-without-id%2Ftrading-name+%28CARF-161%29"
-    // Must redirect to /register/business-without-id/trading-name (CARF-161)
-
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Findividual-email+%28CARF-183%29"
+  // Must redirect to /register/individual-email (CARF-183)
 }
