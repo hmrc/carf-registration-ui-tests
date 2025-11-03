@@ -168,7 +168,7 @@ class OrgRegistrationSpec extends BaseSpec {
       )
       ProblemDifferentBusinessPage.clickOnByPartialLinkText(signInLnk)
       Then("the Organisation user should be taken to the GG sign in page")
-      AuthLoginPage.onPage()
+      SignOutPage.onPage()
     }
 
     // ************************************************
