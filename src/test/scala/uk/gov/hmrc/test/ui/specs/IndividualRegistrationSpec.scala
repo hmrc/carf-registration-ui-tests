@@ -49,10 +49,11 @@ class IndividualRegistrationSpec extends BaseSpec {
       And("the Individual user selects 'Yes' in the 'Do you have a National Insurance number?' page")
       HaveNiNumberPage.selectNinoYesOrNo("Yes")
       And("the Individual user enters their NINO in the 'What is your National Insurance number' page")
-      NiNumberPage.enterNino("AB123456C")
-      Then("the Individual user is taken to 'What is your name?' page")
-      IndNamePage
-        .onPage() // TODO: This is a placeholder page for CARF-165. This should be changed once 165 is implemented
+      NiNumberPage.enterNino(individualNino)
+      And("the Individual user enters their 'First name' and 'Last name' in the 'What is your name?' page")
+      IndNamePage.enterName()
+      Then("the Individual user is asked to enter their date of birth in the 'What is your date of birth?' page")
+      IndDOBPage.onPage()
     }
 
     Scenario(
@@ -71,7 +72,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       HaveUtrPage.selectUtrYesOrNo("No")
       And("the Individual user selects 'Yes' in the 'Do you have a National Insurance number' page")
       HaveNiNumberPage.selectNinoYesOrNo("Yes")
-      Then("the user is asked to enter their NINO in the 'What is your National Insurance number' page")
+      Then("the Individual user is asked to enter their NINO in the 'What is your National Insurance number' page")
       NiNumberPage.onPage() // Do not continue this journey further. It converges with the previous journey here.
     }
 
@@ -116,7 +117,7 @@ class IndividualRegistrationSpec extends BaseSpec {
         "the Individual user enters the first name and last name and click Continue button in the 'What is your name' page"
       )
       YourNamePage.enterNamesAndClickContinue("Carf", "Tester")
-      And("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
+      And("the Individual user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
       Then("the page 'What is the email address for the cryptoasset service provider?' should be displayed")
       EmailAddressCryptoAssetProviderPage.onPage()

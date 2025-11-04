@@ -29,7 +29,7 @@ trait IdGenerators {
   val unMatchedCtUtrForBusinessName: String = "888"
   val individualNino: String                = "AA1"
   val matchedSaUtr: String                  = "111"
-  val unmatchedSaUtr: String                = "333"
+  val unmatchedSaUtr: String                = "888"
 
   def generateUtr(prefix: String): String =
     prefix + randomisedUtr.substring(3)

@@ -23,9 +23,9 @@ object NiNumberPage extends BasePage {
 
   private val niNumberId = By.id("value")
 
-  def enterNino(niNumber: String) =
+  def enterNino(niNumberPrefix: String): Unit =
     fillFieldsAndContinue(
-      (niNumberId, niNumber)
+      (niNumberId, generateNino(niNumberPrefix))
     )
 
 }
