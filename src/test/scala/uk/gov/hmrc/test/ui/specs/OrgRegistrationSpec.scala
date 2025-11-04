@@ -83,8 +83,12 @@ class OrgRegistrationSpec extends BaseSpec {
       BusinessNameWithoutIDPage.enterBusinessName("Test Business Name")
       And("the Organisation user selects 'Yes' in the 'Does your business trader under a different name?' page")
       HaveTradingNamePage.businessTradeDiffNameYesOrNo("Yes")
-      Then("the page 'Does your business trade under a different name?' should be displayed")
-      TradingNameOfYourBusinessPage.onPage()
+      And(
+        "the Organisation user enters the trading name in the 'Does your business trade under a different name?' page"
+      )
+      TradingNameOfYourBusinessPage.enterTradingNameOfBusiness("Test Trading Pvt Ltd")
+      Then("the page 'What is the main address of your business?' should be displayed")
+      BusinessAddressPage.onPage()
     }
 
     Scenario(

@@ -16,14 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-
-object TradingNameOfYourBusinessPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register/business-without-id/trading-name"
-
-  private val tradingNameofBusinessId = By.id("value")
-
-  def enterTradingNameOfBusiness(tradingNameofBusiness: String): Unit =
-    fillFieldsAndContinue((tradingNameofBusinessId, tradingNameofBusiness))
-
+object BusinessAddressPage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Fbusiness-without-id%2Fbusiness-address+%28CARF-162%29"
+    // Must redirect to /register/business-without-id/business-address (CARF-162)
 }
