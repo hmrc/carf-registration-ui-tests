@@ -18,6 +18,7 @@ package uk.gov.hmrc.test.ui.specs
 
 import uk.gov.hmrc.test.ui.pages.*
 import uk.gov.hmrc.test.ui.specs.tags.*
+import uk.gov.hmrc.test.ui.pages.ProblemDifferentBusinessPage.signInLnk
 
 class OrgOrIndRegistrationProblemSpec extends BaseSpec {
 
@@ -88,10 +89,12 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
       AuthLoginPage.loginAsOrgAdminWithCtUtr()
       When("the Organisation user selects 'No' on the 'Is this your business?' page for the unmatched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("No")
-      Then(
-        "the Organisation user is navigated to 'You're unable to use this service with this Government Gateway user ID' page"
+      And(
+        "the Organisation user clicks on 'sign in with the Government Gateway user ID for the organisation you wish to register' link"
       )
-      ProblemDifferentBusinessPage.onPage()
+      ProblemDifferentBusinessPage.clickOnByPartialLinkText(signInLnk)
+      Then("the Organisation user should be taken to the GG sign in page")
+      SignOutPage.onPage()
     }
     // ************************************************
     //     Organisation assistant kick-out page
