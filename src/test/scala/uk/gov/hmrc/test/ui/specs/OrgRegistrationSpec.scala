@@ -25,10 +25,10 @@ class OrgRegistrationSpec extends BaseSpec {
   Feature("Organisation CARF Registration") {
 
     // Scenarios covered
-    // 1.       "Organisation user without CT-UTR enrolment having a registered address in the UK with matched business details"
+    // 1.       "Organisation user without CT-UTR enrolment having a registered address in the UK with matched business details" // Converges with Journey 4 on CARF-126. . Do not continue further
     // 2.       "Organisation user without CT-UTR enrolment having no registered address in the UK" //placeholder CARF-160
     // 3.       "Organisation user without CT-UTR enrolment registers as a Sole trader" //placeholder for CARF-125
-    // 4.       "Organisation user having CT-UTR enrolment with matched business details" //placeholder for CARF 177
+    // 4.       "Organisation user having CT-UTR enrolment with matched business details" //Converges with Journey 1 on CARF 126
     // 5.       "Organisation assistant kick-out page"
 
     // *************************************************
@@ -56,11 +56,10 @@ class OrgRegistrationSpec extends BaseSpec {
       And("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
       And(
-        "the Organisation user clicks on Continue button on the 'Setting up contact details for cryptoasset reporting' page"
+        "the Organisation user is routed to 'Setting up contact details for cryptoasset reporting' page"
       )
-      YourContactDetailsPage.onPageContinueById()
-      Then("the Organisation user is navigated to 'What is the name of the person or team we should contact?' page")
-      ContactNamePage.onPage()
+      YourContactDetailsPage.onPage()
+      // TODO: Do not continue this journey further. It converges with journey 4 on CARF-126 (IsThisYourBusinessPage)
     }
 
     Scenario(
@@ -133,41 +132,13 @@ class OrgRegistrationSpec extends BaseSpec {
         "the Organisation user clicks on Continue button on the 'Setting up contact details for cryptoasset reporting' page"
       )
       YourContactDetailsPage.onPageContinueById()
-      Then("the Organisation user is navigated to 'What is the name of the person or team we should contact?' page")
-      ContactNamePage.onPage()
-    }
-
-    // this is a problem page scenario that can be kept in another spec for all organisation error pages if this is not covered in unit tests
-    Scenario(
-      "Organisation user having CT-UTR enrolment with unmatched business details",
-      RegistrationTests,
-      ZapTests
-    ) {
-
-      Given("the Organisation user logs in with CT-UTR enrolment")
-      AuthLoginPage.loginAsOrgAdminWithCtUtr()
-      When("the Organisation user selects 'No' on the 'Is this your business?' page for the unmatched business details")
-      IsThisYourBusinessPage.yourBusinessYesOrNo("No")
       And(
-        "the Organisation user clicks on 'sign in with the Government Gateway user ID for the organisation you wish to register' link"
+        "the Organisation user enters the contact name in 'What is the name of the person or team we should contact?' page"
       )
-      ProblemDifferentBusinessPage.clickOnByPartialLinkText(signInLnk)
-      Then("the Organisation user should be taken to the GG sign in page")
-      SignOutPage.onPage()
+      OrgContactNamePage.enterContactName("John Doe")
+      Then("the Organisation user is routed to 'What is the email address for the first contact?' page")
+      OrgEmailPage().onPage()
     }
 
-    // ************************************************
-    //     Organisation assistant kick-out page
-    // ************************************************
-
-    Scenario(
-      "Organisation assistant kick-out page",
-      RegistrationTests,
-      ZapTests
-    ) {
-
-      Given("the user logs in as an Organisation having assistant role ")
-      AuthLoginPage.loginAsOrgAdminWithCtUtr()
-    }
   }
 }
