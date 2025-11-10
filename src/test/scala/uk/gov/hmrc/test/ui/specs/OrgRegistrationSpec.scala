@@ -17,7 +17,6 @@
 package uk.gov.hmrc.test.ui.specs
 
 import uk.gov.hmrc.test.ui.pages.*
-import uk.gov.hmrc.test.ui.pages.ProblemDifferentBusinessPage.signInLnk
 import uk.gov.hmrc.test.ui.specs.tags.*
 
 class OrgRegistrationSpec extends BaseSpec {
@@ -110,8 +109,8 @@ class OrgRegistrationSpec extends BaseSpec {
       YourNamePage.enterNamesAndClickContinue("Carf", "Tester")
       And("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
-      Then("the page 'What is the email address for the cryptoasset service provider?' should be displayed")
-      EmailAddressCryptoAssetProviderPage.onPage()
+      Then("the page 'What is your email address?' should be displayed")
+      IndEmailPage.onPage()
     }
 
     // **************************************************
@@ -136,8 +135,12 @@ class OrgRegistrationSpec extends BaseSpec {
         "the Organisation user enters the contact name in 'What is the name of the person or team we should contact?' page"
       )
       OrgContactNamePage.enterContactName("John Doe")
-      Then("the Organisation user is routed to 'What is the email address for the first contact?' page")
-      OrgEmailPage().onPage()
+      And(
+        "the Organisation user enters the first contact's email in the 'What is the email address for the first contact?' page"
+      )
+      OrgFirstContactEmailPage.enterFirstContactEmail("first.contact@example.com")
+      Then("the organisation user is routed to 'Can we contact your first contact by phone?' page")
+      OrgFirstContactHavePhonePage.onPage()
     }
 
   }
