@@ -120,7 +120,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       And("the Individual user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
       Then("the page 'What is the email address for the cryptoasset service provider?' should be displayed")
-      EmailAddressCryptoAssetProviderPage.onPage()
+      IndEmailPage.onPage()
 
     }
 
