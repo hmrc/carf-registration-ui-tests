@@ -24,11 +24,10 @@ class OrgRegistrationSpec extends BaseSpec {
   Feature("Organisation CARF Registration") {
 
     // Scenarios covered
-    // 1.       "Organisation user without CT-UTR enrolment having a registered address in the UK with matched business details" // Converges with Journey 4 on CARF-126. . Do not continue further
-    // 2.       "Organisation user without CT-UTR enrolment having no registered address in the UK" //placeholder CARF-160
-    // 3.       "Organisation user without CT-UTR enrolment registers as a Sole trader" //placeholder for CARF-125
-    // 4.       "Organisation user having CT-UTR enrolment with matched business details" //Converges with Journey 1 on CARF 126
-    // 5.       "Organisation assistant kick-out page"
+    // 1. "Organisation user without CT-UTR enrolment having a registered address in the UK with matched business details" // Converges with Journey 4 on CARF-126. . Do not continue further
+    // 2. "Organisation user without CT-UTR enrolment having no registered address in the UK" //placeholder CARF-160
+    // 3. "Organisation user without CT-UTR enrolment registers as a Sole trader" //placeholder for CARF-125
+    // 4. "Organisation user having CT-UTR enrolment with matched business details" //Converges with Journey 1 on CARF 126
 
     // *************************************************
     //    Organisation user without CT-UTR enrolment
@@ -134,13 +133,19 @@ class OrgRegistrationSpec extends BaseSpec {
       And(
         "the Organisation user enters the contact name in 'What is the name of the person or team we should contact?' page"
       )
-      OrgContactNamePage.enterContactName("John Doe")
+      OrgFirstContactNamePage.enterContactName("John Doe")
       And(
         "the Organisation user enters the first contact's email in the 'What is the email address for the first contact?' page"
       )
       OrgFirstContactEmailPage.enterFirstContactEmail("first.contact@example.com")
-      Then("the organisation user is routed to 'Can we contact your first contact by phone?' page")
-      OrgFirstContactHavePhonePage.onPage()
+      And("the organisation user selects 'Yes' in the 'Can we contact your first contact by phone?' page")
+      OrgFirstContactHavePhonePage.setPhoneContactPreference("Yes")
+      And("the organisation user enters '01234567890' in the 'What is the phone number for the first contact?' page")
+      OrgFirstContactPhonePage.enterFirstContactPhone("01234567890")
+      Then(
+        "the organisation user is routed to 'Is there someone else we can contact if your first contact is not available?' page"
+      )
+      OrgHaveSecondContactPage.onPage()
     }
 
   }
