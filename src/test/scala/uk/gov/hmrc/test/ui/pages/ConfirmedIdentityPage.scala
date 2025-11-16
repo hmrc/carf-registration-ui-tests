@@ -16,24 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-
-object IndDOBPage extends BasePage {
+object ConfirmedIdentityPage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/register/date-of-birth"
-
-  private val dayId   = By.id("value.day")
-  private val monthId = By.id("value.month")
-  private val yearId  = By.id("value.year")
-
-  private val dayValue: String   = "01"
-  private val monthValue: String = "JAN"
-  private val yearValue: String  = "2000"
-
-  def enterDateOfBirth(): Unit =
-    fillFieldsAndContinue(
-      (dayId, dayValue),
-      (monthId, monthValue),
-      (yearId, yearValue)
-    )
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Fidentity-confirmed+%28CARF-168%29"
+  // Must redirect to /register/identity-confirmed (CARF-168)
 }

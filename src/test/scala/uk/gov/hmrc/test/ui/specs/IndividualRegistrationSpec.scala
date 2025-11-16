@@ -48,12 +48,14 @@ class IndividualRegistrationSpec extends BaseSpec {
       IndRegistrationTypePage.registerIndividualAs("An individual not connected to a business")
       And("the Individual user selects 'Yes' in the 'Do you have a National Insurance number?' page")
       HaveNiNumberPage.selectNinoYesOrNo("Yes")
-      And("the Individual user enters their NINO in the 'What is your National Insurance number' page")
+      And("the Individual user enters the NINO in the 'What is your National Insurance number' page")
       NiNumberPage.enterNino(individualNino)
-      And("the Individual user enters their 'First name' and 'Last name' in the 'What is your name?' page")
+      And("the Individual user enters the 'First name' and 'Last name' in the 'What is your name?' page")
       IndNamePage.enterName()
-      Then("the Individual user is asked to enter their date of birth in the 'What is your date of birth?' page")
-      IndDOBPage.onPage()
+      And("the Individual user enters the date of birth in the 'What is your date of birth?' page")
+      IndDOBPage.enterDateOfBirth()
+      Then("the user is navigated to the 'We have confirmed your identity' page")
+      ConfirmedIdentityPage.onPage()
     }
 
     Scenario(
