@@ -142,10 +142,12 @@ class OrgRegistrationSpec extends BaseSpec {
       OrgFirstContactHavePhonePage.setPhoneContactPreference("Yes")
       And("the organisation user enters '01234567890' in the 'What is the phone number for the first contact?' page")
       OrgFirstContactPhonePage.enterFirstContactPhone("01234567890")
-      Then(
-        "the organisation user is routed to 'Is there someone else we can contact if your first contact is not available?' page"
+      And(
+        "the organisation user selects 'yes' in 'Is there someone else we can contact if your first contact is not available?' page"
       )
-      OrgHaveSecondContactPage.onPage()
+      OrgHaveSecondContactPage.haveSecondContactYesOrNo("Yes")
+      Then("the organisation user is routed to 'What is the name of the second person or team we should contact?' page")
+      OrgSecondContactNamePage.onPage()
     }
 
   }
