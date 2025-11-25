@@ -16,14 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-
-object OrgSecondContactNamePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register/second-contact-name"
-
-  private val nameId: By = By.id("value")
-
-  def enterName(name: String): Unit =
-    fillFieldsAndContinue((nameId, name))
+object OrgSecondContactEmailPage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Fsecond-contact-email+%28CARF-250%29"
 
 }

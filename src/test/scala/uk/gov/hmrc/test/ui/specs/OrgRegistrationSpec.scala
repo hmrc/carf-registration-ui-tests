@@ -146,8 +146,12 @@ class OrgRegistrationSpec extends BaseSpec {
         "the organisation user selects 'yes' in 'Is there someone else we can contact if your first contact is not available?' page"
       )
       OrgHaveSecondContactPage.haveSecondContactYesOrNo("Yes")
-      Then("the organisation user is routed to 'What is the name of the second person or team we should contact?' page")
-      OrgSecondContactNamePage.onPage()
+      And(
+        "the organisation user enters the second contact name in 'What is the name of the second person or team we should contact?' page"
+      )
+      OrgSecondContactNamePage.enterName("Jane Smith")
+      Then("the organisation user is routed to 'What is the email address for the second contact?' page")
+      OrgSecondContactEmailPage.onPage()
     }
 
   }
