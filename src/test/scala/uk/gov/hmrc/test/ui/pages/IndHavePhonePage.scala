@@ -16,17 +16,9 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
+object IndHavePhonePage extends BasePage {
+  override val pageUrl: String = baseUrl + "/register/individual-have-phone"
 
-object YourNamePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register/your-name"
-
-  private val firstNameId = By.id("firstName")
-  private val lastNameId  = By.id("lastName")
-
-  def enterNamesAndContinue(firstName: String, lastName: String): Unit =
-    fillFieldsAndContinue(
-      (firstNameId, firstName),
-      (lastNameId, lastName)
-    )
+  def contactByPhoneYesOrNo(contactByPhoneOption: String): Unit =
+    selectRadioAndContinue(getRadioId(contactByPhoneOption))
 }

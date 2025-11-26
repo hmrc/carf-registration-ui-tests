@@ -105,11 +105,15 @@ class OrgRegistrationSpec extends BaseSpec {
       And(
         "the Organisation user enters the first name and last name and click Continue button in the 'What is your name' page"
       )
-      YourNamePage.enterNamesAndClickContinue("Carf", "Tester")
+      YourNamePage.enterNamesAndContinue("Carf", "Tester")
       And("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
-      Then("the page 'What is your email address?' should be displayed")
-      IndEmailPage.onPage()
+      And("the Organisation user enters the email address in the 'What is your email address?' page")
+      IndEmailPage.enterEmailAddress("carftester@test.com")
+      And("the Organisation user selects 'Yes' in the 'Can we contact you by phone' page")
+      IndHavePhonePage.contactByPhoneYesOrNo("Yes")
+      Then("the Organisation user is navigated to 'What is your phone number' page")
+      IndPhonePage.onPage()
     }
 
     // **************************************************

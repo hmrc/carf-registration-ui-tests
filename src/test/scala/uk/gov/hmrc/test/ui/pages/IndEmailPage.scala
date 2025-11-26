@@ -16,8 +16,17 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import org.openqa.selenium.By
+
 object IndEmailPage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Findividual-email+%28CARF-183%29"
-  // Must redirect to /register/individual-email (CARF-183)
+    baseUrl + "/register/individual-email"
+
+  private val emailAddressId: By = By.id("value")
+
+  def enterEmailAddress(emailAddressValue: String): Unit =
+    fillFieldsAndContinue(
+      (emailAddressId, emailAddressValue)
+    )
+
 }

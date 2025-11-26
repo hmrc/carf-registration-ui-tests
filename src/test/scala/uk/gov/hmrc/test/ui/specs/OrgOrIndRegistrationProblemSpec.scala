@@ -47,7 +47,7 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
       And(
         "the Individual user enters the first name and last name and click Continue button in the 'What is your name' page"
       )
-      YourNamePage.enterNamesAndClickContinue("Carf", "Tester")
+      YourNamePage.enterNamesAndContinue("Carf", "Tester")
       Then("The page 'The details you entered did not match our records' should be displayed")
       SoleTraderNotIdentifiedPage.onPage()
     }
