@@ -16,17 +16,9 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
+object IndPhonePage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Findividual-phone+%28CARF-185%29"
+  // Must redirect to /register/individual-phone (CARF-185)
 
-object YourNamePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register/your-name"
-
-  private val firstNameId = By.id("firstName")
-  private val lastNameId  = By.id("lastName")
-
-  def enterNamesAndContinue(firstName: String, lastName: String): Unit =
-    fillFieldsAndContinue(
-      (firstNameId, firstName),
-      (lastNameId, lastName)
-    )
 }

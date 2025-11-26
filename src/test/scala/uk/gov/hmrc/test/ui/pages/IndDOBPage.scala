@@ -26,11 +26,7 @@ object IndDOBPage extends BasePage {
   private val monthId = By.id("value.month")
   private val yearId  = By.id("value.year")
 
-  private val dayValue: String   = "01"
-  private val monthValue: String = "JAN"
-  private val yearValue: String  = "2000"
-
-  def enterDateOfBirth(): Unit =
+  def enterDateOfBirth(dayValue: String, monthValue: String, yearValue: String): Unit =
     fillFieldsAndContinue(
       (dayId, dayValue),
       (monthId, monthValue),

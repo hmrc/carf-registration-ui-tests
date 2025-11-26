@@ -18,6 +18,6 @@ package uk.gov.hmrc.test.ui.pages
 
 object ConfirmedIdentityPage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Fidentity-confirmed+%28CARF-168%29"
-  // Must redirect to /register/identity-confirmed (CARF-168)
+    baseUrl + "/register/identity-confirmed"
+
 }

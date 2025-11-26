@@ -51,11 +51,17 @@ class IndividualRegistrationSpec extends BaseSpec {
       And("the Individual user enters the NINO in the 'What is your National Insurance number' page")
       NiNumberPage.enterNino(individualNino)
       And("the Individual user enters the 'First name' and 'Last name' in the 'What is your name?' page")
-      IndNamePage.enterName()
+      IndNamePage.enterName("Carf", "Tester")
       And("the Individual user enters the date of birth in the 'What is your date of birth?' page")
-      IndDOBPage.enterDateOfBirth()
-      Then("the user is navigated to the 'We have confirmed your identity' page")
-      ConfirmedIdentityPage.onPage()
+      IndDOBPage.enterDateOfBirth("01", "JAN", "1901")
+      And("the Individual user clicks the Continue button in the 'We have confirmed your identity' page")
+      ConfirmedIdentityPage.onPageContinueById()
+      And("the Individual user enters the email address in the 'What is your email address' page")
+      IndEmailPage.enterEmailAddress("carftester@test.com")
+      And("the Individual user selects 'Yes' in the 'Can we contact you by phone' page")
+      IndHavePhonePage.contactByPhoneYesOrNo("Yes")
+      Then("the Individual user is navigated to 'What is your phone number' page")
+      IndPhonePage.onPage()
     }
 
     Scenario(
@@ -118,12 +124,15 @@ class IndividualRegistrationSpec extends BaseSpec {
       And(
         "the Individual user enters the first name and last name and click Continue button in the 'What is your name' page"
       )
-      YourNamePage.enterNamesAndClickContinue("Carf", "Tester")
+      YourNamePage.enterNamesAndContinue("Carf", "Tester")
       And("the Individual user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
-      Then("the page 'What is the email address for the cryptoasset service provider?' should be displayed")
-      IndEmailPage.onPage()
-
+      And("the page 'What is the email address for the cryptoasset service provider?' should be displayed")
+      IndEmailPage.enterEmailAddress("carftester@test.com")
+      And("the Individual user selects 'Yes' in the 'Can we contact you by phone' page")
+      IndHavePhonePage.contactByPhoneYesOrNo("Yes")
+      Then("the Individual user is navigated to 'What is your phone number' page")
+      IndPhonePage.onPage()
     }
 
     Scenario(
