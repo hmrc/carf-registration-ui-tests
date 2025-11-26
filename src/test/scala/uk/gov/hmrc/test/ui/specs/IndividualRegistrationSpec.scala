@@ -127,7 +127,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       YourNamePage.enterNamesAndContinue("Carf", "Tester")
       And("the Individual user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
-      And("the page 'What is the email address for the cryptoasset service provider?' should be displayed")
+      And("the page 'What is your email address?' should be displayed")
       IndEmailPage.enterEmailAddress("carftester@test.com")
       And("the Individual user selects 'Yes' in the 'Can we contact you by phone' page")
       IndHavePhonePage.contactByPhoneYesOrNo("Yes")
