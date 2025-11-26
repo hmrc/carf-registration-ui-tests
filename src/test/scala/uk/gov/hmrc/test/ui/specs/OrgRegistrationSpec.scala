@@ -150,8 +150,10 @@ class OrgRegistrationSpec extends BaseSpec {
         "the organisation user enters the second contact name in 'What is the name of the second person or team we should contact?' page"
       )
       OrgSecondContactNamePage.enterName("Jane Smith")
-      Then("the organisation user is routed to 'What is the email address for the second contact?' page")
-      OrgSecondContactEmailPage.onPage()
+      And("the organisation user enters the email in 'What is the email address for the second contact?' page")
+      OrgSecondContactEmailPage.enterSecondContactEmail("second.contact@example.com")
+      Then("the organisation user is routed to 'Can we contact your second contact by phone?' page")
+      OrgSecondContactHavePhonePage.onPage()
     }
 
   }

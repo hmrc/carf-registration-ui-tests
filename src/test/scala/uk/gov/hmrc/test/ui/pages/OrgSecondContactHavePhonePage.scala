@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-
-object OrgSecondContactEmailPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register/second-contact-email"
-
-  private val secondContactEmailID = By.id("value")
-
-  def enterSecondContactEmail(secondContactEmail: String): Unit =
-    fillFieldsAndContinue((secondContactEmailID, secondContactEmail))
+object OrgSecondContactHavePhonePage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Fsecond-contact-have-phone+%28CARF-251%29"
 
 }
