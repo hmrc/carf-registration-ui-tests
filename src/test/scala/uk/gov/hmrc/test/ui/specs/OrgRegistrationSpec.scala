@@ -110,9 +110,9 @@ class OrgRegistrationSpec extends BaseSpec {
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
       And("the page 'What is your email address?' should be displayed")
       IndEmailPage.enterEmailAddress("carftester@test.com")
-      And("the Individual user selects 'Yes' in the 'Can we contact you by phone' page")
+      And("the Organisation user selects 'Yes' in the 'Can we contact you by phone' page")
       IndHavePhonePage.contactByPhoneYesOrNo("Yes")
-      Then("the Individual user is navigated to 'What is your phone number' page")
+      Then("the Organisation user is navigated to 'What is your phone number' page")
       IndPhonePage.onPage()
     }
 
