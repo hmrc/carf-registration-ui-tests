@@ -81,4 +81,14 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     click(continueButtonId)
   }
 
+  def verifyOnPageWithPreviousSelection(previousRadioSelection: Option[By]): Unit = {
+    onPage()
+    previousRadioSelection match {
+      case Some(locator) =>
+        driver.findElement(locator).isSelected shouldBe true
+      case None          =>
+        fail("No previous registration type selection was recorded")
+    }
+  }
+
 }

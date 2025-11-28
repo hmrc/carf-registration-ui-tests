@@ -16,7 +16,11 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import org.openqa.selenium.By
+
 object ProblemBusinessNotIdentifiedPage extends BasePage {
-  override val pageUrl: String =
-    baseUrl + "/register/problem/business-not-identified"
+  override val pageUrl: String = baseUrl + "/register/problem/business-not-identified"
+
+  val tryAgainPartialLink = By.ByPartialLinkText("try again")
+
 }
