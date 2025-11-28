@@ -18,6 +18,5 @@ package uk.gov.hmrc.test.ui.pages
 
 object ProblemBusinessNotIdentifiedPage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/placeholder?message=Must+redirect+to+%2Fproblem%2Fbusiness-not-identified+%28CARF-147%29"
-  // Must redirect to /problem/business-not-identified (CARF-147)
+    baseUrl + "/register/problem/business-not-identified"
 }
