@@ -21,11 +21,12 @@ import org.openqa.selenium.By
 object OrgRegistrationTypePage extends BasePage {
   override val pageUrl: String = baseUrl + "/register/organisation-registration-type"
 
-  private val limitedCompanyRadioId = By.id("value_0")
-  private val partnershipRadioId    = By.id("value_1")
-  private val llpRadioId            = By.id("value_2")
-  private val unincorporatedRadioId = By.id("value_3")
-  private val soleTraderRadioId     = By.id("value_4")
+  private val limitedCompanyRadioId                 = By.id("value_0")
+  private val partnershipRadioId                    = By.id("value_1")
+  private val llpRadioId                            = By.id("value_2")
+  private val unincorporatedRadioId                 = By.id("value_3")
+  private val soleTraderRadioId                     = By.id("value_4")
+  var previousRegistrationTypeSelection: Option[By] = None
 
   def getId(registrationType: String): By =
     registrationType match {
@@ -36,6 +37,11 @@ object OrgRegistrationTypePage extends BasePage {
       case "Sole Trader"     => soleTraderRadioId
     }
 
-  def registerOrganisationAs(registrationType: String): Unit =
+  def registerOrganisationAs(registrationType: String): Unit = {
+    previousRegistrationTypeSelection = Some(getId(registrationType))
     selectRadioAndContinue(getId(registrationType))
+  }
+
+  def verifyPreviousSelection(): Unit =
+    verifyOnPageWithPreviousSelection(previousRegistrationTypeSelection)
 }

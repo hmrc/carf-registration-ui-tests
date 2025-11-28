@@ -17,6 +17,7 @@
 package uk.gov.hmrc.test.ui.specs
 
 import uk.gov.hmrc.test.ui.pages.*
+import uk.gov.hmrc.test.ui.pages.ProblemBusinessNotIdentifiedPage.tryAgainPartialLink
 import uk.gov.hmrc.test.ui.specs.tags.*
 import uk.gov.hmrc.test.ui.pages.ProblemDifferentBusinessPage.signInLnk
 
@@ -73,10 +74,14 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
       UtrPage.enterUtr(unMatchedCtUtrForBusinessName)
       And("the user enters the unmatched business name in the 'What is the registered name of your business?' page")
       BusinessNamePage.enterBusinessName("unmatched")
-      Then(
-        "the Organisation user is navigated to 'The details you entered did not match our records' page"
+      When(
+        "the Organisation user clicks on 'try again using different details' link in the 'The details you entered did not match our records' page"
       )
-      ProblemBusinessNotIdentifiedPage.onPage()
+      ProblemBusinessNotIdentifiedPage.clickOnByPartialLinkText(tryAgainPartialLink)
+      Then(
+        "the organisation user should be routed to 'What are you registering as?' page and his previous selection should be retained"
+      )
+      OrgRegistrationTypePage.verifyPreviousSelection()
     }
 
     Scenario(
