@@ -147,7 +147,7 @@ class OrgRegistrationSpec extends BaseSpec {
       And("the organisation user enters '01234567890' in the 'What is the phone number for the first contact?' page")
       OrgFirstContactPhonePage.enterFirstContactPhone("01234567890")
       And(
-        "the organisation user selects 'yes' in 'Is there someone else we can contact if your first contact is not available?' page"
+        "the organisation user selects 'Yes' in 'Is there someone else we can contact if your first contact is not available?' page"
       )
       OrgHaveSecondContactPage.haveSecondContactYesOrNo("Yes")
       And(
@@ -156,9 +156,12 @@ class OrgRegistrationSpec extends BaseSpec {
       OrgSecondContactNamePage.enterName("Jane Smith")
       And("the organisation user enters the email in 'What is the email address for the second contact?' page")
       OrgSecondContactEmailPage.enterSecondContactEmail("second.contact@example.com")
-      Then("the organisation user is routed to 'Can we contact your second contact by phone?' page")
-      OrgSecondContactHavePhonePage.onPage()
+      And("the organisation user selects 'Yes' in 'Can we contact your second contact by phone?' page")
+      OrgSecondContactHavePhonePage.setPhoneContactPreference("Yes")
+      Then(
+        "the organisation user is navigated to the 'What is your phone number for [second contact name]' page should be displayed' "
+      )
+      SecondContactPhonePage.onPage()
     }
-
   }
 }
