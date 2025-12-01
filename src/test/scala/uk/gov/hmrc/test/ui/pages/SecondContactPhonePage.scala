@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object OrgSecondContactHavePhonePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register/second-contact-have-phone"
-
-  def setPhoneContactPreference(contactOption: String): Unit =
-    selectRadioAndContinue(getRadioId(contactOption))
-
+object SecondContactPhonePage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Fsecond-contact-phone+%28CARF-252%29"
+    // Must redirect to /register/second-contact-phone (CARF-252)
 }
