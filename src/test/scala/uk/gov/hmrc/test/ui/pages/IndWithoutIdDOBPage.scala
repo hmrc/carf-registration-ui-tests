@@ -18,16 +18,8 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-object IndWithoutIdNamePage extends BasePage {
+object IndWithoutIdDOBPage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/register/individual-without-id/name"
-
-  private val givenNameId  = By.id("givenName")
-  private val familyNameId = By.id("familyName")
-
-  def enterNamesAndContinue(givenName: String, familyName: String): Unit =
-    fillFieldsAndContinue(
-      (givenNameId, givenName),
-      (familyNameId, familyName)
-    )
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Findividual-without-id%2Fdate-of-birth+%28CARF-170%29"
+  // Must redirect to /register/individual-without-id/date-of-birth (CARF-170)
 }
