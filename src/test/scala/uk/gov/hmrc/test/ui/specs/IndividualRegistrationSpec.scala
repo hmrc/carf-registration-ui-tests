@@ -102,9 +102,10 @@ class IndividualRegistrationSpec extends BaseSpec {
       IndRegistrationTypePage.registerIndividualAs("An individual not connected to a business")
       And("the Individual user selects 'No' in the 'Do you have a National Insurance number?' page")
       HaveNiNumberPage.selectNinoYesOrNo("No")
-      Then("the Individual user is asked to enter their name in the 'What is your name' page")
-      IndWithoutIdNamePage
-        .onPage() // TODO: This page is currently a placeholder for CARF-169. Script to enter name to be added once the page is ready
+      And("the Individual user is asked to enter their name in the 'What is your name' page")
+      IndWithoutIdNamePage.enterNamesAndContinue("John", "Doe")
+      Then("the Individual user is navigated to the 'What is your date of birth' page")
+      IndWithoutIdDOBPage.onPage()
     }
 
     Scenario(
