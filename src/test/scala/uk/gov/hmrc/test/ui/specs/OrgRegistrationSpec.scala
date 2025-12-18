@@ -24,8 +24,8 @@ class OrgRegistrationSpec extends BaseSpec {
   Feature("Organisation CARF Registration") {
 
     // Scenarios covered
-    // 1. "Organisation user without CT-UTR enrolment having a registered address in the UK with matched business details" // Converges with Journey 4 on CARF-126. . Do not continue further
-    // 2. "Organisation user without CT-UTR enrolment having no registered address in the UK" //placeholder CARF-160
+    // 1. "Organisation user without CT-UTR enrolment having a registered address in the UK with matched business details" // Converges with Journey 4 on CARF-126. Do not continue further
+    // 2. "Organisation user without CT-UTR enrolment having no registered address in the UK"
     // 3. "Organisation user without CT-UTR enrolment registers as a Sole trader" //placeholder for CARF-125
     // 4. "Organisation user having CT-UTR enrolment with matched business details" //Converges with Journey 1 on CARF 126
 
@@ -84,8 +84,11 @@ class OrgRegistrationSpec extends BaseSpec {
         "the Organisation user enters the trading name in the 'Does your business trade under a different name?' page"
       )
       TradingNameOfYourBusinessPage.enterTradingNameOfBusiness("Test Trading Pvt Ltd")
-      Then("the page 'What is the main address of your business?' should be displayed")
-      BusinessAddressPage.onPage()
+      And("the Organisation user enters the address in 'What is the main address of your business?' page")
+      BusinessAddressPage.enterMainAddressOfBusiness("Boulevard de Parc", "Chessy", "77700", "Fra")
+      Then("the Organisation user is routed to 'Setting up contact details for cryptoasset reporting' page")
+      //TODO: Check if adding an ID to the continue button resolves the issue - atm clicking on continue with xpath doesn't work. It stays on the same page
+      // YourContactDetailsPage.onPage()
     }
 
     Scenario(

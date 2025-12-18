@@ -30,11 +30,13 @@ import java.time.Duration
 trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject {
 
   val pageUrl: String
-  val baseUrl: String      = TestConfiguration.url(
+  val baseUrl: String         = TestConfiguration.url(
     "carf-registration-frontend"
   )
-  val submitButtonId: By   = By.id("submit")
-  val continueButtonId: By = By.id("continue")
+  val submitButtonId: By      = By.id("submit")
+  val continueButtonId: By    = By.id("continue")
+  // TODO: Remove once ID has been added for continue button
+  val continueButtonXpath: By = By.xpath("//button[@type='submit']")
 
   private val yesRadioId = By.id("value")
   private val noRadioId  = By.id("value-no")
@@ -71,14 +73,34 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     click(partialLinkText)
   }
 
-  /** Method to loop through each tuple in the list, enter value in one or more text fields and click continue
+  /** Method to loop through each tuple in the list and enter value in one or more text fields
     * @param fieldData
     *   \- variable number of tuples (locator, text)
     */
-  def fillFieldsAndContinue(fieldData: (By, String)*): Unit = {
+  def fillFields(fieldData: (By, String)*): Unit = {
     onPage()
     fieldData.foreach { case (locator, value) => sendKeys(locator, value) }
+  }
+
+  def fillFieldsAndContinue(fieldData: (By, String)*): Unit = {
+    fillFields(fieldData: _*)
     click(continueButtonId)
+  }
+
+  /** Method to select from select (dropdown) enhanced with javascript
+    * @param inputLocator
+    *   \- locator for the select(dropdown)
+    * @param searchText
+    *   \- text to search for options
+    * @param optionLocator
+    *   \- option to select from the dropdown list
+    */
+  def selectFromEnhancedDropdownAndContinue(inputLocator: By, searchText: String, optionLocator: By): Unit = {
+    sendKeys(inputLocator, searchText)
+    fluentWait.until(ExpectedConditions.elementToBeClickable(optionLocator))
+    click(optionLocator)
+    // TODO: Change to click(continueButtonId) once ID has been added for continue button on CARF-162
+    click(continueButtonXpath)
   }
 
   def verifyOnPageWithPreviousSelection(previousRadioSelection: Option[By]): Unit = {
