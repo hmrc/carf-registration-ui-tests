@@ -37,7 +37,6 @@ object BusinessAddressPage extends BasePage {
     selectCountry(countrySubstring)
   }
 
-  def selectCountry(countrySubstring: String): Unit =
-    selectFromEnhancedDropdownAndContinue(countryID, countrySubstring, countryOptionID)
+  selectFromEnhancedDropdownAndContinue(countryID, countrySubstring, countryOptionID)
 
 }

@@ -87,8 +87,7 @@ class OrgRegistrationSpec extends BaseSpec {
       And("the Organisation user enters the address in 'What is the main address of your business?' page")
       BusinessAddressPage.enterMainAddressOfBusiness("Boulevard de Parc", "Chessy", "77700", "Fra")
       Then("the Organisation user is routed to 'Setting up contact details for cryptoasset reporting' page")
-      //TODO: Check if adding an ID to the continue button resolves the issue - atm clicking on continue with xpath doesn't work. It stays on the same page
-      // YourContactDetailsPage.onPage()
+      YourContactDetailsPage.onPage()
     }
 
     Scenario(

@@ -35,8 +35,6 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
   )
   val submitButtonId: By      = By.id("submit")
   val continueButtonId: By    = By.id("continue")
-  // TODO: Remove once ID has been added for continue button
-  val continueButtonXpath: By = By.xpath("//button[@type='submit']")
 
   private val yesRadioId = By.id("value")
   private val noRadioId  = By.id("value-no")
@@ -99,8 +97,7 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     sendKeys(inputLocator, searchText)
     fluentWait.until(ExpectedConditions.elementToBeClickable(optionLocator))
     click(optionLocator)
-    // TODO: Change to click(continueButtonId) once ID has been added for continue button on CARF-162
-    click(continueButtonXpath)
+    click(continueButtonId)
   }
 
   def verifyOnPageWithPreviousSelection(previousRadioSelection: Option[By]): Unit = {
