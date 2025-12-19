@@ -34,9 +34,7 @@ object BusinessAddressPage extends BasePage {
     countrySubstring: String
   ): Unit = {
     fillFields((addressLine1ID, addressLine1), (townOrCityID, townOrCity), (postcodeID, postcode))
-    selectCountry(countrySubstring)
+    selectFromEnhancedDropdownAndContinue(countryID, countrySubstring, countryOptionID)
+
   }
-
-  selectFromEnhancedDropdownAndContinue(countryID, countrySubstring, countryOptionID)
-
 }

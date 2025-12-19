@@ -30,11 +30,11 @@ import java.time.Duration
 trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject {
 
   val pageUrl: String
-  val baseUrl: String         = TestConfiguration.url(
+  val baseUrl: String      = TestConfiguration.url(
     "carf-registration-frontend"
   )
-  val submitButtonId: By      = By.id("submit")
-  val continueButtonId: By    = By.id("continue")
+  val submitButtonId: By   = By.id("submit")
+  val continueButtonId: By = By.id("continue")
 
   private val yesRadioId = By.id("value")
   private val noRadioId  = By.id("value-no")
