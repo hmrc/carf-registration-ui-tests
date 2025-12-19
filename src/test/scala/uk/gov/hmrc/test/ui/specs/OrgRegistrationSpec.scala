@@ -86,8 +86,36 @@ class OrgRegistrationSpec extends BaseSpec {
       TradingNameOfYourBusinessPage.enterTradingNameOfBusiness("Test Trading Pvt Ltd")
       And("the Organisation user enters the address in 'What is the main address of your business?' page")
       BusinessAddressPage.enterMainAddressOfBusiness("Boulevard de Parc", "Chessy", "77700", "Fra")
-      Then("the Organisation user is routed to 'Setting up contact details for cryptoasset reporting' page")
-      YourContactDetailsPage.onPage()
+      And("the Organisation user clicks continue on 'Setting up contact details for cryptoasset reporting' page")
+      YourContactDetailsPage.onPageContinueById()
+      And(
+        "the Organisation user enters the contact name in 'What is the name of the person or team we should contact?' page"
+      )
+      OrgFirstContactNamePage.enterContactName("John Doe")
+      And(
+        "the Organisation user enters the first contact's email in the 'What is the email address for the first contact?' page"
+      )
+      OrgFirstContactEmailPage.enterFirstContactEmail("first.contact@example.com")
+      And("the organisation user selects 'Yes' in the 'Can we contact your first contact by phone?' page")
+      OrgFirstContactHavePhonePage.setPhoneContactPreference("Yes")
+      And("the organisation user enters '01234567890' in the 'What is the phone number for the first contact?' page")
+      OrgFirstContactPhonePage.enterFirstContactPhone("01234567890")
+      And(
+        "the organisation user selects 'Yes' in 'Is there someone else we can contact if your first contact is not available?' page"
+      )
+      OrgHaveSecondContactPage.haveSecondContactYesOrNo("Yes")
+      And(
+        "the organisation user enters the second contact name in 'What is the name of the second person or team we should contact?' page"
+      )
+      OrgSecondContactNamePage.enterName("Jane Smith")
+      And("the organisation user enters the email in 'What is the email address for the second contact?' page")
+      OrgSecondContactEmailPage.enterSecondContactEmail("second.contact@example.com")
+      And("the organisation user selects 'Yes' in 'Can we contact your second contact by phone?' page")
+      OrgSecondContactHavePhonePage.setPhoneContactPreference("Yes")
+      Then(
+        "the organisation user is navigated to the 'What is your phone number for [second contact name]' page should be displayed' "
+      )
+      SecondContactPhonePage.onPage()
     }
 
     Scenario(
