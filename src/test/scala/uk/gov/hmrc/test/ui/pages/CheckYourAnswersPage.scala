@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,9 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
+object CheckYourAnswersPage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Fcheck-answers+%28CARF-258%29"
+  // Must redirect to /register/check-answers (CARF-258)
 
-object SecondContactPhonePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register/second-contact-phone"
-
-  private val phoneId = By.id("value")
-
-  def enterSecondContactPhone(phone: String): Unit =
-    fillFieldsAndContinue((phoneId, phone))
 }
