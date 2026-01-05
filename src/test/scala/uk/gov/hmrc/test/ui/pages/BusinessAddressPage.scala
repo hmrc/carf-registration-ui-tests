@@ -16,8 +16,25 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import org.openqa.selenium.By
+
 object BusinessAddressPage extends BasePage {
-  override val pageUrl: String =
-    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Fbusiness-without-id%2Fbusiness-address+%28CARF-162%29"
-    // Must redirect to /register/business-without-id/business-address (CARF-162)
+  override val pageUrl: String = baseUrl + "/register/business-without-id/business-address"
+
+  private val addressLine1ID  = By.id("addressLine1")
+  private val townOrCityID    = By.id("townOrCity")
+  private val postcodeID      = By.id("postcode")
+  private val countryID       = By.id("country")
+  private val countryOptionID = By.id("country__option--0")
+
+  def enterMainAddressOfBusiness(
+    addressLine1: String,
+    townOrCity: String,
+    postcode: String,
+    countrySubstring: String
+  ): Unit = {
+    fillFields((addressLine1ID, addressLine1), (townOrCityID, townOrCity), (postcodeID, postcode))
+    selectFromEnhancedDropdownAndContinue(countryID, countrySubstring, countryOptionID)
+
+  }
 }
