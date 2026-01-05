@@ -24,10 +24,10 @@ class OrgRegistrationSpec extends BaseSpec {
   Feature("Organisation CARF Registration") {
 
     // Scenarios covered
-    // 1. "Organisation user without CT-UTR enrolment having a registered address in the UK with matched business details" // Converges with Journey 4 on CARF-126. Do not continue further
+    // 1. "Organisation user without CT-UTR enrolment having a registered address in the UK with matched business details"
     // 2. "Organisation user without CT-UTR enrolment having no registered address in the UK"
-    // 3. "Organisation user without CT-UTR enrolment registers as a Sole trader" //placeholder for CARF-125
-    // 4. "Organisation user having CT-UTR enrolment with matched business details" //Converges with Journey 1 on CARF 126
+    // 3. "Organisation user without CT-UTR enrolment registers as a Sole trader"
+    // 4. "Organisation user having CT-UTR enrolment with matched business details"
 
     // *************************************************
     //    Organisation user without CT-UTR enrolment
@@ -54,10 +54,39 @@ class OrgRegistrationSpec extends BaseSpec {
       And("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
       And(
-        "the Organisation user is routed to 'Setting up contact details for cryptoasset reporting' page"
+        "the Organisation user clicks on Continue button on the 'Setting up contact details for cryptoasset reporting' page"
       )
-      YourContactDetailsPage.onPage()
-      // TODO: Do not continue this journey further. It converges with journey 4 on CARF-126 (IsThisYourBusinessPage)
+      YourContactDetailsPage.onPageContinueById()
+      And(
+        "the Organisation user enters the contact name in 'What is the name of the person or team we should contact?' page"
+      )
+      OrgFirstContactNamePage.enterContactName("John Doe")
+      And(
+        "the Organisation user enters the first contact's email in the 'What is the email address for the first contact?' page"
+      )
+      OrgFirstContactEmailPage.enterFirstContactEmail("first.contact@example.com")
+      And("the organisation user selects 'Yes' in the 'Can we contact your first contact by phone?' page")
+      OrgFirstContactHavePhonePage.setPhoneContactPreference("Yes")
+      And("the organisation user enters '01234567890' in the 'What is the phone number for the first contact?' page")
+      OrgFirstContactPhonePage.enterFirstContactPhone("01234567890")
+      And(
+        "the organisation user selects 'Yes' in 'Is there someone else we can contact if your first contact is not available?' page"
+      )
+      OrgHaveSecondContactPage.haveSecondContactYesOrNo("Yes")
+      And(
+        "the organisation user enters the second contact name in 'What is the name of the second person or team we should contact?' page"
+      )
+      OrgSecondContactNamePage.enterName("Jane Smith")
+      And("the organisation user enters the email in 'What is the email address for the second contact?' page")
+      OrgSecondContactEmailPage.enterSecondContactEmail("second.contact@example.com")
+      And("the organisation user selects 'Yes' in 'Can we contact your second contact by phone?' page")
+      OrgSecondContactHavePhonePage.setPhoneContactPreference("Yes")
+      And(
+        "the organisation user enters the second contact phone number in 'What is your phone number for [second contact name]' page "
+      )
+      SecondContactPhonePage.enterSecondContactPhone("01234567890")
+      Then("the organisation user is routed to 'Check your answers before you register for cryptoasset reporting' page")
+      CheckYourAnswersPage.onPage()
     }
 
     Scenario(
@@ -188,10 +217,12 @@ class OrgRegistrationSpec extends BaseSpec {
       OrgSecondContactEmailPage.enterSecondContactEmail("second.contact@example.com")
       And("the organisation user selects 'Yes' in 'Can we contact your second contact by phone?' page")
       OrgSecondContactHavePhonePage.setPhoneContactPreference("Yes")
-      Then(
-        "the organisation user is navigated to the 'What is your phone number for [second contact name]' page should be displayed' "
+      And(
+        "the organisation user enters the second contact phone number in 'What is your phone number for [second contact name]' page "
       )
-      SecondContactPhonePage.onPage()
+      SecondContactPhonePage.enterSecondContactPhone("01234567890")
+      Then("the organisation user is routed to 'Check your answers before you register for cryptoasset reporting' page")
+      CheckYourAnswersPage.onPage()
     }
   }
 }
