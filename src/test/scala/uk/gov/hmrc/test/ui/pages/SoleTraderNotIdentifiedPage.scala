@@ -16,9 +16,11 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import org.openqa.selenium.By
+
 object SoleTraderNotIdentifiedPage extends BasePage {
-  override val pageUrl: String =
-    baseUrl + "/placeholder?message=Must+redirect+to+%2Fproblem%2Fsole-trader-not-identified+%28CARF-129%29"
-  // Must redirect to /problem/sole-trader-not-identified (CARF-129)
+  override val pageUrl: String = baseUrl + "/register/problem/sole-trader-not-identified"
+
+  val tryAgainPartialLink = By.ByPartialLinkText("try again")
 
 }

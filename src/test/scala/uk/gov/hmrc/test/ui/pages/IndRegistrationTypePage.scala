@@ -21,8 +21,9 @@ import org.openqa.selenium.By
 object IndRegistrationTypePage extends BasePage {
   override val pageUrl: String = baseUrl + "/register/individual-registration-type"
 
-  private val soleTraderRadioId = By.id("value_0")
-  private val individualRadioId = By.id("value_1")
+  private val soleTraderRadioId                     = By.id("value_0")
+  private val individualRadioId                     = By.id("value_1")
+  var previousRegistrationTypeSelection: Option[By] = None
 
   def getIndRegId(registrationType: String): By =
     registrationType match {
@@ -30,6 +31,11 @@ object IndRegistrationTypePage extends BasePage {
       case "An individual not connected to a business" => individualRadioId
     }
 
-  def registerIndividualAs(registrationType: String): Unit =
+  def registerIndividualAs(registrationType: String): Unit = {
+    previousRegistrationTypeSelection = Some(getIndRegId(registrationType))
     selectRadioAndContinue(getIndRegId(registrationType))
+  }
+
+  def verifyPreviousSelection(): Unit =
+    verifyOnPageWithPreviousSelection(previousRegistrationTypeSelection)
 }
