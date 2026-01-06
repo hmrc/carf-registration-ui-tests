@@ -56,7 +56,7 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
       Then(
         "the Individual user should be routed to 'What are you registering as?' page and his previous selection should be retained"
       )
-      IndRegistrationTypePage.verifyPreviousSelection()
+      IndRegistrationTypePage.verifyPreviousSelection("Sole Trader")
     }
 
     // **********************************************
@@ -87,7 +87,7 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
       Then(
         "the organisation user should be routed to 'What are you registering as?' page and his previous selection should be retained"
       )
-      OrgRegistrationTypePage.verifyPreviousSelection()
+      OrgRegistrationTypePage.verifyPreviousSelection("Limited Company")
     }
 
     Scenario(
