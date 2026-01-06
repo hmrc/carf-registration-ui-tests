@@ -171,8 +171,10 @@ class OrgRegistrationSpec extends BaseSpec {
       IndEmailPage.enterEmailAddress("carftester@test.com")
       And("the Organisation user selects 'Yes' in the 'Can we contact you by phone' page")
       IndHavePhonePage.contactByPhoneYesOrNo("Yes")
-      Then("the Organisation user is navigated to 'What is your phone number' page")
-      IndPhonePage.onPage()
+      And("the Organisation user enters their phone number in 'What is your phone number' page")
+      IndPhonePage.enterIndividualPhoneNumber("1234567890")
+      Then("the Organisation user is routed to 'Check your answers before you register for cryptoasset reporting' page")
+      CheckYourAnswersPage.onPage()
     }
 
     // **************************************************

@@ -60,8 +60,10 @@ class IndividualRegistrationSpec extends BaseSpec {
       IndEmailPage.enterEmailAddress("carftester@test.com")
       And("the Individual user selects 'Yes' in the 'Can we contact you by phone' page")
       IndHavePhonePage.contactByPhoneYesOrNo("Yes")
-      Then("the Individual user is navigated to 'What is your phone number' page")
-      IndPhonePage.onPage()
+      And("the Individual user enters their phone number in 'What is your phone number' page")
+      IndPhonePage.enterIndividualPhoneNumber("1234567890")
+      Then("the Individual user is routed to 'Check your answers before you register for cryptoasset reporting' page")
+      CheckYourAnswersPage.onPage()
     }
 
     Scenario(
@@ -132,8 +134,10 @@ class IndividualRegistrationSpec extends BaseSpec {
       IndEmailPage.enterEmailAddress("carftester@test.com")
       And("the Individual user selects 'Yes' in the 'Can we contact you by phone' page")
       IndHavePhonePage.contactByPhoneYesOrNo("Yes")
-      Then("the Individual user is navigated to 'What is your phone number' page")
-      IndPhonePage.onPage()
+      And("the Individual user enters their phone number in 'What is your phone number' page")
+      IndPhonePage.enterIndividualPhoneNumber("1234567890")
+      Then("the Individual user is routed to 'Check your answers before you register for cryptoasset reporting' page")
+      CheckYourAnswersPage.onPage()
     }
 
     Scenario(
