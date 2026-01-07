@@ -32,4 +32,10 @@ object IndRegistrationTypePage extends BasePage {
 
   def registerIndividualAs(registrationType: String): Unit =
     selectRadioAndContinue(getIndRegId(registrationType))
+
+  def verifyPreviousSelection(expectedRegistrationType: String): Unit = {
+    val expectedLocator = getIndRegId(expectedRegistrationType)
+    verifyOnPageWithPreviousSelection(expectedLocator)
+  }
+
 }

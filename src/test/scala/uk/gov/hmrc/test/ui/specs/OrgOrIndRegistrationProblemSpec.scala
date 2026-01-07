@@ -49,8 +49,14 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
         "the Individual user enters the first name and last name and click Continue button in the 'What is your name' page"
       )
       YourNamePage.enterNamesAndContinue("Carf", "Tester")
-      Then("The page 'The details you entered did not match our records' should be displayed")
-      SoleTraderNotIdentifiedPage.onPage()
+      When(
+        "The Individual user clicks on 'try again using different details' link in the 'The details you entered did not match our records' page"
+      )
+      SoleTraderNotIdentifiedPage.clickOnByPartialLinkText(tryAgainPartialLink)
+      Then(
+        "the Individual user should be routed to 'What are you registering as?' page and his previous selection should be retained"
+      )
+      IndRegistrationTypePage.verifyPreviousSelection("Sole Trader")
     }
 
     // **********************************************
@@ -81,7 +87,7 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
       Then(
         "the organisation user should be routed to 'What are you registering as?' page and his previous selection should be retained"
       )
-      OrgRegistrationTypePage.verifyPreviousSelection()
+      OrgRegistrationTypePage.verifyPreviousSelection("Limited Company")
     }
 
     Scenario(
