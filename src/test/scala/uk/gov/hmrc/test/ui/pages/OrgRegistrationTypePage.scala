@@ -26,7 +26,6 @@ object OrgRegistrationTypePage extends BasePage {
   private val llpRadioId            = By.id("value_2")
   private val unincorporatedRadioId = By.id("value_3")
   private val soleTraderRadioId     = By.id("value_4")
-  // var previousRegistrationTypeSelection: Option[By] = None
 
   def getId(registrationType: String): By =
     registrationType match {
