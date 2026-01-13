@@ -62,8 +62,12 @@ class IndividualRegistrationSpec extends BaseSpec {
       IndHavePhonePage.contactByPhoneYesOrNo("Yes")
       And("the Individual user enters their phone number in 'What is your phone number' page")
       IndPhonePage.enterIndividualPhoneNumber("1234567890")
-      And("the Individual user clicks on '' in 'Check your answers before you register for cryptoasset reporting' page")
+      And(
+        "the Individual user clicks on 'Confirm and send' in 'Check your answers before you register for cryptoasset reporting' page"
+      )
       CheckYourAnswersPage.onPageSubmitById()
+      Then("the Individual user is routed to 'Registration successful' page")
+
     }
 
     Scenario(
