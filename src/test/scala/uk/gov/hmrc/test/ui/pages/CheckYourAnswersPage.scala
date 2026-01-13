@@ -18,7 +18,6 @@ package uk.gov.hmrc.test.ui.pages
 
 object CheckYourAnswersPage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Fcheck-answers+%28CARF-258%29"
-  // Must redirect to /register/check-answers (CARF-258)
+    baseUrl + "/register/check-answers"
 
 }
