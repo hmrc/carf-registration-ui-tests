@@ -26,7 +26,7 @@ class OrgRegistrationSpec extends BaseSpec {
     // Scenarios covered
     // 1. "Organisation user without CT-UTR enrolment having a registered address in the UK with matched business details"
     // 2. "Organisation user without CT-UTR enrolment having no registered address in the UK"
-    // 3. "Organisation user without CT-UTR enrolment registers as a Sole trader"
+    // 3. "Organisation user without CT-UTR enrolment registers as a Sole trader having a registered address in the UK"
     // 4. "Organisation user having CT-UTR enrolment with matched business details"
 
     // *************************************************
@@ -148,7 +148,7 @@ class OrgRegistrationSpec extends BaseSpec {
     }
 
     Scenario(
-      "Organisation user without CT-UTR enrolment registers as a Sole trader",
+      "Organisation user without CT-UTR enrolment registers as a Sole trader having a registered address in the UK",
       RegistrationTests,
       ZapTests
     ) {
@@ -174,7 +174,7 @@ class OrgRegistrationSpec extends BaseSpec {
       And("the Organisation user enters their phone number in 'What is your phone number' page")
       IndPhonePage.enterIndividualPhoneNumber("1234567890")
       Then("the Organisation user is routed to 'Check your answers before you register for cryptoasset reporting' page")
-      CheckYourAnswersPage.onPage()
+      // TODO: Add this after 321 is implemented: CheckYourAnswersPage.onPage()
     }
 
     // **************************************************
