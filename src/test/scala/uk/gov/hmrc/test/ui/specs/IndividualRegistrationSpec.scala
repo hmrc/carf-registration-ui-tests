@@ -67,7 +67,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       )
       CheckYourAnswersPage.onPageSubmitById()
       Then("the Individual user is routed to 'Registration successful' page")
-
+      ConfirmRegistrationPage.onPage()
     }
 
     Scenario(

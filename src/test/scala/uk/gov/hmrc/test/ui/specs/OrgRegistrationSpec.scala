@@ -85,8 +85,10 @@ class OrgRegistrationSpec extends BaseSpec {
         "the organisation user enters the second contact phone number in 'What is your phone number for [second contact name]' page "
       )
       SecondContactPhonePage.enterSecondContactPhone("01234567890")
-      Then("the organisation user is routed to 'Check your answers before you register for cryptoasset reporting' page")
-      CheckYourAnswersPage.onPage()
+      And("the organisation user clicks on 'Confirm and send' in 'Check your answers before you register for cryptoasset reporting' page")
+      CheckYourAnswersPage.onPageSubmitById()
+      Then("the Organisation user is routed to 'Registration successful' page")
+      ConfirmRegistrationPage.onPage()
     }
 
     Scenario(
@@ -223,8 +225,10 @@ class OrgRegistrationSpec extends BaseSpec {
         "the organisation user enters the second contact phone number in 'What is your phone number for [second contact name]' page "
       )
       SecondContactPhonePage.enterSecondContactPhone("01234567890")
-      Then("the organisation user is routed to 'Check your answers before you register for cryptoasset reporting' page")
-      CheckYourAnswersPage.onPage()
+      And("the organisation user clicks on 'Confirm and send' in 'Check your answers before you register for cryptoasset reporting' page")
+      CheckYourAnswersPage.onPageSubmitById()
+      Then("the Organisation user is routed to 'Registration successful' page")
+      ConfirmRegistrationPage.onPage()
     }
   }
 }
