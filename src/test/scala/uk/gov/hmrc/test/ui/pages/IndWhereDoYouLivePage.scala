@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,19 +16,9 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
+object IndWhereDoYouLivePage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Findividual-without-id%2Fwhere-do-you-live+%28CARF-171%29"
+  // Must redirect to /register/individual-without-id/where-do-you-live (CARF-171)
 
-object IndWithoutIdDOBPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register/individual-without-id/date-of-birth"
-
-  private val dayId   = By.id("value.day")
-  private val monthId = By.id("value.month")
-  private val yearId  = By.id("value.year")
-
-  def enterDateOfBirthAndContinue(day: String, month: String, year: String): Unit =
-    fillFieldsAndContinue(
-      (dayId, day),
-      (monthId, month),
-      (yearId, year)
-    )
 }
