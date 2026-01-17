@@ -110,8 +110,10 @@ class IndividualRegistrationSpec extends BaseSpec {
       HaveNiNumberPage.selectNinoYesOrNo("No")
       And("the Individual user is asked to enter their name in the 'What is your name' page")
       IndWithoutIdNamePage.enterNamesAndContinue("John", "Doe")
-      Then("the Individual user is navigated to the 'What is your date of birth' page")
-      IndWithoutIdDOBPage.onPage()
+      And("the Individual user enters the date of birth in 'What is your date of birth' page")
+      IndWithoutIdDOBPage.enterDateOfBirthAndContinue("1", "1", "1990")
+      Then("the Individual user is routed to 'Do you live in the UK, Jersey, Guernsey or the Isle of Man?' page")
+      IndWhereDoYouLivePage.onPage()
     }
 
     Scenario(
