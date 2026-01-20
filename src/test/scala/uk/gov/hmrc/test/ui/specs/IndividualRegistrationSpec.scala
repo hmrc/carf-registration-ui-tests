@@ -34,17 +34,11 @@ class IndividualRegistrationSpec extends BaseSpec {
     //          Individual user with NINO
     // *******************************************
 
-    Scenario(
-      "Individual user with NINO - Individual not connected to any business",
-      RegistrationTests,
-      ZapTests
-    ) {
+    Scenario("1 - Individual user with NINO - Individual not connected to any business", RegistrationTests, ZapTests) {
 
       Given("the Individual user logs in as an individual not connected to a business with NINO")
       AuthLoginPage.loginAsIndividualWithNino()
-      When(
-        "the Individual user selects 'An Individual not connected to a business' in the 'What are you registering as?' page"
-      )
+      When("the Individual user selects 'An Individual not connected to a business' in the 'What are you registering as?' page")
       IndRegistrationTypePage.registerIndividualAs("An individual not connected to a business")
       And("the Individual user selects 'Yes' in the 'Do you have a National Insurance number?' page")
       HaveNiNumberPage.selectNinoYesOrNo("Yes")
@@ -62,19 +56,13 @@ class IndividualRegistrationSpec extends BaseSpec {
       IndHavePhonePage.contactByPhoneYesOrNo("Yes")
       And("the Individual user enters their phone number in 'What is your phone number' page")
       IndPhonePage.enterIndividualPhoneNumber("1234567890")
-      And(
-        "the Individual user clicks on 'Confirm and send' in 'Check your answers before you register for cryptoasset reporting' page"
-      )
+      And("the Individual user clicks on 'Confirm and send' in 'Check your answers before you register for cryptoasset reporting' page")
       CheckYourAnswersPage.onPageSubmitById()
       Then("the Individual user is routed to 'Registration successful' page")
       ConfirmRegistrationPage.onPage()
     }
 
-    Scenario(
-      "Individual user with NINO - Sole trader",
-      RegistrationTests,
-      ZapTests
-    ) {
+    Scenario("2 -Individual user with NINO - Sole trader", RegistrationTests, ZapTests) {
 
       Given("the Individual user logs in as sole trader with NINO")
       AuthLoginPage.loginAsIndividualWithNino()
@@ -94,17 +82,11 @@ class IndividualRegistrationSpec extends BaseSpec {
     //          Individual user without NINO
     // *******************************************
 
-    Scenario(
-      "Individual user without NINO - Individual not connected to any business",
-      RegistrationTests,
-      ZapTests
-    ) {
+    Scenario("3 - Individual user without NINO - Individual not connected to any business", RegistrationTests, ZapTests) {
 
       Given("the Individual user logs in as an individual not connected to a business without NINO")
       AuthLoginPage.loginAsIndividualWithoutNino()
-      When(
-        "the Individual user selects 'An Individual not connected to a business' in the 'What are you registering as?' page"
-      )
+      When("the Individual user selects 'An Individual not connected to a business' in the 'What are you registering as?' page")
       IndRegistrationTypePage.registerIndividualAs("An individual not connected to a business")
       And("the Individual user selects 'No' in the 'Do you have a National Insurance number?' page")
       HaveNiNumberPage.selectNinoYesOrNo("No")
@@ -116,11 +98,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       IndWhereDoYouLivePage.onPage()
     }
 
-    Scenario(
-      "Individual user without NINO - Sole trader - having a registered address in the UK",
-      RegistrationTests,
-      ZapTests
-    ) {
+    Scenario("4 - Individual user without NINO - Sole trader - having a registered address in the UK", RegistrationTests, ZapTests) {
 
       Given("the Individual user logs in as a sole trader without NINO having a registered address in the UK")
       AuthLoginPage.loginAsIndividualWithoutNino()
@@ -130,9 +108,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
       And("the Individual user enters the Self Assessment UTR in the UTR page")
       UtrPage.enterUtr(matchedSaUtr)
-      And(
-        "the Individual user enters the first name and last name and click Continue button in the 'What is your name' page"
-      )
+      And("the Individual user enters the first name and last name and click Continue button in the 'What is your name' page")
       YourNamePage.enterNamesAndContinue("Carf", "Tester")
       And("the Individual user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
@@ -146,11 +122,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       // TODO: Add this after 321 is implemented: CheckYourAnswersPage.onPage()
     }
 
-    Scenario(
-      "Individual user without NINO - Sole trader - having no registered address in the UK",
-      RegistrationTests,
-      ZapTests
-    ) {
+    Scenario("5 - Individual user without NINO - Sole trader - having no registered address in the UK", RegistrationTests, ZapTests) {
 
       Given("the Individual user logs in as a sole trader without NINO having no registered address in the UK")
       AuthLoginPage.loginAsIndividualWithoutNino()

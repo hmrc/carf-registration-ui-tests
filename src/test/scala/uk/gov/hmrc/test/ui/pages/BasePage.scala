@@ -16,8 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.{By, WebDriver}
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Select, Wait}
+import org.openqa.selenium.{By, WebDriver}
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
@@ -41,9 +41,14 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
 
   def navigateTo(url: String): Unit = driver.navigate().to(url)
 
-  private def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
-    .withTimeout(Duration.ofSeconds(2))
+  private def fluentWait(timeoutSeconds: Long = 8): Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
+    .withTimeout(Duration.ofSeconds(timeoutSeconds))
     .pollingEvery(Duration.ofMillis(200))
+    .ignoring(classOf[org.openqa.selenium.StaleElementReferenceException])
+    .ignoring(classOf[org.openqa.selenium.NoSuchElementException])
+
+  def onPage(url: String = this.pageUrl, timeoutSeconds: Long = 3): Unit =
+    fluentWait(timeoutSeconds).until(ExpectedConditions.urlToBe(url))
 
   def getRadioId(radioOption: String): By =
     radioOption match {
@@ -56,8 +61,6 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     click(id)
     click(continueButtonId)
   }
-
-  def onPage(url: String = this.pageUrl): Unit = fluentWait.until(ExpectedConditions.urlToBe(url))
 
   def selectDropdownById(id: By): Select = new Select(driver.findElement(id: By))
 
@@ -98,9 +101,9 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     * @param optionLocator
     *   \- option to select from the dropdown list
     */
-  def selectFromEnhancedDropdownAndContinue(inputLocator: By, searchText: String, optionLocator: By): Unit = {
+  def selectFromEnhancedDropdownAndContinue(inputLocator: By, searchText: String, optionLocator: By, timeoutSeconds: Long = 5): Unit = {
     sendKeys(inputLocator, searchText)
-    fluentWait.until(ExpectedConditions.elementToBeClickable(optionLocator))
+    fluentWait(timeoutSeconds).until(ExpectedConditions.elementToBeClickable(optionLocator))
     click(optionLocator)
     click(continueButtonId)
   }
@@ -109,5 +112,4 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     onPage()
     driver.findElement(previousRadioSelection).isSelected shouldBe true
   }
-
 }

@@ -26,12 +26,7 @@ class AgentRegistrationSpec extends BaseSpec {
 
     // All the scenarios and steps will be updated later
 
-    Scenario(
-      "Agent affinity and User credential role",
-      RegistrationTests,
-      ZapTests
-    ) {
-
+    Scenario("1 - Agent affinity and User credential role", RegistrationTests, ZapTests) {
       Given("the Agent user logs in")
       AuthLoginPage.loginAsAgentAsUser()
       When("the Agent clicks on the link 'sign in with an organisation or individual Government Gateway user ID'")
