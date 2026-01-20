@@ -80,7 +80,7 @@ object AuthLoginPage extends BasePage {
   }
 
   def loginAsIndividualWithNino(): IndRegistrationTypePage.type = {
-    submitAuth("Individual", "User")(enterNinoValue())
+    submitAuth("Individual", "User")()
     IndRegistrationTypePage
   }
 
