@@ -33,15 +33,9 @@ class OrgRegistrationSpec extends BaseSpec {
     //    Organisation user without CT-UTR enrolment
     // *************************************************
 
-    Scenario(
-      "Organisation user without CT-UTR enrolment having a registered address in the UK with matched business details",
-      RegistrationTests,
-      ZapTests
-    ) {
+    Scenario("1 - Organisation user without CT-UTR enrolment having a registered address in the UK with matched business details", RegistrationTests, ZapTests) {
 
-      Given(
-        "the Organisation user logs in as Limited Company without CT-UTR enrolment having a registered address in the UK with matched business details"
-      )
+      Given("the Organisation user logs in as Limited Company without CT-UTR enrolment having a registered address in the UK with matched business details")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
       When("the Organisation user selects 'Limited Company' in the 'What are you registering as?' page")
       OrgRegistrationTypePage.registerOrganisationAs("Limited Company")
@@ -53,51 +47,33 @@ class OrgRegistrationSpec extends BaseSpec {
       BusinessNamePage.enterBusinessName("matched")
       And("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
-      And(
-        "the Organisation user clicks on Continue button on the 'Setting up contact details for cryptoasset reporting' page"
-      )
+      And("the Organisation user clicks on Continue button on the 'Setting up contact details for cryptoasset reporting' page")
       YourContactDetailsPage.onPageContinueById()
-      And(
-        "the Organisation user enters the contact name in 'What is the name of the person or team we should contact?' page"
-      )
+      And("the Organisation user enters the contact name in 'What is the name of the person or team we should contact?' page")
       OrgFirstContactNamePage.enterContactName("John Doe")
-      And(
-        "the Organisation user enters the first contact's email in the 'What is the email address for the first contact?' page"
-      )
+      And("the Organisation user enters the first contact's email in the 'What is the email address for the first contact?' page")
       OrgFirstContactEmailPage.enterFirstContactEmail("first.contact@example.com")
       And("the organisation user selects 'Yes' in the 'Can we contact your first contact by phone?' page")
       OrgFirstContactHavePhonePage.setPhoneContactPreference("Yes")
       And("the organisation user enters '01234567890' in the 'What is the phone number for the first contact?' page")
       OrgFirstContactPhonePage.enterFirstContactPhone("01234567890")
-      And(
-        "the organisation user selects 'Yes' in 'Is there someone else we can contact if your first contact is not available?' page"
-      )
+      And("the organisation user selects 'Yes' in 'Is there someone else we can contact if your first contact is not available?' page")
       OrgHaveSecondContactPage.haveSecondContactYesOrNo("Yes")
-      And(
-        "the organisation user enters the second contact name in 'What is the name of the second person or team we should contact?' page"
-      )
+      And("the organisation user enters the second contact name in 'What is the name of the second person or team we should contact?' page")
       OrgSecondContactNamePage.enterName("Jane Smith")
       And("the organisation user enters the email in 'What is the email address for the second contact?' page")
       OrgSecondContactEmailPage.enterSecondContactEmail("second.contact@example.com")
       And("the organisation user selects 'Yes' in 'Can we contact your second contact by phone?' page")
       OrgSecondContactHavePhonePage.setPhoneContactPreference("Yes")
-      And(
-        "the organisation user enters the second contact phone number in 'What is your phone number for [second contact name]' page "
-      )
+      And("the organisation user enters the second contact phone number in 'What is your phone number for [second contact name]' page ")
       SecondContactPhonePage.enterSecondContactPhone("01234567890")
       Then("the organisation user is routed to 'Check your answers before you register for cryptoasset reporting' page")
       CheckYourAnswersPage.onPage()
     }
 
-    Scenario(
-      "Organisation user without CT-UTR enrolment having no registered address in the UK",
-      RegistrationTests,
-      ZapTests
-    ) {
+    Scenario("2 - Organisation user without CT-UTR enrolment having no registered address in the UK", RegistrationTests, ZapTests) {
 
-      Given(
-        "the Organisation user logs in as Limited Company without CT-UTR enrolment having no a registered address in the UK"
-      )
+      Given("the Organisation user logs in as Limited Company without CT-UTR enrolment having no a registered address in the UK")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
       When("the Organisation user selects 'Limited Company' in the 'What are you registering as?' page")
       OrgRegistrationTypePage.registerOrganisationAs("Limited Company")
@@ -109,49 +85,33 @@ class OrgRegistrationSpec extends BaseSpec {
       BusinessNameWithoutIDPage.enterBusinessName("Test Business Name")
       And("the Organisation user selects 'Yes' in the 'Does your business trader under a different name?' page")
       HaveTradingNamePage.businessTradeDiffNameYesOrNo("Yes")
-      And(
-        "the Organisation user enters the trading name in the 'Does your business trade under a different name?' page"
-      )
+      And("the Organisation user enters the trading name in the 'Does your business trade under a different name?' page")
       TradingNameOfYourBusinessPage.enterTradingNameOfBusiness("Test Trading Pvt Ltd")
       And("the Organisation user enters the address in 'What is the main address of your business?' page")
       BusinessAddressPage.enterMainAddressOfBusiness("Boulevard de Parc", "Chessy", "77700", "Fra")
       And("the Organisation user clicks continue on 'Setting up contact details for cryptoasset reporting' page")
       YourContactDetailsPage.onPageContinueById()
-      And(
-        "the Organisation user enters the contact name in 'What is the name of the person or team we should contact?' page"
-      )
+      And("the Organisation user enters the contact name in 'What is the name of the person or team we should contact?' page")
       OrgFirstContactNamePage.enterContactName("John Doe")
-      And(
-        "the Organisation user enters the first contact's email in the 'What is the email address for the first contact?' page"
-      )
+      And("the Organisation user enters the first contact's email in the 'What is the email address for the first contact?' page")
       OrgFirstContactEmailPage.enterFirstContactEmail("first.contact@example.com")
       And("the organisation user selects 'Yes' in the 'Can we contact your first contact by phone?' page")
       OrgFirstContactHavePhonePage.setPhoneContactPreference("Yes")
       And("the organisation user enters '01234567890' in the 'What is the phone number for the first contact?' page")
       OrgFirstContactPhonePage.enterFirstContactPhone("01234567890")
-      And(
-        "the organisation user selects 'Yes' in 'Is there someone else we can contact if your first contact is not available?' page"
-      )
+      And("the organisation user selects 'Yes' in 'Is there someone else we can contact if your first contact is not available?' page")
       OrgHaveSecondContactPage.haveSecondContactYesOrNo("Yes")
-      And(
-        "the organisation user enters the second contact name in 'What is the name of the second person or team we should contact?' page"
-      )
+      And("the organisation user enters the second contact name in 'What is the name of the second person or team we should contact?' page")
       OrgSecondContactNamePage.enterName("Jane Smith")
       And("the organisation user enters the email in 'What is the email address for the second contact?' page")
       OrgSecondContactEmailPage.enterSecondContactEmail("second.contact@example.com")
       And("the organisation user selects 'Yes' in 'Can we contact your second contact by phone?' page")
       OrgSecondContactHavePhonePage.setPhoneContactPreference("Yes")
-      Then(
-        "the organisation user is navigated to the 'What is your phone number for [second contact name]' page should be displayed' "
-      )
+      Then("the organisation user is navigated to the 'What is your phone number for [second contact name]' page should be displayed' ")
       SecondContactPhonePage.onPage()
     }
 
-    Scenario(
-      "Organisation user without CT-UTR enrolment registers as a Sole trader having a registered address in the UK",
-      RegistrationTests,
-      ZapTests
-    ) {
+    Scenario("3 - Organisation user without CT-UTR enrolment registers as a Sole trader having a registered address in the UK", RegistrationTests, ZapTests) {
 
       Given("the Organisation user logs in as Sole Trader without CT-UTR enrolment")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
@@ -161,9 +121,7 @@ class OrgRegistrationSpec extends BaseSpec {
       RegisteredAddressInUkPage.registeredAddressInUkYesOrNo("Yes")
       And("the Organisation user enters the UTR in the UTR page")
       UtrPage.enterUtr(matchedSaUtr)
-      And(
-        "the Organisation user enters the first name and last name and click Continue button in the 'What is your name' page"
-      )
+      And("the Organisation user enters the first name and last name and click Continue button in the 'What is your name' page")
       YourNamePage.enterNamesAndContinue("Carf", "Tester")
       And("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
@@ -181,47 +139,31 @@ class OrgRegistrationSpec extends BaseSpec {
     //      Organisation user with CT-UTR enrolment
     // **************************************************
 
-    Scenario(
-      "Organisation user having CT-UTR enrolment with matched business details",
-      RegistrationTests,
-      ZapTests
-    ) {
+    Scenario("4 - Organisation user having CT-UTR enrolment with matched business details", RegistrationTests, ZapTests) {
 
       Given("the Organisation user logs in with CT-UTR enrolment")
       AuthLoginPage.loginAsOrgAdminWithCtUtr()
       When("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
       IsThisYourBusinessPage.yourBusinessYesOrNo("Yes")
-      And(
-        "the Organisation user clicks on Continue button on the 'Setting up contact details for cryptoasset reporting' page"
-      )
+      And("the Organisation user clicks on Continue button on the 'Setting up contact details for cryptoasset reporting' page")
       YourContactDetailsPage.onPageContinueById()
-      And(
-        "the Organisation user enters the contact name in 'What is the name of the person or team we should contact?' page"
-      )
+      And("the Organisation user enters the contact name in 'What is the name of the person or team we should contact?' page")
       OrgFirstContactNamePage.enterContactName("John Doe")
-      And(
-        "the Organisation user enters the first contact's email in the 'What is the email address for the first contact?' page"
-      )
+      And("the Organisation user enters the first contact's email in the 'What is the email address for the first contact?' page")
       OrgFirstContactEmailPage.enterFirstContactEmail("first.contact@example.com")
       And("the organisation user selects 'Yes' in the 'Can we contact your first contact by phone?' page")
       OrgFirstContactHavePhonePage.setPhoneContactPreference("Yes")
       And("the organisation user enters '01234567890' in the 'What is the phone number for the first contact?' page")
       OrgFirstContactPhonePage.enterFirstContactPhone("01234567890")
-      And(
-        "the organisation user selects 'Yes' in 'Is there someone else we can contact if your first contact is not available?' page"
-      )
+      And("the organisation user selects 'Yes' in 'Is there someone else we can contact if your first contact is not available?' page")
       OrgHaveSecondContactPage.haveSecondContactYesOrNo("Yes")
-      And(
-        "the organisation user enters the second contact name in 'What is the name of the second person or team we should contact?' page"
-      )
+      And("the organisation user enters the second contact name in 'What is the name of the second person or team we should contact?' page")
       OrgSecondContactNamePage.enterName("Jane Smith")
       And("the organisation user enters the email in 'What is the email address for the second contact?' page")
       OrgSecondContactEmailPage.enterSecondContactEmail("second.contact@example.com")
       And("the organisation user selects 'Yes' in 'Can we contact your second contact by phone?' page")
       OrgSecondContactHavePhonePage.setPhoneContactPreference("Yes")
-      And(
-        "the organisation user enters the second contact phone number in 'What is your phone number for [second contact name]' page "
-      )
+      And("the organisation user enters the second contact phone number in 'What is your phone number for [second contact name]' page ")
       SecondContactPhonePage.enterSecondContactPhone("01234567890")
       Then("the organisation user is routed to 'Check your answers before you register for cryptoasset reporting' page")
       CheckYourAnswersPage.onPage()

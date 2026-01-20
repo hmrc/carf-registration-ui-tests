@@ -34,7 +34,7 @@ object AuthLoginPage extends BasePage {
   private val identifierValueNinoField: String = generateNino(individualNino)
   private val identifierCtValue: String        = generateUtr(autoMatchedCtUtrForUK)
 
-  private def loadPage: this.type = {
+  private def authLoginPage: this.type = {
     navigateTo(pageUrl)
     onPage()
     this
@@ -56,65 +56,41 @@ object AuthLoginPage extends BasePage {
 
   private def submitAuthPage(): Unit = click(authSubmitById)
 
-  private def submitAuthIndividualWithNino(affinityGroup: String, credentialRole: String): Unit =
-    loadPage
+  private def submitAuth(affinityGroup: String, credentialRole: String)(additionalFormFields: => Unit = ()): Unit =
+    authLoginPage
     sendKeys(redirectionUrlById, redirectUrl)
     selectAffinityGroup(affinityGroup)
     selectCredentialRole(credentialRole)
-    enterNinoValue()
+    additionalFormFields
     submitAuthPage()
-
-  private def submitAuthIndividualWithoutNino(affinityGroup: String, credentialRole: String): Unit =
-    loadPage
-    sendKeys(redirectionUrlById, redirectUrl)
-    selectAffinityGroup(affinityGroup)
-    selectCredentialRole(credentialRole)
-    submitAuthPage()
-
-  def loginAsIndividualWithNino(): IndRegistrationTypePage.type = {
-    submitAuthIndividualWithNino("Individual", "User")
-    IndRegistrationTypePage
-  }
-
-  def loginAsIndividualWithoutNino(): IndRegistrationTypePage.type = {
-    submitAuthIndividualWithoutNino("Individual", "User")
-    IndRegistrationTypePage
-
-  }
-
-  def loginAsAgentAsUser(): AgentKickOutPage.type = {
-    submitAuthWithoutEnrolment("Agent", "User")
-    AgentKickOutPage
-  }
-
-  private def submitAuthWithoutEnrolment(affinityGroup: String, credentialRole: String): Unit =
-    loadPage
-    sendKeys(redirectionUrlById, redirectUrl)
-    selectAffinityGroup(affinityGroup)
-    selectCredentialRole(credentialRole)
-    submitAuthPage()
-
-  private def submitAuthWithCtEnrolment(affinityGroup: String, credentialRole: String): Unit = {
-    loadPage
-    sendKeys(redirectionUrlById, redirectUrl)
-    selectAffinityGroup(affinityGroup)
-    selectCredentialRole(credentialRole)
-    addCtPreset()
-    submitAuthPage()
-  }
 
   def loginAsOrgAdminWithoutCtUtr(): OrgRegistrationTypePage.type = {
-    submitAuthWithoutEnrolment("Organisation", "User")
+    submitAuth("Organisation", "User")()
     OrgRegistrationTypePage
   }
 
   def loginAsOrgAdminWithCtUtr(): OrgRegistrationTypePage.type = {
-    submitAuthWithCtEnrolment("Organisation", "User")
+    submitAuth("Organisation", "User")(addCtPreset())
     OrgRegistrationTypePage // Need to include the step for the proper page display
   }
 
   def loginAsOrgAssistant(): OrgAssistantPage.type = {
-    submitAuthWithoutEnrolment("Organisation", "Assistant")
+    submitAuth("Organisation", "Assistant")()
     OrgAssistantPage // Need to include the step for the proper page display
+  }
+
+  def loginAsIndividualWithNino(): IndRegistrationTypePage.type = {
+    submitAuth("Individual", "User")(enterNinoValue())
+    IndRegistrationTypePage
+  }
+
+  def loginAsIndividualWithoutNino(): IndRegistrationTypePage.type = {
+    submitAuth("Individual", "User")()
+    IndRegistrationTypePage
+  }
+
+  def loginAsAgentAsUser(): AgentKickOutPage.type = {
+    submitAuth("Agent", "User")()
+    AgentKickOutPage
   }
 }
