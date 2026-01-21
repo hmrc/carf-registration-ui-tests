@@ -18,7 +18,5 @@ package uk.gov.hmrc.test.ui.pages
 
 object IndWhereDoYouLivePage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Findividual-without-id%2Fwhere-do-you-live+%28CARF-171%29"
-  // Must redirect to /register/individual-without-id/where-do-you-live (CARF-171)
-
+    baseUrl + "/register/individual-without-id/where-do-you-live"
 }

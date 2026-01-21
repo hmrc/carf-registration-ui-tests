@@ -94,8 +94,11 @@ class IndividualRegistrationSpec extends BaseSpec {
       IndWithoutIdNamePage.enterNamesAndContinue("John", "Doe")
       And("the Individual user enters the date of birth in 'What is your date of birth' page")
       IndWithoutIdDOBPage.enterDateOfBirthAndContinue("1", "1", "1990")
-      Then("the Individual user is routed to 'Do you live in the UK, Jersey, Guernsey or the Isle of Man?' page")
-      IndWhereDoYouLivePage.onPage()
+      And("the Individual user select 'Yes' in the 'Do you live in the UK, Jersey, Guernsey or the Isle of Man?' page")
+      IndWhereDoYouLivePage.selectYes()
+      Then("the Individual user is on the 'Find your address' page")
+      IndWithoutIdFindAddress.onPage()
+
     }
 
     Scenario("4 - Individual user without NINO - Sole trader - having a registered address in the UK", RegistrationTests, ZapTests) {
