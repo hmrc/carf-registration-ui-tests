@@ -24,7 +24,7 @@ import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
 import uk.gov.hmrc.test.ui.utils.IdGenerators
-
+import scala.jdk.CollectionConverters.*
 import java.time.Duration
 
 trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject {
@@ -60,6 +60,26 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     onPage()
     click(id)
     click(continueButtonId)
+  }
+
+  def selectYes(): Unit = {
+    assertLocatorPresent(yesRadioId)
+    click(yesRadioId)
+    click(continueButtonId)
+  }
+
+  def selectNo(): Unit = {
+    assertLocatorPresent(noRadioId)
+    click(noRadioId)
+    click(continueButtonId)
+  }
+
+  protected def assertLocatorPresent(locator: By): Unit = {
+    val elements = Driver.instance.findElements(locator).asScala
+    require(
+      elements.nonEmpty,
+      s"Expected element with locator [$locator] to be present, but none was found"
+    )
   }
 
   def selectDropdownById(id: By): Select = new Select(driver.findElement(id: By))
