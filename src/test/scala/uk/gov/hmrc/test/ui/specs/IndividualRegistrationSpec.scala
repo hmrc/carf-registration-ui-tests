@@ -96,7 +96,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       IndWithoutIdDOBPage.enterDateOfBirthAndContinue("1", "1", "1990")
       And("the Individual user select 'Yes' in the 'Do you live in the UK, Jersey, Guernsey or the Isle of Man?' page")
       IndWhereDoYouLivePage.selectYes()
-      Then("the Individual user is on the 'find-address' page")
+      Then("the Individual user is on the 'Find your address' page")
       IndWithoutIdFindAddress.onPage()
 
     }
