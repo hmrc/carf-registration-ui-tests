@@ -19,8 +19,4 @@ package uk.gov.hmrc.test.ui.pages
 object HaveNiNumberPage extends BasePage {
   override val pageUrl: String =
     baseUrl + "/register/have-ni-number"
-
-  def selectNinoYesOrNo(haveNinoOption: String): Unit =
-    selectRadioAndContinue(getRadioId(haveNinoOption))
-
 }

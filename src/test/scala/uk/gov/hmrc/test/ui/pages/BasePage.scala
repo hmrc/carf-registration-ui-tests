@@ -30,14 +30,12 @@ import java.time.Duration
 trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject {
 
   val pageUrl: String
-  val baseUrl: String      = TestConfiguration.url(
-    "carf-registration-frontend"
-  )
+  val baseUrl: String      = TestConfiguration.url("carf-registration-frontend")
   val submitButtonId: By   = By.id("submit")
   val continueButtonId: By = By.id("continue")
 
-  private val yesRadioId = By.id("value")
-  private val noRadioId  = By.id("value-no")
+  val yesRadioId: By = By.id("value")
+  val noRadioId: By  = By.id("value-no")
 
   def navigateTo(url: String): Unit = driver.navigate().to(url)
 
@@ -47,8 +45,8 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     .ignoring(classOf[org.openqa.selenium.StaleElementReferenceException])
     .ignoring(classOf[org.openqa.selenium.NoSuchElementException])
 
-  def onPage(url: String = this.pageUrl, timeoutSeconds: Long = 3): Unit =
-    fluentWait(timeoutSeconds).until(ExpectedConditions.urlToBe(url))
+  def onPage(pageUrl: String = this.pageUrl, timeoutSeconds: Long = 3): Unit =
+    fluentWait(timeoutSeconds).until(ExpectedConditions.urlToBe(pageUrl))
 
   def getRadioId(radioOption: String): By =
     radioOption match {
@@ -62,19 +60,34 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     click(continueButtonId)
   }
 
-  def selectYes(): Unit = {
-    assertLocatorPresent(yesRadioId)
-    click(yesRadioId)
+//  def selectYes(pageUrl: String = this.pageUrl): Unit = {
+//    onPage(pageUrl)
+//    assertLocatorPresent(yesRadioId)
+//    click(yesRadioId)
+//    click(continueButtonId)
+//  }
+//
+//  def selectNo(pageUrl: String = this.pageUrl): Unit = {
+//    onPage(pageUrl)
+//    assertLocatorPresent(noRadioId)
+//    click(noRadioId)
+//    click(continueButtonId)
+//  }
+
+  def select(option: String, pageUrl: String = this.pageUrl): Unit = {
+    onPage(pageUrl)
+
+    val radioId = option.trim.toLowerCase match {
+      case "yes" => yesRadioId
+      case "no"  => noRadioId
+      case other => throw new IllegalArgumentException(s"Invalid option: '$other'. Use 'Yes' or 'No'.")
+    }
+
+    assertLocatorPresent(radioId)
+    click(radioId)
     click(continueButtonId)
   }
-
-  def selectNo(): Unit = {
-    assertLocatorPresent(noRadioId)
-    click(noRadioId)
-    click(continueButtonId)
-  }
-
-  protected def assertLocatorPresent(locator: By): Unit = {
+  protected def assertLocatorPresent(locator: By): Unit            = {
     val elements = Driver.instance.findElements(locator).asScala
     require(
       elements.nonEmpty,

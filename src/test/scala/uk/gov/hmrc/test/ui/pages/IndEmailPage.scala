@@ -28,5 +28,4 @@ object IndEmailPage extends BasePage {
     fillFieldsAndContinue(
       (emailAddressId, emailAddressValue)
     )
-
 }

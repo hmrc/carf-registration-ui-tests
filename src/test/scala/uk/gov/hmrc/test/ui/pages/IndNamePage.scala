@@ -29,5 +29,4 @@ object IndNamePage extends BasePage {
       (firstNameId, firstNameValue),
       (lastNameId, lastNameValue)
     )
-
 }

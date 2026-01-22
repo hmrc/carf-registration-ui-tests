@@ -18,8 +18,4 @@ package uk.gov.hmrc.test.ui.pages
 
 object OrgHaveSecondContactPage extends BasePage {
   override val pageUrl: String = baseUrl + "/register/have-second-contact"
-
-  def haveSecondContactYesOrNo(secondContactOption: String) =
-    selectRadioAndContinue(getRadioId(secondContactOption))
-
 }

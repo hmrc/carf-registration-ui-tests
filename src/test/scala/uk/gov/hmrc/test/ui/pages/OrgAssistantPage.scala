@@ -18,5 +18,5 @@ package uk.gov.hmrc.test.ui.pages
 
 object OrgAssistantPage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/carf-for-register" // TO-DO /problem/agent-sign-in-problem //need to change this end-point later for the Agent Kick-out page
+    baseUrl + "/carf-for-register" // TODO /problem/agent-sign-in-problem //need to change this end-point later for the Agent Kick-out page
 }

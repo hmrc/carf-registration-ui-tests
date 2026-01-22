@@ -18,8 +18,4 @@ package uk.gov.hmrc.test.ui.pages
 
 object OrgFirstContactHavePhonePage extends BasePage {
   override val pageUrl: String = baseUrl + "/register/have-phone"
-
-  def setPhoneContactPreference(contactOption: String): Unit =
-    selectRadioAndContinue(getRadioId(contactOption))
-
 }

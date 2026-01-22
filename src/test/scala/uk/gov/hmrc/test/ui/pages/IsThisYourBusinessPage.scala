@@ -18,7 +18,4 @@ package uk.gov.hmrc.test.ui.pages
 
 object IsThisYourBusinessPage extends BasePage {
   override val pageUrl: String = baseUrl + "/register/is-this-your-business"
-
-  def yourBusinessYesOrNo(yourBusinessOption: String): Unit =
-    selectRadioAndContinue(getRadioId(yourBusinessOption))
 }
