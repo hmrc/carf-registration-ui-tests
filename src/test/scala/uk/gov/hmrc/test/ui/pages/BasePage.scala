@@ -24,8 +24,9 @@ import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
 import uk.gov.hmrc.test.ui.utils.IdGenerators
-import scala.jdk.CollectionConverters.*
+
 import java.time.Duration
+import scala.jdk.CollectionConverters.*
 
 trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject {
 
@@ -59,20 +60,6 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     click(id)
     click(continueButtonId)
   }
-
-//  def selectYes(pageUrl: String = this.pageUrl): Unit = {
-//    onPage(pageUrl)
-//    assertLocatorPresent(yesRadioId)
-//    click(yesRadioId)
-//    click(continueButtonId)
-//  }
-//
-//  def selectNo(pageUrl: String = this.pageUrl): Unit = {
-//    onPage(pageUrl)
-//    assertLocatorPresent(noRadioId)
-//    click(noRadioId)
-//    click(continueButtonId)
-//  }
 
   def select(option: String, pageUrl: String = this.pageUrl): Unit = {
     onPage(pageUrl)
