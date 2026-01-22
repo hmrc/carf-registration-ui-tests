@@ -16,9 +16,15 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import org.openqa.selenium.By
+
 object IndWithoutIdFindAddress extends BasePage {
 
-  override val pageUrl: String =
-    baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Findividual-without-id%2Ffind-address+%28CARF-172%29"
-    // TODO : Must redirect to /register/individual-without-id/find-address (CARF-172)
+  override val pageUrl: String = baseUrl + "/register/individual-without-id/find-address"
+
+  private val postcodeId = By.id("postcode")
+  private val propertyId = By.id("propertyNameOrNumber")
+
+  def enterPostcodeAndProperty(postcode: String, propertyName: String): Unit =
+    fillFieldsAndContinue((postcodeId, postcode), (propertyId, propertyName))
 }

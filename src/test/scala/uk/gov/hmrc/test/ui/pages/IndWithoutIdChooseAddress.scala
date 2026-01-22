@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,9 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object RegisteredAddressInUkPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/register/registered-address-in-uk"
+object IndWithoutIdChooseAddress extends BasePage {
+
+  override val pageUrl: String = baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Findividual-without-id%2Fchoose-address+%28CARF-312%29"
+  // TODO: Must redirect to /register/individual-without-id/choose-address (CARF-312)
+
 }
