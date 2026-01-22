@@ -49,12 +49,6 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
   def onPage(pageUrl: String = this.pageUrl, timeoutSeconds: Long = 3): Unit =
     fluentWait(timeoutSeconds).until(ExpectedConditions.urlToBe(pageUrl))
 
-  def getRadioId(radioOption: String): By =
-    radioOption match {
-      case "Yes" => yesRadioId
-      case "No"  => noRadioId
-    }
-
   def selectRadioAndContinue(id: By): Unit = {
     onPage()
     click(id)
