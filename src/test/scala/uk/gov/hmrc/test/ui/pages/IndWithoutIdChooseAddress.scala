@@ -19,6 +19,6 @@ package uk.gov.hmrc.test.ui.pages
 object IndWithoutIdChooseAddress extends BasePage {
 
   override val pageUrl: String = baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Findividual-without-id%2Fchoose-address+%28CARF-312%29"
-  //Must redirect to /register/individual-without-id/choose-address (CARF-312)
+  // Must redirect to /register/individual-without-id/choose-address (CARF-312)
 
 }
