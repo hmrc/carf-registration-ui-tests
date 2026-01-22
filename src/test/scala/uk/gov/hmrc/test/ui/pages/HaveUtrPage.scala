@@ -18,8 +18,4 @@ package uk.gov.hmrc.test.ui.pages
 
 object HaveUtrPage extends BasePage {
   override val pageUrl: String = baseUrl + "/register/have-utr"
-
-  def selectUtrYesOrNo(haveUtrOption: String): Unit =
-    selectRadioAndContinue(getRadioId(haveUtrOption))
-
 }

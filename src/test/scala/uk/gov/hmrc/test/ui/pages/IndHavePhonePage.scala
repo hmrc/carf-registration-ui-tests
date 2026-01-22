@@ -18,7 +18,4 @@ package uk.gov.hmrc.test.ui.pages
 
 object IndHavePhonePage extends BasePage {
   override val pageUrl: String = baseUrl + "/register/individual-have-phone"
-
-  def contactByPhoneYesOrNo(contactByPhoneOption: String): Unit =
-    selectRadioAndContinue(getRadioId(contactByPhoneOption))
 }
