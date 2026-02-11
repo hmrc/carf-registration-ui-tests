@@ -122,8 +122,10 @@ class IndividualRegistrationSpec extends BaseSpec {
       IndHavePhonePage.select("Yes")
       And("the Individual user enters their phone number in 'What is your phone number' page")
       IndPhonePage.enterIndividualPhoneNumber("1234567890")
-      Then("the Individual user is routed to 'Check your answers before you register for cryptoasset reporting' page")
-      // TODO: Add this after 321 is implemented: CheckYourAnswersPage.onPage()
+      And("the Individual user clicks on 'Confirm and send' in 'Check your answers before you register for cryptoasset reporting' page")
+      CheckYourAnswersPage.onPageSubmitById()
+      Then("the Individual user is routed to 'Registration successful' page")
+      ConfirmRegistrationPage.onPage()
     }
 
     Scenario("5 - Individual user without NINO - Sole trader - having no registered address in the UK", RegistrationTests, ZapTests) {
