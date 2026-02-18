@@ -19,6 +19,5 @@ package uk.gov.hmrc.test.ui.pages
 object ConfirmRegistrationPage extends BasePage {
 
   override val pageUrl: String =
-    baseUrl + "/placeholder?message=Should+redirect+to+confirmation+page+%2Fconfirm-registration+%28CARF-259%29"
-
+    baseUrl + "/register/confirm-registration"
 }
