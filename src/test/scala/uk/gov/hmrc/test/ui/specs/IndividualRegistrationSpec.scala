@@ -144,7 +144,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       IndWithoutIdNamePage.enterNamesAndContinue("John", "Doe")
       And("the user enters the date of birth in 'What is your date of birth' page")
       IndWithoutIdDOBPage.enterDateOfBirthAndContinue("1", "1", "1990")
-      And("the user select 'Yes' in the 'Do you live in the UK, Jersey, Guernsey or the Isle of Man?' page")
+      And("the user select 'No' in the 'Do you live in the UK, Jersey, Guernsey or the Isle of Man?' page")
       IndWhereDoYouLivePage.select("No")
       And("the user enters the address in 'What is your address? page")
       IndWithoutIdNonUkAddressPage.enterYourAddress("55 New Test Road", " Testing", "Jap")
