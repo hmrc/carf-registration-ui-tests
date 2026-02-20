@@ -128,21 +128,36 @@ class IndividualRegistrationSpec extends BaseSpec {
       ConfirmRegistrationPage.onPage()
     }
 
-    Scenario("5 - Individual user without NINO - Sole trader - having no registered address in the UK", RegistrationTests, ZapTests) {
+    Scenario("5 - Individual user without NINO - Sole trader - having no registered address in the UK no UTR", RegistrationTests, ZapTests) {
 
-      Given("the Individual user logs in as a sole trader without NINO having no registered address in the UK")
+      Given("the user logs in as a sole trader without NINO having no registered address in the UK")
       AuthLoginPage.loginAsIndividualWithoutNino()
-      When("the Individual user selects 'Sole trader' in the 'What are you registering as?' page")
+      When("the user selects 'Sole trader' in the 'What are you registering as?' page")
       IndRegistrationTypePage.registerIndividualAs("Sole Trader")
-      And("the Individual user selects 'No' in the 'Is your registered address in the UK?'page")
+      And("the user selects 'No' in the 'Is your registered address in the UK?'page")
       RegisteredAddressInUkPage.select("No")
-      And("the Individual user selects 'No' in 'Do you have a UTR' page")
+      And("the user selects 'No' in 'Do you have a UTR' page")
       HaveUtrPage.select("No")
       And("the user selects 'No' in the '/have-ni-number' page")
       HaveNiNumberPage.select("No")
-      Then("the user is asked to enter their name in the 'What is your name' page")
-      IndWithoutIdNamePage.onPage() // Do not continue this journey further. It converges with journey 3 here.
+      And("the user is asked to enter their name in the 'What is your name' page")
+      IndWithoutIdNamePage.enterNamesAndContinue("John", "Doe")
+      And("the user enters the date of birth in 'What is your date of birth' page")
+      IndWithoutIdDOBPage.enterDateOfBirthAndContinue("1", "1", "1990")
+      And("the user select 'No' in the 'Do you live in the UK, Jersey, Guernsey or the Isle of Man?' page")
+      IndWhereDoYouLivePage.select("No")
+      And("the user enters the address in 'What is your address? page")
+      IndWithoutIdNonUkAddressPage.enterYourAddress("55 New Test Road", " Testing", "Jap")
+      And("the user enters the email address in the 'What is your email address?' page")
+      IndEmailPage.enterEmailAddress("carftester@test.com")
+      And("the user selects 'Yes' in the 'Can we contact you by phone' page")
+      IndHavePhonePage.select("Yes")
+      And("the user enters their phone number in 'What is your phone number' page")
+      IndPhonePage.enterIndividualPhoneNumber("1234567890")
+      And("the user clicks on 'Confirm and send' in 'Check your answers before you register for cryptoasset reporting' page")
+      CheckYourAnswersPage.onPageSubmitById()
+      Then("the user is routed to 'Registration successful' page")
+      ConfirmRegistrationPage.onPage()
     }
-
   }
 }
