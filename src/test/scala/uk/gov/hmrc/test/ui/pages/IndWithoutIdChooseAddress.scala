@@ -16,9 +16,23 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import org.openqa.selenium.By
 object IndWithoutIdChooseAddress extends BasePage {
 
-  override val pageUrl: String = baseUrl + "/placeholder?message=Must+redirect+to+%2Fregister%2Findividual-without-id%2Fchoose-address+%28CARF-312%29"
-  // TODO: Must redirect to /register/individual-without-id/choose-address (CARF-312)
+  override val pageUrl: String = baseUrl + "/register/individual-without-id/choose-address"
 
+  private val secondAddressRadioButtonId = By.id("value-2")
+  private val noneOfTheseRadioButtonId   = By.id("value-none")
+
+  def selectAddressAs(addressButton: String): Unit = {
+    val radioId = addressButton.trim.toLowerCase match {
+      case "second address" => secondAddressRadioButtonId
+      case "none of these"  => noneOfTheseRadioButtonId
+      case other            =>
+        throw new IllegalArgumentException(
+          s"Invalid address option: '$addressButton'. Use 'Second Address' or 'None of these'."
+        )
+    }
+    selectRadioAndContinue(radioId)
+  }
 }
