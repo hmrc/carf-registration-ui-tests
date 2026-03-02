@@ -37,5 +37,4 @@ object IndRegistrationTypePage extends BasePage {
     val expectedLocator = getIndRegId(expectedRegistrationType)
     verifyOnPageWithPreviousSelection(expectedLocator)
   }
-
 }

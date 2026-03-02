@@ -82,7 +82,7 @@ class IndividualRegistrationSpec extends BaseSpec {
     //          Individual user without NINO
     // *******************************************
 
-    Scenario("3 - Individual user without NINO - Individual not connected to any business", RegistrationTests, ZapTests) {
+    Scenario("3 - Individual user without NINO - Individual not connected to any business, choose address", RegistrationTests, ZapTests) {
 
       Given("the Individual user logs in as an individual not connected to a business without NINO")
       AuthLoginPage.loginAsIndividualWithoutNino()
@@ -97,12 +97,50 @@ class IndividualRegistrationSpec extends BaseSpec {
       And("the Individual user select 'Yes' in the 'Do you live in the UK, Jersey, Guernsey or the Isle of Man?' page")
       IndWhereDoYouLivePage.select("Yes")
       And("the Individual user enters postcode and property name in 'Find your address' page")
-      IndWithoutIdFindAddress.enterPostcodeAndProperty("FX47AL", "flat")
-      Then("the Individual user is routed to 'Choose your address' page")
-      IndWithoutIdChooseAddress.onPage()
+      IndWithoutIdFindAddress.enterPostcodeAndProperty("ZZ01 1ZZ", "flat")
+      And("the Individual user selects second address")
+      IndWithoutIdChooseAddress.selectAddressAs("Second Address")
+      And("the Individual user enters the email address in the 'What is your email address?' page")
+      IndEmailPage.enterEmailAddress("carftester@test.com")
+      And("the Individual user selects 'Yes' in the 'Can we contact you by phone' page")
+      IndHavePhonePage.select("Yes")
+      And("the Individual user enters their phone number in 'What is your phone number' page")
+      IndPhonePage.enterIndividualPhoneNumber("1234567890")
+      And("the Individual user clicks on 'Confirm and send' in 'Check your answers before you register for cryptoasset reporting' page")
+      CheckYourAnswersPage.onPageSubmitById()
+      Then("the Individual user is routed to 'Registration successful' page")
+      ConfirmRegistrationPage.onPage()
     }
 
-    Scenario("4 - Individual user without NINO - Sole trader - having a registered address in the UK", RegistrationTests, ZapTests) {
+    Scenario("4 - Individual user without NINO - Individual not connected to any business, review address", RegistrationTests, ZapTests) {
+      Given("the Individual user logs in as an individual not connected to a business without NINO")
+      AuthLoginPage.loginAsIndividualWithoutNino()
+      When("the Individual user selects 'An Individual not connected to a business' in the 'What are you registering as?' page")
+      IndRegistrationTypePage.registerIndividualAs("An individual not connected to a business")
+      And("the Individual user selects 'No' in the 'Do you have a National Insurance number?' page")
+      HaveNiNumberPage.select("No")
+      And("the Individual user is asked to enter their name in the 'What is your name' page")
+      IndWithoutIdNamePage.enterNamesAndContinue("John", "Doe")
+      And("the Individual user enters the date of birth in 'What is your date of birth' page")
+      IndWithoutIdDOBPage.enterDateOfBirthAndContinue("1", "1", "1990")
+      And("the Individual user select 'Yes' in the 'Do you live in the UK, Jersey, Guernsey or the Isle of Man?' page")
+      IndWhereDoYouLivePage.select("Yes")
+      And("the Individual user enters postcode and property name in 'Find your address' page")
+      IndWithoutIdFindAddress.enterPostcodeAndProperty("ZZ01 1ZZ", "3")
+      And("the Individual user click Confirm address button on review address page")
+      IndWithoutIdReviewAddress.onPageSubmitById()
+      And("the Individual user enters the email address in the 'What is your email address?' page")
+      IndEmailPage.enterEmailAddress("carftester@test.com")
+      And("the Individual user selects 'Yes' in the 'Can we contact you by phone' page")
+      IndHavePhonePage.select("Yes")
+      And("the Individual user enters their phone number in 'What is your phone number' page")
+      IndPhonePage.enterIndividualPhoneNumber("1234567890")
+      And("the Individual user clicks on 'Confirm and send' in 'Check your answers before you register for cryptoasset reporting' page")
+      CheckYourAnswersPage.onPageSubmitById()
+      Then("the Individual user is routed to 'Registration successful' page")
+      ConfirmRegistrationPage.onPage()
+    }
+    Scenario("5 - Individual user without NINO - Sole trader - having a registered address in the UK", RegistrationTests, ZapTests) {
 
       Given("the Individual user logs in as a sole trader without NINO having a registered address in the UK")
       AuthLoginPage.loginAsIndividualWithoutNino()
@@ -128,7 +166,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       ConfirmRegistrationPage.onPage()
     }
 
-    Scenario("5 - Individual user without NINO - Sole trader - having no registered address in the UK no UTR", RegistrationTests, ZapTests) {
+    Scenario("6 - Individual user without NINO - Sole trader - having no registered address in the UK no UTR", RegistrationTests, ZapTests) {
 
       Given("the user logs in as a sole trader without NINO having no registered address in the UK")
       AuthLoginPage.loginAsIndividualWithoutNino()
@@ -159,5 +197,6 @@ class IndividualRegistrationSpec extends BaseSpec {
       Then("the user is routed to 'Registration successful' page")
       ConfirmRegistrationPage.onPage()
     }
+
   }
 }
