@@ -49,11 +49,39 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
       IndRegistrationTypePage.verifyPreviousSelection("Sole Trader")
     }
 
+    Scenario("2 - Already registered individual knock back page") {
+
+      Given("the Individual user logs in as an individual not connected to a business with NINO")
+      AuthLoginPage.loginAsIndividualWithNino()
+      When("the Individual user selects 'An Individual not connected to a business' in the 'What are you registering as?' page")
+      IndRegistrationTypePage.registerIndividualAs("An individual not connected to a business")
+      And("the Individual user selects 'Yes' in the 'Do you have a National Insurance number?' page")
+      HaveNiNumberPage.select("Yes")
+      And("the Individual user enters the NINO in the 'What is your National Insurance number' page")
+      NiNumberPage.enterNino(alreadyRegisteredNino)
+      And("the Individual user enters the 'First name' and 'Last name' in the 'What is your name?' page")
+      IndNamePage.enterName("Carf", "Tester")
+      And("the Individual user enters the date of birth in the 'What is your date of birth?' page")
+      IndDOBPage.enterDateOfBirth("01", "JAN", "1901")
+      And("the Individual user clicks the Continue button in the 'We have confirmed your identity' page")
+      ConfirmedIdentityPage.onPageContinueById()
+      And("the Individual user enters the email address in the 'What is your email address' page")
+      IndEmailPage.enterEmailAddress("carftester@test.com")
+      And("the Individual user selects 'Yes' in the 'Can we contact you by phone' page")
+      IndHavePhonePage.select("Yes")
+      And("the Individual user enters their phone number in 'What is your phone number' page")
+      IndPhonePage.enterIndividualPhoneNumber("1234567890")
+      And("the Individual user clicks on 'Confirm and send' in 'Check your answers before you register for cryptoasset reporting' page")
+      CheckYourAnswersPage.onPageSubmitById()
+      Then("the Individual user is routed to 'Already Registration' page")
+      IndAlreadyRegisteredPage.onPage()
+    }
+
     // **********************************************
     //           Organisation Problem Pages
     // **********************************************
 
-    Scenario("2 - Organisation user without CT-UTR enrolment having a registered address in the UK with unmatched business details", RegistrationTests, ZapTests) {
+    Scenario("3 - Organisation user without CT-UTR enrolment having a registered address in the UK with unmatched business details", RegistrationTests, ZapTests) {
       Given("the Organisation user logs in as Limited Company without CT-UTR enrolment having a registered address in the UK with unmatched business details")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
       When("the Organisation user selects 'Limited Company' in the 'What are you registering as?' page")
@@ -72,7 +100,7 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
       OrgRegistrationTypePage.verifyPreviousSelection("Limited Company")
     }
 
-    Scenario("3 - Organisation user having CT-UTR enrolment with unmatched business details", RegistrationTests, ZapTests) {
+    Scenario("4 - Organisation user having CT-UTR enrolment with unmatched business details", RegistrationTests, ZapTests) {
 
       Given("the Organisation user logs in with CT-UTR enrolment")
       AuthLoginPage.loginAsOrgAdminWithCtUtr()
@@ -87,7 +115,7 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
     //     Organisation assistant kick-out page
     // ************************************************
 
-    Scenario("4 - Organisation assistant kick-out page", RegistrationTests, ZapTests) {
+    Scenario("5 - Organisation assistant kick-out page", RegistrationTests, ZapTests) {
 
       Given("the user logs in as an Organisation having assistant role ")
       AuthLoginPage.loginAsOrgAdminWithCtUtr()
