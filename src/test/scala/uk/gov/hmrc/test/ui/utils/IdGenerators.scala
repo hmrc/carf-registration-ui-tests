@@ -30,6 +30,7 @@ trait IdGenerators {
   val individualNino: String                = "AA1"
   val matchedSaUtr: String                  = "111"
   val unmatchedSaUtr: String                = "888"
+  val alreadyRegisteredNino: String         = "ZA1"
 
   def generateUtr(prefix: String): String =
     prefix + randomisedUtr.substring(3)
