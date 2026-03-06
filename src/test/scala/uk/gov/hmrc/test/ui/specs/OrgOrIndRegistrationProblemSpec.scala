@@ -49,7 +49,7 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
       IndRegistrationTypePage.verifyPreviousSelection("Sole Trader")
     }
 
-    Scenario("2 - Already registered individual knock back page") {
+    Scenario("2 - Already registered individual knock back page", RegistrationTests, ZapTests) {
 
       Given("the Individual user logs in as an individual not connected to a business with NINO")
       AuthLoginPage.loginAsIndividualWithNino()
@@ -58,9 +58,9 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
       And("the Individual user selects 'Yes' in the 'Do you have a National Insurance number?' page")
       HaveNiNumberPage.select("Yes")
       And("the Individual user enters the NINO in the 'What is your National Insurance number' page")
-      NiNumberPage.enterNino(alreadyRegisteredNino)
+      NiNumberPage.enterNino(individualNino)
       And("the Individual user enters the 'First name' and 'Last name' in the 'What is your name?' page")
-      IndNamePage.enterName("Carf", "Tester")
+      IndNamePage.enterName("duplicateAlreadyRegistered", "Tester")
       And("the Individual user enters the date of birth in the 'What is your date of birth?' page")
       IndDOBPage.enterDateOfBirth("01", "JAN", "1901")
       And("the Individual user clicks the Continue button in the 'We have confirmed your identity' page")
