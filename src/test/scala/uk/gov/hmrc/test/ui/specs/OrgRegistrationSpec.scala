@@ -17,6 +17,10 @@
 package uk.gov.hmrc.test.ui.specs
 
 import uk.gov.hmrc.test.ui.pages.*
+import uk.gov.hmrc.test.ui.pages.indContactDetails.{IndEmailPage, IndHavePhonePage, IndPhonePage}
+import uk.gov.hmrc.test.ui.pages.orgContactDetails.{OrgFirstContactEmailPage, OrgFirstContactHavePhonePage, OrgFirstContactNamePage, OrgFirstContactPhonePage, OrgHaveSecondContactPage, OrgSecondContactEmailPage, OrgSecondContactHavePhonePage, OrgSecondContactNamePage, OrgSecondContactPhonePage, YourContactDetailsPage}
+import uk.gov.hmrc.test.ui.pages.orgWithUtr.{BusinessNamePage, IsThisYourBusinessPage, UtrPage, YourNamePage}
+import uk.gov.hmrc.test.ui.pages.orgWithoutUtr.{BusinessWithoutIdBusinessAddressPage, BusinessWithoutIdBusinessNamePage, BusinessWithoutIdHaveTradingNamePage, BusinessWithoutIdTradingNamePage}
 import uk.gov.hmrc.test.ui.specs.tags.*
 
 class OrgRegistrationSpec extends BaseSpec {
@@ -66,7 +70,7 @@ class OrgRegistrationSpec extends BaseSpec {
       And("the organisation user selects 'Yes' in 'Can we contact your second contact by phone?' page")
       OrgSecondContactHavePhonePage.select("Yes")
       And("the organisation user enters the second contact phone number in 'What is your phone number for [second contact name]' page ")
-      SecondContactPhonePage.enterSecondContactPhone("01234567890")
+      OrgSecondContactPhonePage.enterSecondContactPhone("01234567890")
       And("the organisation user clicks on 'Confirm and send' in 'Check your answers before you register for cryptoasset reporting' page")
       CheckYourAnswersPage.onPageSubmitById()
       Then("the Organisation user is routed to 'Registration successful' page")
@@ -84,13 +88,13 @@ class OrgRegistrationSpec extends BaseSpec {
       And("the Organisation user selects 'No' in the 'Do you have a UTR' page")
       HaveUtrPage.select("No")
       And("the user enters 'Test Business Name' in 'What is the name of your business?'")
-      BusinessNameWithoutIDPage.enterBusinessName("Test Business Name")
+      BusinessWithoutIdBusinessNamePage.enterBusinessName("Test Business Name")
       And("the Organisation user selects 'Yes' in the 'Does your business trader under a different name?' page")
-      HaveTradingNamePage.select("Yes")
+      BusinessWithoutIdHaveTradingNamePage.select("Yes")
       And("the Organisation user enters the trading name in the 'Does your business trade under a different name?' page")
-      TradingNameOfYourBusinessPage.enterTradingNameOfBusiness("Test Trading Pvt Ltd")
+      BusinessWithoutIdTradingNamePage.enterTradingNameOfBusiness("Test Trading Pvt Ltd")
       And("the Organisation user enters the address in 'What is the main address of your business?' page")
-      BusinessAddressPage.enterMainAddressOfBusiness("Boulevard de Parc", "Chessy", "77700", "Fra")
+      BusinessWithoutIdBusinessAddressPage.enterMainAddressOfBusiness("Boulevard de Parc", "Chessy", "77700", "Fra")
       And("the Organisation user clicks continue on 'Setting up contact details for cryptoasset reporting' page")
       YourContactDetailsPage.onPageContinueById()
       And("the Organisation user enters the contact name in 'What is the name of the person or team we should contact?' page")
@@ -110,7 +114,7 @@ class OrgRegistrationSpec extends BaseSpec {
       And("the organisation user selects 'Yes' in 'Can we contact your second contact by phone?' page")
       OrgSecondContactHavePhonePage.select("Yes")
       Then("the organisation user enters the second contact's phone number in 'What is your phone number for [second contact name]' page")
-      SecondContactPhonePage.enterSecondContactPhone("01234567890")
+      OrgSecondContactPhonePage.enterSecondContactPhone("01234567890")
       And("the organisation user clicks on 'Confirm and send' in 'Check your answers before you register for cryptoasset reporting' page")
       CheckYourAnswersPage.onPageSubmitById()
       Then("the Organisation user is routed to 'Registration successful' page")
@@ -172,7 +176,7 @@ class OrgRegistrationSpec extends BaseSpec {
       And("the organisation user selects 'Yes' in 'Can we contact your second contact by phone?' page")
       OrgSecondContactHavePhonePage.select("Yes")
       And("the organisation user enters the second contact phone number in 'What is your phone number for [second contact name]' page ")
-      SecondContactPhonePage.enterSecondContactPhone("01234567890")
+      OrgSecondContactPhonePage.enterSecondContactPhone("01234567890")
       And("the organisation user clicks on 'Confirm and send' in 'Check your answers before you register for cryptoasset reporting' page")
       CheckYourAnswersPage.onPageSubmitById()
       Then("the Organisation user is routed to 'Registration successful' page")

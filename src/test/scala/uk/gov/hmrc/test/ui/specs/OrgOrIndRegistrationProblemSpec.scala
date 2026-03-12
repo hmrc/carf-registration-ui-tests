@@ -17,8 +17,11 @@
 package uk.gov.hmrc.test.ui.specs
 
 import uk.gov.hmrc.test.ui.pages.*
-import uk.gov.hmrc.test.ui.pages.ProblemBusinessNotIdentifiedPage.tryAgainPartialLink
-import uk.gov.hmrc.test.ui.pages.ProblemDifferentBusinessPage.signInLnk
+import uk.gov.hmrc.test.ui.pages.indContactDetails.{IndEmailPage, IndHavePhonePage, IndPhonePage}
+import uk.gov.hmrc.test.ui.pages.indWithNino.{IndDOBPage, IndIdentityConfirmedPage, IndNamePage, NiNumberPage}
+import uk.gov.hmrc.test.ui.pages.orgWithUtr.ProblemBusinessNotIdentifiedPage.tryAgainPartialLink
+import uk.gov.hmrc.test.ui.pages.orgWithUtr.ProblemDifferentBusinessPage.signInLnk
+import uk.gov.hmrc.test.ui.pages.orgWithUtr.{BusinessNamePage, IsThisYourBusinessPage, ProblemBusinessNotIdentifiedPage, ProblemDifferentBusinessPage, ProblemSoleTraderNotIdentifiedPage, UtrPage, YourNamePage}
 import uk.gov.hmrc.test.ui.specs.tags.*
 
 class OrgOrIndRegistrationProblemSpec extends BaseSpec {
@@ -44,7 +47,7 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
       And("the Individual user enters the first name and last name and click Continue button in the 'What is your name' page")
       YourNamePage.enterNamesAndContinue("Carf", "Tester")
       When("The Individual user clicks on 'try again using different details' link in the 'The details you entered did not match our records' page")
-      SoleTraderNotIdentifiedPage.clickOnByPartialLinkText(tryAgainPartialLink)
+      ProblemSoleTraderNotIdentifiedPage.clickOnByPartialLinkText(tryAgainPartialLink)
       Then("the Individual user should be routed to 'What are you registering as?' page and his previous selection should be retained")
       IndRegistrationTypePage.verifyPreviousSelection("Sole Trader")
     }
@@ -64,7 +67,7 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
       And("the Individual user enters the date of birth in the 'What is your date of birth?' page")
       IndDOBPage.enterDateOfBirth("01", "JAN", "1901")
       And("the Individual user clicks the Continue button in the 'We have confirmed your identity' page")
-      ConfirmedIdentityPage.onPageContinueById()
+      IndIdentityConfirmedPage.onPageContinueById()
       And("the Individual user enters the email address in the 'What is your email address' page")
       IndEmailPage.enterEmailAddress("carftester@test.com")
       And("the Individual user selects 'Yes' in the 'Can we contact you by phone' page")
