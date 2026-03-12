@@ -17,6 +17,10 @@
 package uk.gov.hmrc.test.ui.specs
 
 import uk.gov.hmrc.test.ui.pages.*
+import uk.gov.hmrc.test.ui.pages.indContactDetails.{IndEmailPage, IndHavePhonePage, IndPhonePage}
+import uk.gov.hmrc.test.ui.pages.indWithoutNino.{IndWithoutIdAddressNonUkPage, IndWithoutIdChooseAddress, IndWithoutIdDOBPage, IndWithoutIdFindAddress, IndWithoutIdNamePage, IndWithoutIdReviewAddress, IndWithoutIdWhereDoYouLivePage}
+import uk.gov.hmrc.test.ui.pages.indWithNino.{IndDOBPage, IndIdentityConfirmedPage, IndNamePage, NiNumberPage}
+import uk.gov.hmrc.test.ui.pages.orgWithUtr.{IsThisYourBusinessPage, UtrPage, YourNamePage}
 import uk.gov.hmrc.test.ui.specs.tags.*
 
 class IndividualRegistrationSpec extends BaseSpec {
@@ -49,7 +53,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       And("the Individual user enters the date of birth in the 'What is your date of birth?' page")
       IndDOBPage.enterDateOfBirth("01", "JAN", "1901")
       And("the Individual user clicks the Continue button in the 'We have confirmed your identity' page")
-      ConfirmedIdentityPage.onPageContinueById()
+      IndIdentityConfirmedPage.onPageContinueById()
       And("the Individual user enters the email address in the 'What is your email address' page")
       IndEmailPage.enterEmailAddress("carftester@test.com")
       And("the Individual user selects 'Yes' in the 'Can we contact you by phone' page")
@@ -95,7 +99,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       And("the Individual user enters the date of birth in 'What is your date of birth' page")
       IndWithoutIdDOBPage.enterDateOfBirthAndContinue("1", "1", "1990")
       And("the Individual user select 'Yes' in the 'Do you live in the UK, Jersey, Guernsey or the Isle of Man?' page")
-      IndWhereDoYouLivePage.select("Yes")
+      IndWithoutIdWhereDoYouLivePage.select("Yes")
       And("the Individual user enters postcode and property name in 'Find your address' page")
       IndWithoutIdFindAddress.enterPostcodeAndProperty("ZZ01 1ZZ", "flat")
       And("the Individual user selects second address")
@@ -124,7 +128,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       And("the Individual user enters the date of birth in 'What is your date of birth' page")
       IndWithoutIdDOBPage.enterDateOfBirthAndContinue("1", "1", "1990")
       And("the Individual user select 'Yes' in the 'Do you live in the UK, Jersey, Guernsey or the Isle of Man?' page")
-      IndWhereDoYouLivePage.select("Yes")
+      IndWithoutIdWhereDoYouLivePage.select("Yes")
       And("the Individual user enters postcode and property name in 'Find your address' page")
       IndWithoutIdFindAddress.enterPostcodeAndProperty("ZZ01 1ZZ", "3")
       And("the Individual user click Confirm address button on review address page")
@@ -183,9 +187,9 @@ class IndividualRegistrationSpec extends BaseSpec {
       And("the user enters the date of birth in 'What is your date of birth' page")
       IndWithoutIdDOBPage.enterDateOfBirthAndContinue("1", "1", "1990")
       And("the user select 'No' in the 'Do you live in the UK, Jersey, Guernsey or the Isle of Man?' page")
-      IndWhereDoYouLivePage.select("No")
+      IndWithoutIdWhereDoYouLivePage.select("No")
       And("the user enters the address in 'What is your address? page")
-      IndWithoutIdNonUkAddressPage.enterYourAddress("55 New Test Road", " Testing", "Jap")
+      IndWithoutIdAddressNonUkPage.enterYourAddress("55 New Test Road", " Testing", "Jap")
       And("the user enters the email address in the 'What is your email address?' page")
       IndEmailPage.enterEmailAddress("carftester@test.com")
       And("the user selects 'Yes' in the 'Can we contact you by phone' page")
