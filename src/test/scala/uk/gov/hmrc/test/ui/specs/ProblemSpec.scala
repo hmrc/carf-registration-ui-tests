@@ -17,11 +17,10 @@
 package uk.gov.hmrc.test.ui.specs
 
 import uk.gov.hmrc.test.ui.pages.*
-import uk.gov.hmrc.test.ui.pages.indContactDetails.{IndEmailPage, IndHavePhonePage, IndPhonePage}
-import uk.gov.hmrc.test.ui.pages.indWithNino.{IndDOBPage, IndIdentityConfirmedPage, IndNamePage, NiNumberPage}
-import uk.gov.hmrc.test.ui.pages.orgWithUtr.ProblemBusinessNotIdentifiedPage.tryAgainPartialLink
-import uk.gov.hmrc.test.ui.pages.orgWithUtr.ProblemDifferentBusinessPage.signInLnk
-import uk.gov.hmrc.test.ui.pages.orgWithUtr.{BusinessNamePage, IsThisYourBusinessPage, ProblemBusinessNotIdentifiedPage, ProblemDifferentBusinessPage, ProblemSoleTraderNotIdentifiedPage, UtrPage, YourNamePage}
+import uk.gov.hmrc.test.ui.pages.indContactDetails.*
+import uk.gov.hmrc.test.ui.pages.indWithNino.*
+import uk.gov.hmrc.test.ui.pages.orgContactDetails.*
+import uk.gov.hmrc.test.ui.pages.orgWithUtr.*
 import uk.gov.hmrc.test.ui.specs.tags.*
 
 class ProblemSpec extends BaseSpec {
@@ -47,7 +46,7 @@ class ProblemSpec extends BaseSpec {
       And("the Individual user enters the first name and last name and click Continue button in the 'What is your name' page")
       YourNamePage.enterNamesAndContinue("Carf", "Tester")
       When("The Individual user clicks on 'try again using different details' link in the 'The details you entered did not match our records' page")
-      ProblemSoleTraderNotIdentifiedPage.clickOnByPartialLinkText(tryAgainPartialLink)
+      ProblemSoleTraderNotIdentifiedPage.clickOnByPartialLinkText(ProblemBusinessNotIdentifiedPage.tryAgainPartialLink)
       Then("the Individual user should be routed to 'What are you registering as?' page and his previous selection should be retained")
       IndRegistrationTypePage.verifyPreviousSelection("Sole Trader")
     }
@@ -98,7 +97,7 @@ class ProblemSpec extends BaseSpec {
       And("the user enters the unmatched business name in the 'What is the registered name of your business?' page")
       BusinessNamePage.enterBusinessName("unmatched")
       When("the Organisation user clicks on 'try again using different details' link in the 'The details you entered did not match our records' page")
-      ProblemBusinessNotIdentifiedPage.clickOnByPartialLinkText(tryAgainPartialLink)
+      ProblemBusinessNotIdentifiedPage.clickOnByPartialLinkText(ProblemBusinessNotIdentifiedPage.tryAgainPartialLink)
       Then("the organisation user should be routed to 'What are you registering as?' page and his previous selection should be retained")
       OrgRegistrationTypePage.verifyPreviousSelection("Limited Company")
     }
@@ -110,15 +109,47 @@ class ProblemSpec extends BaseSpec {
       When("the Organisation user selects 'No' on the 'Is this your business?' page for the unmatched business details")
       IsThisYourBusinessPage.select("No")
       And("the Organisation user clicks on 'sign in with the Government Gateway user ID for the organisation you wish to register' link")
-      ProblemDifferentBusinessPage.clickOnByPartialLinkText(signInLnk)
+      ProblemDifferentBusinessPage.clickOnByPartialLinkText(ProblemDifferentBusinessPage.signInLnk)
       Then("the Organisation user should be taken to the GG sign in page")
       SignOutPage.onPage()
+    }
+
+    Scenario("5 - Organisation Already registered knock back page", RegistrationTests, ZapTests) {
+
+      Given("the Organisation user logs in as Limited Company without CT-UTR enrolment having a registered address in the UK with matched business details")
+      AuthLoginPage.loginAsOrgAdminWithoutCtUtr()
+      When("the Organisation user selects 'Limited Company' in the 'What are you registering as?' page")
+      OrgRegistrationTypePage.registerOrganisationAs("Limited Company")
+      And("the Organisation user selects 'Yes' in the 'Is your registered address in the UK?' page")
+      RegisteredAddressInUkPage.select("Yes")
+      And("the Organisation user enters the UTR in the UTR page")
+      UtrPage.enterUtr(autoMatchedCtUtrForUK)
+      And("the user enters the matched business name in the 'What is the registered name of your business?' page")
+      BusinessNamePage.enterBusinessName("matched")
+      And("the Organisation user selects 'Yes' on the 'Is this your business?' page for the matched business details")
+      IsThisYourBusinessPage.select("Yes")
+      And("the Organisation user clicks on Continue button on the 'Setting up contact details for cryptoasset reporting' page")
+      YourContactDetailsPage.onPageContinueById()
+      And("the Organisation user enters the contact name in 'What is the name of the person or team we should contact?' page")
+      OrgFirstContactNamePage.enterContactName("duplicateAlreadyRegistered")
+      And("the Organisation user enters the first contact's email in the 'What is the email address for the first contact?' page")
+      OrgFirstContactEmailPage.enterFirstContactEmail("first.contact@example.com")
+      And("the organisation user selects 'No' in the 'Can we contact your first contact by phone?' page")
+      OrgFirstContactHavePhonePage.select("No")
+
+      And("the organisation user selects 'No' in 'Is there someone else we can contact if your first contact is not available?' page")
+      OrgHaveSecondContactPage.select("No")
+
+      And("the organisation user clicks on 'Confirm and send' in 'Check your answers before you register for cryptoasset reporting' page")
+      CheckYourAnswersPage.onPageSubmitById()
+      Then("the Organisation user is routed to 'Organisation already registered' page")
+      OrgAlreadyRegisteredPage.onPage()
     }
     // ************************************************
     //     Organisation assistant kick-out page
     // ************************************************
 
-    Scenario("5 - Organisation affinity and Assistant credential role", RegistrationTests, ZapTests) {
+    Scenario("6 - Organisation affinity and Assistant credential role", RegistrationTests, ZapTests) {
       Given("the Organisation user logs in as an assistant")
       AuthLoginPage.loginAsOrgAssistant()
       OrgAssistantPage.onPage()
