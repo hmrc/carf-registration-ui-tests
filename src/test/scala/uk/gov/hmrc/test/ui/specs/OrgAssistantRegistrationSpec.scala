@@ -17,7 +17,6 @@
 package uk.gov.hmrc.test.ui.specs
 
 import uk.gov.hmrc.test.ui.pages.*
-import uk.gov.hmrc.test.ui.pages.AgentKickOutPage.partialLinkText
 import uk.gov.hmrc.test.ui.specs.tags.*
 
 class OrgAssistantRegistrationSpec extends BaseSpec {
