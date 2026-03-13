@@ -24,7 +24,7 @@ import uk.gov.hmrc.test.ui.pages.orgWithUtr.ProblemDifferentBusinessPage.signInL
 import uk.gov.hmrc.test.ui.pages.orgWithUtr.{BusinessNamePage, IsThisYourBusinessPage, ProblemBusinessNotIdentifiedPage, ProblemDifferentBusinessPage, ProblemSoleTraderNotIdentifiedPage, UtrPage, YourNamePage}
 import uk.gov.hmrc.test.ui.specs.tags.*
 
-class OrgOrIndRegistrationProblemSpec extends BaseSpec {
+class ProblemSpec extends BaseSpec {
 
   Feature("Organisation or Individual Registration Problem Page Validation") {
 
@@ -118,10 +118,10 @@ class OrgOrIndRegistrationProblemSpec extends BaseSpec {
     //     Organisation assistant kick-out page
     // ************************************************
 
-    Scenario("5 - Organisation assistant kick-out page", RegistrationTests, ZapTests) {
-
-      Given("the user logs in as an Organisation having assistant role ")
-      AuthLoginPage.loginAsOrgAdminWithCtUtr()
+    Scenario("5 - Organisation affinity and Assistant credential role", RegistrationTests, ZapTests) {
+      Given("the Organisation user logs in as an assistant")
+      AuthLoginPage.loginAsOrgAssistant()
+      OrgAssistantPage.onPage()
     }
   }
 }

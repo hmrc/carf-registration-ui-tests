@@ -76,7 +76,7 @@ object AuthLoginPage extends BasePage {
 
   def loginAsOrgAssistant(): OrgAssistantPage.type = {
     submitAuth("Organisation", "Assistant")()
-    OrgAssistantPage // Need to include the step for the proper page display
+    OrgAssistantPage
   }
 
   def loginAsIndividualWithNino(): IndRegistrationTypePage.type = {
@@ -93,4 +93,5 @@ object AuthLoginPage extends BasePage {
     submitAuth("Agent", "User")()
     AgentKickOutPage
   }
+
 }
