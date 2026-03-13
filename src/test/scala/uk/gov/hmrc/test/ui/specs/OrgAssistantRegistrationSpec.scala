@@ -14,10 +14,20 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.specs
 
-object OrgAssistantPage extends BasePage {
-  override val pageUrl: String =
-    baseUrl + "/register/problem/standard-user-sign-in-problem"
+import uk.gov.hmrc.test.ui.pages.*
+import uk.gov.hmrc.test.ui.pages.AgentKickOutPage.partialLinkText
+import uk.gov.hmrc.test.ui.specs.tags.*
 
+class OrgAssistantRegistrationSpec extends BaseSpec {
+
+  Feature("Organisation Assistant CARF Registration") {
+
+    Scenario("1 - Organisation affinity and Assistant credential role", RegistrationTests, ZapTests) {
+      Given("the Organisation user logs in as an assistant")
+      AuthLoginPage.loginAsOrgAssistant()
+      OrgAssistantPage.onPage()
+    }
+  }
 }
