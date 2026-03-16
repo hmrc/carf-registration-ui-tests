@@ -17,10 +17,10 @@
 package uk.gov.hmrc.test.ui.specs
 
 import uk.gov.hmrc.test.ui.pages.*
-import uk.gov.hmrc.test.ui.pages.indContactDetails.{IndEmailPage, IndHavePhonePage, IndPhonePage}
-import uk.gov.hmrc.test.ui.pages.indWithoutNino.{IndWithoutIdAddressNonUkPage, IndWithoutIdChooseAddress, IndWithoutIdDOBPage, IndWithoutIdFindAddress, IndWithoutIdNamePage, IndWithoutIdReviewAddress, IndWithoutIdWhereDoYouLivePage}
-import uk.gov.hmrc.test.ui.pages.indWithNino.{IndDOBPage, IndIdentityConfirmedPage, IndNamePage, NiNumberPage}
-import uk.gov.hmrc.test.ui.pages.orgWithUtr.{IsThisYourBusinessPage, UtrPage, YourNamePage}
+import uk.gov.hmrc.test.ui.pages.indContactDetails.*
+import uk.gov.hmrc.test.ui.pages.indWithNino.*
+import uk.gov.hmrc.test.ui.pages.indWithoutNino.*
+import uk.gov.hmrc.test.ui.pages.orgWithUtr.*
 import uk.gov.hmrc.test.ui.specs.tags.*
 
 class IndividualRegistrationSpec extends BaseSpec {
