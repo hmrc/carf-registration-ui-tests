@@ -56,7 +56,7 @@ with 'ZapTests' via ZAP.
 For example, to execute ZAP tests locally using Chrome browser:
 
 ```
-./run_local_zap_test.sh chrome local
+./run_local_zap_tests.sh chrome local
 ```
 
 
