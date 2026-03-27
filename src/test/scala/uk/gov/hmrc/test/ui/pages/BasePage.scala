@@ -88,9 +88,9 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     click(submitButtonId)
   }
 
-  def clickOnByPartialLinkText(partialLinkText: By): Unit = {
+  def clickOnLink(link: By): Unit = {
     onPage()
-    click(partialLinkText)
+    click(link)
   }
 
   /** Method to loop through each tuple in the list and enter value in one or more text fields
