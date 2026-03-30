@@ -18,10 +18,12 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
+import uk.gov.hmrc.test.ui.pages.ChangeContactDetails.Ind.ChangeContactIndDetailsPage
 
 object AuthLoginPage extends BasePage {
-  override val pageUrl: String    = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
-  private val redirectUrl: String = TestConfiguration.url("carf-registration-frontend")
+  override val pageUrl: String             = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
+  private val redirectUrl: String          = TestConfiguration.url("carf-registration-frontend")
+  private val redirectUrlForChange: String = TestConfiguration.url("carf-change-contact-frontend")
 
   private val redirectionUrlById: By           = By.id("redirectionUrl")
   private val affinityGroupById: By            = By.id("affinityGroupSelect")
@@ -30,6 +32,9 @@ object AuthLoginPage extends BasePage {
   private val presetDropDownById: By           = By.id("presets-dropdown")
   private val presetAddById: By                = By.id("add-preset")
   private val identifierValueCtField: By       = By.id("input-4-0-value")
+  private val enrolmentKeyField: By            = By.id("enrolment[0].name")
+  private val identifierNameField: By          = By.id("input-0-0-name")
+  private val identifierValueField: By         = By.id("input-0-0-value")
   private val authSubmitById: By               = By.id("submit-top")
   private val identifierValueNinoField: String = generateNino(individualNino)
   private val identifierCtValue: String        = generateUtr(autoMatchedCtUtrForUK)
@@ -54,11 +59,24 @@ object AuthLoginPage extends BasePage {
     click(presetAddById)
     sendKeys(identifierValueCtField, identifierCtValue)
 
+  private def addCarfId(carfID: String): Unit =
+    sendKeys(enrolmentKeyField, "HMRC-CARF-ORG")
+    sendKeys(identifierNameField, "CARFID")
+    sendKeys(identifierValueField, carfID)
+
   private def submitAuthPage(): Unit = click(authSubmitById)
 
   private def submitAuth(affinityGroup: String, credentialRole: String)(additionalFormFields: => Unit = ()): Unit =
     authLoginPage
     sendKeys(redirectionUrlById, redirectUrl)
+    selectAffinityGroup(affinityGroup)
+    selectCredentialRole(credentialRole)
+    additionalFormFields
+    submitAuthPage()
+
+  private def submitAuthForChange(affinityGroup: String, credentialRole: String)(additionalFormFields: => Unit = ()): Unit =
+    authLoginPage
+    sendKeys(redirectionUrlById, redirectUrlForChange)
     selectAffinityGroup(affinityGroup)
     selectCredentialRole(credentialRole)
     additionalFormFields
@@ -92,6 +110,11 @@ object AuthLoginPage extends BasePage {
   def loginAsAgentAsUser(): AgentKickOutPage.type = {
     submitAuth("Agent", "User")()
     AgentKickOutPage
+  }
+
+  def loginAsIndividualForChange(carfID: String): ChangeContactIndDetailsPage.type = {
+    submitAuthForChange("Individual", "User")(addCarfId(carfID))
+    ChangeContactIndDetailsPage
   }
 
 }

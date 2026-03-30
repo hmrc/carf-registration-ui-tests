@@ -46,7 +46,7 @@ class ProblemSpec extends BaseSpec {
       And("the Individual user enters the first name and last name and click Continue button in the 'What is your name' page")
       YourNamePage.enterNamesAndContinue("Carf", "Tester")
       When("The Individual user clicks on 'try again using different details' link in the 'The details you entered did not match our records' page")
-      ProblemSoleTraderNotIdentifiedPage.clickOnByPartialLinkText(ProblemBusinessNotIdentifiedPage.tryAgainPartialLink)
+      ProblemSoleTraderNotIdentifiedPage.clickOnLink(ProblemBusinessNotIdentifiedPage.tryAgainPartialLink)
       Then("the Individual user should be routed to 'What are you registering as?' page and his previous selection should be retained")
       IndRegistrationTypePage.verifyPreviousSelection("Sole Trader")
     }
@@ -97,7 +97,7 @@ class ProblemSpec extends BaseSpec {
       And("the user enters the unmatched business name in the 'What is the registered name of your business?' page")
       BusinessNamePage.enterBusinessName("unmatched")
       When("the Organisation user clicks on 'try again using different details' link in the 'The details you entered did not match our records' page")
-      ProblemBusinessNotIdentifiedPage.clickOnByPartialLinkText(ProblemBusinessNotIdentifiedPage.tryAgainPartialLink)
+      ProblemBusinessNotIdentifiedPage.clickOnLink(ProblemBusinessNotIdentifiedPage.tryAgainPartialLink)
       Then("the organisation user should be routed to 'What are you registering as?' page and his previous selection should be retained")
       OrgRegistrationTypePage.verifyPreviousSelection("Limited Company")
     }
@@ -109,7 +109,7 @@ class ProblemSpec extends BaseSpec {
       When("the Organisation user selects 'No' on the 'Is this your business?' page for the unmatched business details")
       IsThisYourBusinessPage.select("No")
       And("the Organisation user clicks on 'sign in with the Government Gateway user ID for the organisation you wish to register' link")
-      ProblemDifferentBusinessPage.clickOnByPartialLinkText(ProblemDifferentBusinessPage.signInLnk)
+      ProblemDifferentBusinessPage.clickOnLink(ProblemDifferentBusinessPage.signInLnk)
       Then("the Organisation user should be taken to the GG sign in page")
       SignOutPage.onPage()
     }
