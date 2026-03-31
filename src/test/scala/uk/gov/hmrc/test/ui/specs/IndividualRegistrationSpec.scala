@@ -87,7 +87,7 @@ class IndividualRegistrationSpec extends BaseSpec {
     //          Individual user without NINO
     // *******************************************
 
-    Scenario("3 - Individual user without NINO - Individual not connected to any business, choose address", RegistrationTests, ZapTests, SoloTests) {
+    Scenario("3 - Individual user without NINO - Individual not connected to any business, choose address", RegistrationTests, ZapTests) {
 
       Given("the Individual user logs in as an individual not connected to a business without NINO")
       AuthLoginPage.loginAsIndividualWithoutNino()
@@ -117,7 +117,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       ConfirmRegistrationPage.onPage()
     }
 
-    Scenario("4 - Individual user without NINO - Individual not connected to any business, review address", RegistrationTests, ZapTests, SoloTests) {
+    Scenario("4 - Individual user without NINO - Individual not connected to any business, review address", RegistrationTests, ZapTests) {
       Given("the Individual user logs in as an individual not connected to a business without NINO")
       AuthLoginPage.loginAsIndividualWithoutNino()
       When("the Individual user selects 'An Individual not connected to a business' in the 'What are you registering as?' page")
