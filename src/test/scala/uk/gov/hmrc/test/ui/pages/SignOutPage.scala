@@ -19,7 +19,24 @@ package uk.gov.hmrc.test.ui.pages
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 object SignOutPage extends BasePage {
-  private val authPageUrl: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
-  override val pageUrl: String    = authPageUrl + "?continue=http%3A%2F%2Flocalhost%3A17000%2Fregister-for-cryptoasset-reporting"
 
+  private val env: String =
+    System.getProperty("environment", "local").toLowerCase
+
+  private val authPageUrl: String =
+    TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
+
+  override val pageUrl: String = env match {
+    case "local" =>
+      authPageUrl + "?continue=http%3A%2F%2Flocalhost%3A17000%2Fregister-for-cryptoasset-reporting"
+
+    case "staging" =>
+      authPageUrl + "?continue=%2Fregister-for-cryptoasset-reporting"
+
+    case "qa" =>
+      authPageUrl + "?continue=%2Fregister-for-cryptoasset-reporting"
+
+    case _ =>
+      throw new IllegalArgumentException(s"Unsupported environment: $env")
+  }
 }
