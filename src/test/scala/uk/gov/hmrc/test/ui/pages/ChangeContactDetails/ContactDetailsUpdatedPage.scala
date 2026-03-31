@@ -20,6 +20,6 @@ import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.pages.BasePage
 
 object ContactDetailsUpdatedPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/placeholder?message=Should+redirect+to+change+details+success+page+%28CARF-140%29"
+  override val pageUrl: String = baseUrl + "/change-contact/details-updated"
 
 }
