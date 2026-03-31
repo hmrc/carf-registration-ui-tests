@@ -22,6 +22,7 @@ import uk.gov.hmrc.test.ui.pages.indWithNino.*
 import uk.gov.hmrc.test.ui.pages.indWithoutNino.*
 import uk.gov.hmrc.test.ui.pages.orgWithUtr.*
 import uk.gov.hmrc.test.ui.specs.tags.*
+import uk.gov.hmrc.test.ui.utils.TestData
 
 class IndividualRegistrationSpec extends BaseSpec {
 
@@ -86,7 +87,7 @@ class IndividualRegistrationSpec extends BaseSpec {
     //          Individual user without NINO
     // *******************************************
 
-    Scenario("3 - Individual user without NINO - Individual not connected to any business, choose address", RegistrationTests, ZapTests) {
+    Scenario("3 - Individual user without NINO - Individual not connected to any business, choose address", RegistrationTests, ZapTests, SoloTests) {
 
       Given("the Individual user logs in as an individual not connected to a business without NINO")
       AuthLoginPage.loginAsIndividualWithoutNino()
@@ -101,7 +102,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       And("the Individual user select 'Yes' in the 'Do you live in the UK, Jersey, Guernsey or the Isle of Man?' page")
       IndWithoutIdWhereDoYouLivePage.select("Yes")
       And("the Individual user enters postcode and property name in 'Find your address' page")
-      IndWithoutIdFindAddress.enterPostcodeAndProperty("ZZ01 1ZZ", "flat")
+      IndWithoutIdFindAddress.enterPostcodeAndProperty(TestData.postcode, "flat")
       And("the Individual user selects second address")
       IndWithoutIdChooseAddress.selectAddressAs("Second Address")
       And("the Individual user enters the email address in the 'What is your email address?' page")
@@ -116,7 +117,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       ConfirmRegistrationPage.onPage()
     }
 
-    Scenario("4 - Individual user without NINO - Individual not connected to any business, review address", RegistrationTests, ZapTests) {
+    Scenario("4 - Individual user without NINO - Individual not connected to any business, review address", RegistrationTests, ZapTests, SoloTests) {
       Given("the Individual user logs in as an individual not connected to a business without NINO")
       AuthLoginPage.loginAsIndividualWithoutNino()
       When("the Individual user selects 'An Individual not connected to a business' in the 'What are you registering as?' page")
@@ -130,7 +131,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       And("the Individual user select 'Yes' in the 'Do you live in the UK, Jersey, Guernsey or the Isle of Man?' page")
       IndWithoutIdWhereDoYouLivePage.select("Yes")
       And("the Individual user enters postcode and property name in 'Find your address' page")
-      IndWithoutIdFindAddress.enterPostcodeAndProperty("ZZ01 1ZZ", "3")
+      IndWithoutIdFindAddress.enterPostcodeAndProperty(TestData.postcode, "3")
       And("the Individual user click Confirm address button on review address page")
       IndWithoutIdReviewAddress.onPageSubmitById()
       And("the Individual user enters the email address in the 'What is your email address?' page")
