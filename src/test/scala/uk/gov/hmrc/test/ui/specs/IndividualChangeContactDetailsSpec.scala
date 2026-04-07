@@ -26,21 +26,30 @@ class IndividualChangeContactDetailsSpec extends BaseSpec {
   Feature("Individual Change User Contact Details") {
 
     // Scenarios covered
-    // 1. "Individual user change email
+    // 1. Individual user change contact details
 
-    Scenario("1 - Individual user change email", RegistrationTests, ZapTests) {
+    Scenario("1 - Individual user change contact details", RegistrationTests, ZapTests) {
 
       Given("the Individual user logs in as an individual not connected to a business")
-      AuthLoginPage.loginAsIndividualForChange("1234567890")
+      AuthLoginPage.loginAsIndividualForChange("234567890")
       And("the Individual user clicks on 'Change' link to change their email address on the 'Change your contact details' page")
-      ChangeContactIndDetailsPage.clickOnLink(ChangeContactIndDetailsPage.changeLinkCSSSelector)
+      ChangeContactIndDetailsPage.clickOnLink(ChangeContactIndDetailsPage.emailChangeLink)
       And("the Individual user enters a different email in 'What is your email address?' page")
       ChangeContactIndEmailPage.enterEmailAddress("changedEmail@test.com")
+      And("the Individual user clicks on 'Change' link to change phone preference on the 'Change your contact details' page")
+      ChangeContactIndDetailsPage.clickOnLink(ChangeContactIndDetailsPage.havePhoneNumberChangeLink)
+      And("the Individual user selects 'Yes' in the 'Can we contact you by phone' page")
+      ChangeContactIndHavePhone.select("Yes")
+      And("the Individual user enters a different phone in 'What is your phone number?' page")
+      ChangeContactIndPhonePage.enterIndividualPhoneNumber("1234567890")
+      And("the Individual user clicks on 'Change' link to change their phone number on the 'Change your contact details' page")
+      ChangeContactIndDetailsPage.clickOnLink(ChangeContactIndDetailsPage.phoneNumberChangeLink)
+      And("the Individual user enters a different phone in 'What is your phone number?' page")
+      ChangeContactIndPhonePage.enterIndividualPhoneNumber("07589585409")
       And("the Individual user clicks on 'Confirm and send' in the 'Change your contact details' page")
       ChangeContactIndDetailsPage.onPageSubmitById()
       Then("the Individual user is routed to 'Contact details updated' page")
       ContactDetailsUpdatedPage.onPage()
     }
-
   }
 }
