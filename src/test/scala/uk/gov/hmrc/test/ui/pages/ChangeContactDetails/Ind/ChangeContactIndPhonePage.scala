@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,11 +19,11 @@ package uk.gov.hmrc.test.ui.pages.ChangeContactDetails.Ind
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.pages.BasePage
 
-object ChangeContactIndDetailsPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/change-contact/individual/details"
+object ChangeContactIndPhonePage extends BasePage {
+  override val pageUrl: String = baseUrl + "/change-contact/individual/phone"
 
-  val emailChangeLink: By           = By.cssSelector("""a[href*="/email"]""")
-  val phoneNumberChangeLink: By     = By.cssSelector("a[href*=\"/phone\"]")
-  val havePhoneNumberChangeLink: By = By.cssSelector("a[href*=\"/have-phone\"]")
+  private val phoneNumberId = By.id("value")
 
+  def enterIndividualPhoneNumber(phoneNumber: String): Unit =
+    fillFieldsAndContinue((phoneNumberId, phoneNumber))
 }
