@@ -56,12 +56,12 @@ class OrganisationChangeContactDetailsSpec extends BaseSpec {
       ChangeContactOrgSecondContactEmailPage.enterEmailAddress("NewSecondContactEmail@test.com")
       And("the Organisation user clicks on 'Yes' in 'Can we contact [second contact name] by phone?' page")
       ChangeContactOrgSecondContactHavePhone.select("Yes")
-
-/*
+      And("the Organisation user enters a phone number in 'What is the phone number for [second contact name]?' page")
+      ChangeContactOrgSecondContactPhonePage.enterSecondContactPhoneNumber("1234567890")
       And("the Organisation user clicks on 'Confirm and send' in the 'Change your contact details' page")
       ChangeContactOrgDetailsPage.onPageSubmitById()
       Then("the Organisation user is routed to 'Contact details updated' page")
-      ContactDetailsUpdatedPage.onPage()*/
+      ContactDetailsUpdatedPage.onPage()
     }
   }
 }
