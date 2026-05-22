@@ -20,12 +20,15 @@ import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.pages.BasePage
 
 object ChangeContactOrgSecondContactEmailPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/change-contact/organisation/provide-second-contact-email"
+  override val pageUrl: String = baseUrl + "/change-contact/organisation/second-contact-email"
+  val providePageUrl: String = baseUrl + "/change-contact/organisation/provide-second-contact-email"
 
   private val secondContactEmailAddressId: By = By.id("value")
 
-  def enterEmailAddress(secondContactEmailAddressValue: String): Unit =
-    fillFieldsAndContinue(
-      (secondContactEmailAddressId, secondContactEmailAddressValue)
-    )
+  def enterEmailAddress(secondContactEmailAddressValue: String, isProvideMode: Boolean = false): Unit = {
+    val url = if (isProvideMode) providePageUrl else pageUrl
+    onPage(url)
+    sendKeys(secondContactEmailAddressId, secondContactEmailAddressValue)
+    click(continueButtonId)
+  }
 }
