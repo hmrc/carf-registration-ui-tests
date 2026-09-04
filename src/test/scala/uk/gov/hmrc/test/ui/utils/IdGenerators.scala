@@ -16,12 +16,12 @@
 
 package uk.gov.hmrc.test.ui.utils
 
-import uk.gov.hmrc.domain.{Generator, SaUtrGenerator}
+import uk.gov.hmrc.domain.{NinoGenerator, SaUtrGenerator}
 
 trait IdGenerators {
 
-  val randomisedNino: String = new Generator().nextNino.toString()
-  val randomisedUtr: String  = new SaUtrGenerator().nextSaUtr.toString()
+  val randomisedNino: String = NinoGenerator().nextNino.nino
+  val randomisedUtr: String  = SaUtrGenerator().nextSaUtr.utr
 
   // prefixes
   val autoMatchedCtUtrForUK: String         = "111"
