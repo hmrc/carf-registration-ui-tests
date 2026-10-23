@@ -33,7 +33,7 @@ class IndividualRegistrationSpec extends BaseSpec {
     // 2.       "Individual user with NINO - Sole trader", --> //Do not continue this journey further.
     // 3.       "Individual user without NINO - Individual not connected to any business, choose address", --> This journey converges with the journey 5 ("Individual user without NINO - Sole trader - having no registered address in the UK") at CARF-169
     // 4.       "Individual user without NINO - Individual not connected to any business, review address"
-    // 5.       "Individual user without NINO - Sole trader - having a registered address in the UK", --> This journey converges with the Organisation user sole trader journey at CARF-121 - TODO: Check if this can be removed?
+    // 5.       "Individual user without NINO - Sole trader - having a registered address in the UK", --> This journey converges with the Organisation user sole trader journey at CARF-121
     // 6.       "Individual user without NINO - Sole trader - having no registered address in the UK no UTR"
     // *******************************************
     //          Individual user with NINO
@@ -145,6 +145,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       Then("the Individual user is routed to 'Registration successful' page")
       ConfirmRegistrationPage.onPage()
     }
+
     Scenario("5 - Individual user without NINO - Sole trader - having a registered address in the UK", RegistrationTests, ZapTests) {
 
       Given("the Individual user logs in as a sole trader without NINO having a registered address in the UK")
